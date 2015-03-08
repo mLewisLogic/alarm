@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>93F52587-D300-4745-8E5A-1FB9D9D82510</string>
+	<key>IDESourceControlProjectName</key>
+	<string>alarm</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D0741DFE4DDA4708012D66E5E63AF80DB5C1DEA1</key>
+		<string>github.com:mLewisLogic/alarm.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>alarm.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D0741DFE4DDA4708012D66E5E63AF80DB5C1DEA1</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:mLewisLogic/alarm.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D0741DFE4DDA4708012D66E5E63AF80DB5C1DEA1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D0741DFE4DDA4708012D66E5E63AF80DB5C1DEA1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>alarm</string>
+		</dict>
+	</array>
+</dict>
+</plist>

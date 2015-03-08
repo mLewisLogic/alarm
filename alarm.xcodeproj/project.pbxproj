@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251AF2191AABE450003CFFED /* MinuteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251AF2181AABE450003CFFED /* MinuteView.xib */; };
+		251AF21B1AABE6DD003CFFED /* AmPmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251AF21A1AABE6DD003CFFED /* AmPmView.xib */; };
+		253F9DFB1AA95158007A1457 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253F9DFA1AA95158007A1457 /* TodayViewController.swift */; };
+		254B59D71AABA52F00A7E3F1 /* HourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B59D61AABA52F00A7E3F1 /* HourViewController.swift */; };
+		254B59D91AABA53700A7E3F1 /* MinuteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */; };
+		254B59DD1AABA54A00A7E3F1 /* AmPmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */; };
+		254B59DF1AABB0BA00A7E3F1 /* HourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 254B59DE1AABB0BA00A7E3F1 /* HourView.xib */; };
 		25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68D1AA8284100431A81 /* AppDelegate.swift */; };
 		25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68F1AA8284100431A81 /* alarm.xcdatamodeld */; };
-		25E7C6931AA8284100431A81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C6921AA8284100431A81 /* ViewController.swift */; };
 		25E7C6961AA8284100431A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6941AA8284100431A81 /* Main.storyboard */; };
 		25E7C6981AA8284100431A81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6971AA8284100431A81 /* Images.xcassets */; };
 		25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6991AA8284100431A81 /* LaunchScreen.xib */; };
@@ -27,11 +33,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		251AF2181AABE450003CFFED /* MinuteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MinuteView.xib; sourceTree = "<group>"; };
+		251AF21A1AABE6DD003CFFED /* AmPmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmPmView.xib; sourceTree = "<group>"; };
+		253F9DFA1AA95158007A1457 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		254B59D61AABA52F00A7E3F1 /* HourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourViewController.swift; sourceTree = "<group>"; };
+		254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteViewController.swift; sourceTree = "<group>"; };
+		254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AmPmViewController.swift; path = ../AmPmViewController.swift; sourceTree = "<group>"; };
+		254B59DE1AABB0BA00A7E3F1 /* HourView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HourView.xib; path = ../HourView.xib; sourceTree = "<group>"; };
 		25E7C6881AA8284100431A81 /* alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C68C1AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E7C68D1AA8284100431A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25E7C6901AA8284100431A81 /* alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = alarm.xcdatamodel; sourceTree = "<group>"; };
-		25E7C6921AA8284100431A81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		25E7C6951AA8284100431A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25E7C6971AA8284100431A81 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		25E7C69A1AA8284100431A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -58,6 +70,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		253F9DFC1AA95162007A1457 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */,
+				253F9DFA1AA95158007A1457 /* TodayViewController.swift */,
+				254B59D61AABA52F00A7E3F1 /* HourViewController.swift */,
+				254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		254B59CD1AABA36E00A7E3F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				254B59DE1AABB0BA00A7E3F1 /* HourView.xib */,
+				251AF2181AABE450003CFFED /* MinuteView.xib */,
+				251AF21A1AABE6DD003CFFED /* AmPmView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		25E7C67F1AA8284100431A81 = {
 			isa = PBXGroup;
 			children = (
@@ -79,8 +112,9 @@
 		25E7C68A1AA8284100431A81 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
+				254B59CD1AABA36E00A7E3F1 /* Views */,
+				253F9DFC1AA95162007A1457 /* Controllers */,
 				25E7C68D1AA8284100431A81 /* AppDelegate.swift */,
-				25E7C6921AA8284100431A81 /* ViewController.swift */,
 				25E7C6941AA8284100431A81 /* Main.storyboard */,
 				25E7C6971AA8284100431A81 /* Images.xcassets */,
 				25E7C6991AA8284100431A81 /* LaunchScreen.xib */,
@@ -197,7 +231,10 @@
 			files = (
 				25E7C6961AA8284100431A81 /* Main.storyboard in Resources */,
 				25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */,
+				254B59DF1AABB0BA00A7E3F1 /* HourView.xib in Resources */,
 				25E7C6981AA8284100431A81 /* Images.xcassets in Resources */,
+				251AF2191AABE450003CFFED /* MinuteView.xib in Resources */,
+				251AF21B1AABE6DD003CFFED /* AmPmView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +252,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25E7C6931AA8284100431A81 /* ViewController.swift in Sources */,
+				254B59D71AABA52F00A7E3F1 /* HourViewController.swift in Sources */,
+				254B59DD1AABA54A00A7E3F1 /* AmPmViewController.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,
 				25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */,
+				254B59D91AABA53700A7E3F1 /* MinuteViewController.swift in Sources */,
+				253F9DFB1AA95158007A1457 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +449,7 @@
 				25E7C6AC1AA8284100431A81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25E7C6AD1AA8284100431A81 /* Build configuration list for PBXNativeTarget "alarmTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +458,7 @@
 				25E7C6AF1AA8284100431A81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
