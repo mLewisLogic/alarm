@@ -20,6 +20,7 @@ class MinuteViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        minuteView.registerNib(UINib(nibName: "MinuteView", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
         minuteView.delegate = self
         minuteView.dataSource = self
         minuteView.reloadData()
@@ -31,7 +32,8 @@ class MinuteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        var cell = minuteView.dequeueReusableCellWithIdentifier("TimeElementTableViewCell") as TimeElementTableViewCell
+        cell.timeElement?.text = String(minutes[indexPath.row])
         return cell
     }
     

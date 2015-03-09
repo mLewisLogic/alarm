@@ -20,6 +20,8 @@
 		25E7C6981AA8284100431A81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6971AA8284100431A81 /* Images.xcassets */; };
 		25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6991AA8284100431A81 /* LaunchScreen.xib */; };
 		25E7C6A71AA8284100431A81 /* alarmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C6A61AA8284100431A81 /* alarmTests.swift */; };
+		25F03F891AAC317D0002EFB9 /* TimeElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F03F871AAC317D0002EFB9 /* TimeElementTableViewCell.swift */; };
+		25F03F8A1AAC317D0002EFB9 /* TimeElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		25E7C6A01AA8284100431A81 /* alarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C6A51AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E7C6A61AA8284100431A81 /* alarmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmTests.swift; sourceTree = "<group>"; };
+		25F03F871AAC317D0002EFB9 /* TimeElementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeElementTableViewCell.swift; sourceTree = "<group>"; };
+		25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeElementTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				254B59DE1AABB0BA00A7E3F1 /* HourView.xib */,
+				25F03F871AAC317D0002EFB9 /* TimeElementTableViewCell.swift */,
+				25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */,
 				251AF2181AABE450003CFFED /* MinuteView.xib */,
 				251AF21A1AABE6DD003CFFED /* AmPmView.xib */,
 			);
@@ -233,6 +239,7 @@
 				25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */,
 				254B59DF1AABB0BA00A7E3F1 /* HourView.xib in Resources */,
 				25E7C6981AA8284100431A81 /* Images.xcassets in Resources */,
+				25F03F8A1AAC317D0002EFB9 /* TimeElementTableViewCell.xib in Resources */,
 				251AF2191AABE450003CFFED /* MinuteView.xib in Resources */,
 				251AF21B1AABE6DD003CFFED /* AmPmView.xib in Resources */,
 			);
@@ -252,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25F03F891AAC317D0002EFB9 /* TimeElementTableViewCell.swift in Sources */,
 				254B59D71AABA52F00A7E3F1 /* HourViewController.swift in Sources */,
 				254B59DD1AABA54A00A7E3F1 /* AmPmViewController.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,

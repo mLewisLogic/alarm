@@ -18,6 +18,7 @@ class AmPmViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        amPmView.registerNib(UINib(nibName: "MinuteView", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
         amPmView.delegate = self
         amPmView.dataSource = self
     }
@@ -28,7 +29,8 @@ class AmPmViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        var cell = amPmView.dequeueReusableCellWithIdentifier("TimeElementTableViewCell") as TimeElementTableViewCell
+        cell.timeElement?.text = amPm[indexPath.row]
         return cell
     }
     

@@ -27,6 +27,10 @@ class TodayViewController: UIViewController {
         for time in timePicker {
            addViewController(time[0] as UIView, vc: time[1] as UIViewController)
         }
+        
+        hourView.frame = CGRectMake(0, 0, self.view.frame.width / 3, self.view.frame.height)
+        minuteView.frame = CGRectMake(self.view.frame.width / 3, 0, self.view.frame.width / 3, self.view.frame.height)
+        amPmView.frame = CGRectMake((self.view.frame.width / 3) * 2, 0, self.view.frame.width / 3, self.view.frame.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,11 +38,11 @@ class TodayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func addViewController (view: UIView!, vc: UIViewController!) {
+    func addViewController (subView: UIView!, vc: UIViewController!) {
         self.addChildViewController(vc)
         vc.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        vc.view.frame = self.view.bounds
-        self.view.addSubview(vc.view)
+        vc.view.frame = subView.bounds
+        subView.addSubview(vc.view)
     }
 
     /*

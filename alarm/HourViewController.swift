@@ -18,6 +18,7 @@ class HourViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        hourView.registerNib(UINib(nibName: "HourView", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
         hourView.delegate = self
         hourView.dataSource = self
         hourView.reloadData()
@@ -29,7 +30,8 @@ class HourViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        var cell = hourView.dequeueReusableCellWithIdentifier("TimeElementTableViewCell") as TimeElementTableViewCell
+        cell.timeElement.text = String(hours[indexPath.row])
         return cell
     }
     
