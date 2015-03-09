@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlarmViewController" customModule="alarm" customModuleProvider="target">
             <connections>
+                <outlet property="timePicker" destination="Neu-kG-Epd" id="iJh-TG-DDZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,8 +14,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="186" y="359"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kG-Epd">
+                    <rect key="frame" x="160" y="176" width="160" height="216"/>
+                    <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="N4e-xS-QkU"/>
+                    </constraints>
+                </pickerView>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Neu-kG-Epd" secondAttribute="trailing" id="7Lp-bf-WMC"/>
+                <constraint firstAttribute="centerY" secondItem="Neu-kG-Epd" secondAttribute="centerY" id="JtJ-Ep-Sl8"/>
+                <constraint firstItem="Neu-kG-Epd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ddh-z8-MDB"/>
+                <constraint firstAttribute="bottom" secondItem="Neu-kG-Epd" secondAttribute="bottom" id="rLN-vi-LTr"/>
+            </constraints>
+            <point key="canvasLocation" x="186" y="363"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

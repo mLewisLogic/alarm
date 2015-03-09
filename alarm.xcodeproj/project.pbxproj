@@ -24,6 +24,7 @@
 		25F03F8A1AAC317D0002EFB9 /* TimeElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */; };
 		273E0DCE1AAD4074005D73E3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */; };
 		273E0DCF1AAD4074005D73E3 /* AlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */; };
+		273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DD21AAD6591005D73E3 /* TimeElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeElementTableViewCell.xib; sourceTree = "<group>"; };
 		273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmViewController.xib; sourceTree = "<group>"; };
+		273E0DD01AAD5FAB005D73E3 /* scratch.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = scratch.playground; sourceTree = "<group>"; };
+		273E0DD21AAD6591005D73E3 /* TimeElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,7 @@
 		25E7C67F1AA8284100431A81 = {
 			isa = PBXGroup;
 			children = (
+				273E0DD01AAD5FAB005D73E3 /* scratch.playground */,
 				25E7C68A1AA8284100431A81 /* alarm */,
 				25E7C6A31AA8284100431A81 /* alarmTests */,
 				25E7C6891AA8284100431A81 /* Products */,
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				253F9DFC1AA95162007A1457 /* Controllers */,
+				273E0DD11AAD655B005D73E3 /* Lib */,
 				254B59CD1AABA36E00A7E3F1 /* Views */,
 				25E7C68D1AA8284100431A81 /* AppDelegate.swift */,
 				25E7C6941AA8284100431A81 /* Main.storyboard */,
@@ -159,6 +164,14 @@
 				25E7C6A51AA8284100431A81 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		273E0DD11AAD655B005D73E3 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				273E0DD21AAD6591005D73E3 /* TimeElement.swift */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +285,7 @@
 				254B59DD1AABA54A00A7E3F1 /* AmPmViewController.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,
 				25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */,
+				273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */,
 				254B59D91AABA53700A7E3F1 /* MinuteViewController.swift in Sources */,
 				253F9DFB1AA95158007A1457 /* TodayViewController.swift in Sources */,
 			);
