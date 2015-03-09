@@ -40,8 +40,8 @@
 		253F9DFA1AA95158007A1457 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		254B59D61AABA52F00A7E3F1 /* HourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourViewController.swift; sourceTree = "<group>"; };
 		254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteViewController.swift; sourceTree = "<group>"; };
-		254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AmPmViewController.swift; path = ../AmPmViewController.swift; sourceTree = "<group>"; };
-		254B59DE1AABB0BA00A7E3F1 /* HourView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HourView.xib; path = ../HourView.xib; sourceTree = "<group>"; };
+		254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmPmViewController.swift; sourceTree = "<group>"; };
+		254B59DE1AABB0BA00A7E3F1 /* HourView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourView.xib; sourceTree = "<group>"; };
 		25E7C6881AA8284100431A81 /* alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C68C1AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E7C68D1AA8284100431A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
