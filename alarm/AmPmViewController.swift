@@ -18,7 +18,7 @@ class AmPmViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        amPmView.registerNib(UINib(nibName: "MinuteView", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
+        amPmView.registerNib(UINib(nibName: "TimeElementTableViewCell", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
         amPmView.delegate = self
         amPmView.dataSource = self
     }

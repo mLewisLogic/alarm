@@ -20,7 +20,7 @@ class MinuteViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        minuteView.registerNib(UINib(nibName: "MinuteView", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
+        minuteView.registerNib(UINib(nibName: "TimeElementTableViewCell", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
         minuteView.delegate = self
         minuteView.dataSource = self
         minuteView.reloadData()

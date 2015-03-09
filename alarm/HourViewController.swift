@@ -18,7 +18,7 @@ class HourViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        hourView.registerNib(UINib(nibName: "HourView", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
+        hourView.registerNib(UINib(nibName: "TimeElementTableViewCell", bundle: nil), forCellReuseIdentifier: "TimeElementTableViewCell")
         hourView.delegate = self
         hourView.dataSource = self
         hourView.reloadData()
