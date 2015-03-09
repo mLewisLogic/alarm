@@ -16,7 +16,19 @@ class TimeElement {
 
 
   init(hour: Int, minute: Int) {
-    self.hour = hour
+    // Determine AM vs PM and adjust the hour to a 12 hour clock
+    if hour < 12 {
+      self.hour = hour
+      self.amOrPm = "am"
+    } else {
+      self.hour = hour - 12
+      self.amOrPm = "pm"
+    }
+
+    if self.hour == 0 {
+      self.hour = 12
+    }
+
     self.minute = minute
 
     // Special formatting for special times
@@ -25,15 +37,9 @@ class TimeElement {
     } else if hour == 12 && minute == 0 {
       self.displayStr = "noon"
     } else {
-      self.displayStr = String(format: "%02d : %02d", hour, minute)
+      self.displayStr = String(format: "%02d : %02d", self.hour, self.minute)
     }
 
-    // Determine AM vs PM
-    if hour < 12 {
-      self.amOrPm = "am"
-    } else {
-      self.amOrPm = "pm";
-    }
   }
 
   // Generate all of the time elements that we will allow
