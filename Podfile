@@ -2,7 +2,7 @@
 # platform :ios, '6.0'
 
 target 'alarm' do
-
+  pod 'MagicalRecord'
 end
 
 target 'alarmTests' do
