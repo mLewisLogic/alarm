@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="infinite" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="57" id="KGk-i7-Jjw" customClass="ScheduleTableViewCell" customModule="alarm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6p-wV-ZzO">
+                        <rect key="frame" x="16" y="18" width="30" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azm-eg-TnN">
+                        <rect key="frame" x="129" y="18.5" width="62" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-ks-xVn">
+                        <rect key="frame" x="255" y="13" width="51" height="31"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <action selector="switchChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="ZsW-cs-tlx"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="t6p-wV-ZzO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="6WX-Hb-5pz"/>
+                    <constraint firstAttribute="centerY" secondItem="Azm-eg-TnN" secondAttribute="centerY" id="7J2-CC-yn0"/>
+                    <constraint firstItem="t6p-wV-ZzO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="ARY-WH-Bhd"/>
+                    <constraint firstAttribute="centerX" secondItem="Azm-eg-TnN" secondAttribute="centerX" id="dj1-me-3jE"/>
+                    <constraint firstItem="Yho-ks-xVn" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-8" id="h9m-ML-yRo"/>
+                    <constraint firstAttribute="centerY" secondItem="t6p-wV-ZzO" secondAttribute="centerY" id="kOO-ag-NUJ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="t6p-wV-ZzO" secondAttribute="bottom" constant="10" id="r3M-bF-VCv"/>
+                    <constraint firstAttribute="centerY" secondItem="Yho-ks-xVn" secondAttribute="centerY" id="sv7-Xu-5BG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activeSwitch" destination="Yho-ks-xVn" id="ft8-b8-EGT"/>
+                <outlet property="dayLabel" destination="t6p-wV-ZzO" id="dw6-C7-173"/>
+                <outlet property="timeLabel" destination="Azm-eg-TnN" id="ZBb-Mw-Glh"/>
+            </connections>
+            <point key="canvasLocation" x="300" y="438.5"/>
+        </tableViewCell>
+    </objects>
+</document>

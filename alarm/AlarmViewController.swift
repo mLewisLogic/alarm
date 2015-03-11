@@ -64,7 +64,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
       // the data by row number.
       let numRows = data.count
       let activeElement = data[row % numRows]
-      let displayString = activeElement.displayStr ?? ""
+      let displayString = activeElement.wheelDisplayStr() ?? ""
 
       // Create the label with our attributed text
       label.attributedText = NSAttributedString(
