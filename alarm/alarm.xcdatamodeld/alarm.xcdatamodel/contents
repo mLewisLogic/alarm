@@ -7,4 +7,15 @@
     <elements>
         <element name="AlarmTimeEntity" positionX="-45" positionY="0" width="128" height="75"/>
     </elements>
+
+    <entity name="AlarmEntity" representedClassName="AlarmEntity" syncable="YES">
+        <attribute name="alarmType" attributeType="String" syncable="YES"/>
+        <attribute name="dayOfWeek" attributeType="String" syncable="YES"/>
+        <attribute name="enabled" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="hour" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minute" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AlarmEntity" positionX="-63" positionY="-18" width="128" height="118"/>
+    </elements>
 </model>

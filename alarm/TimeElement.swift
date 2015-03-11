@@ -11,7 +11,6 @@ import Foundation
 class TimeElement {
   var hour: Int
   var minute: Int
-  var displayStr: String
   var amOrPm: String // either "am" or "pm"
 
 
@@ -30,16 +29,28 @@ class TimeElement {
     }
 
     self.minute = minute
+  }
 
+  func wheelDisplayStr() -> String {
     // Special formatting for special times
     if hour == 0 && minute == 0 {
-      self.displayStr = "midnight"
+      return "midnight"
     } else if hour == 12 && minute == 0 {
-      self.displayStr = "noon"
+      return "noon"
     } else {
-      self.displayStr = String(format: "%02d : %02d", self.hour, self.minute)
+      return String(format: "%02d : %02d", self.hour, self.minute)
     }
+  }
 
+  func tableDisplayStr() -> String {
+    // Special formatting for special times
+    if hour == 0 && minute == 0 {
+      return "midnight"
+    } else if hour == 12 && minute == 0 {
+      return "noon"
+    } else {
+      return String(format: "%02d:%02d %@", self.hour, self.minute, self.amOrPm)
+    }
   }
 
   // Generate all of the time elements that we will allow

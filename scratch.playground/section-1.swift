@@ -3,8 +3,3 @@
 import UIKit
 
 var str = "Hello, playground"
-
-var a: String?
-a = nil
-
-a?.toInt() 
