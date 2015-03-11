@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate {
+class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
   @IBOutlet weak var timePicker: UIPickerView!
 
