@@ -7,21 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		251AF2191AABE450003CFFED /* MinuteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251AF2181AABE450003CFFED /* MinuteView.xib */; };
-		251AF21B1AABE6DD003CFFED /* AmPmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251AF21A1AABE6DD003CFFED /* AmPmView.xib */; };
-		253F9DFB1AA95158007A1457 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253F9DFA1AA95158007A1457 /* TodayViewController.swift */; };
-		254B59D71AABA52F00A7E3F1 /* HourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B59D61AABA52F00A7E3F1 /* HourViewController.swift */; };
-		254B59D91AABA53700A7E3F1 /* MinuteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */; };
-		254B59DD1AABA54A00A7E3F1 /* AmPmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */; };
-		254B59DF1AABB0BA00A7E3F1 /* HourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 254B59DE1AABB0BA00A7E3F1 /* HourView.xib */; };
 		25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68D1AA8284100431A81 /* AppDelegate.swift */; };
 		25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68F1AA8284100431A81 /* alarm.xcdatamodeld */; };
 		25E7C6961AA8284100431A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6941AA8284100431A81 /* Main.storyboard */; };
 		25E7C6981AA8284100431A81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6971AA8284100431A81 /* Images.xcassets */; };
 		25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6991AA8284100431A81 /* LaunchScreen.xib */; };
 		25E7C6A71AA8284100431A81 /* alarmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C6A61AA8284100431A81 /* alarmTests.swift */; };
-		25F03F891AAC317D0002EFB9 /* TimeElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F03F871AAC317D0002EFB9 /* TimeElementTableViewCell.swift */; };
-		25F03F8A1AAC317D0002EFB9 /* TimeElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */; };
 		273E0DCE1AAD4074005D73E3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */; };
 		273E0DCF1AAD4074005D73E3 /* AlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */; };
 		273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DD21AAD6591005D73E3 /* TimeElement.swift */; };
@@ -41,13 +32,6 @@
 /* Begin PBXFileReference section */
 		034E64FABC2282EEAB01E5D0 /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B39A0D2F7E331BB496FA50 /* Pods-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.debug.xcconfig"; sourceTree = "<group>"; };
-		251AF2181AABE450003CFFED /* MinuteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MinuteView.xib; sourceTree = "<group>"; };
-		251AF21A1AABE6DD003CFFED /* AmPmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmPmView.xib; sourceTree = "<group>"; };
-		253F9DFA1AA95158007A1457 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		254B59D61AABA52F00A7E3F1 /* HourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourViewController.swift; sourceTree = "<group>"; };
-		254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteViewController.swift; sourceTree = "<group>"; };
-		254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmPmViewController.swift; sourceTree = "<group>"; };
-		254B59DE1AABB0BA00A7E3F1 /* HourView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourView.xib; sourceTree = "<group>"; };
 		256C67C21AAEA6320074F260 /* alarm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "alarm-Bridging-Header.h"; sourceTree = "<group>"; };
 		25E7C6881AA8284100431A81 /* alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C68C1AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,8 +43,6 @@
 		25E7C6A01AA8284100431A81 /* alarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C6A51AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E7C6A61AA8284100431A81 /* alarmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmTests.swift; sourceTree = "<group>"; };
-		25F03F871AAC317D0002EFB9 /* TimeElementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeElementTableViewCell.swift; sourceTree = "<group>"; };
-		25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeElementTableViewCell.xib; sourceTree = "<group>"; };
 		273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmViewController.xib; sourceTree = "<group>"; };
 		273E0DD01AAD5FAB005D73E3 /* scratch.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = scratch.playground; sourceTree = "<group>"; };
@@ -91,10 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */,
-				254B59DC1AABA54A00A7E3F1 /* AmPmViewController.swift */,
-				253F9DFA1AA95158007A1457 /* TodayViewController.swift */,
-				254B59D61AABA52F00A7E3F1 /* HourViewController.swift */,
-				254B59D81AABA53700A7E3F1 /* MinuteViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -103,11 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */,
-				251AF21A1AABE6DD003CFFED /* AmPmView.xib */,
-				254B59DE1AABB0BA00A7E3F1 /* HourView.xib */,
-				251AF2181AABE450003CFFED /* MinuteView.xib */,
-				25F03F881AAC317D0002EFB9 /* TimeElementTableViewCell.xib */,
-				25F03F871AAC317D0002EFB9 /* TimeElementTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -284,12 +257,8 @@
 			files = (
 				25E7C6961AA8284100431A81 /* Main.storyboard in Resources */,
 				25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */,
-				254B59DF1AABB0BA00A7E3F1 /* HourView.xib in Resources */,
 				25E7C6981AA8284100431A81 /* Images.xcassets in Resources */,
 				273E0DCF1AAD4074005D73E3 /* AlarmViewController.xib in Resources */,
-				25F03F8A1AAC317D0002EFB9 /* TimeElementTableViewCell.xib in Resources */,
-				251AF2191AABE450003CFFED /* MinuteView.xib in Resources */,
-				251AF21B1AABE6DD003CFFED /* AmPmView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,14 +310,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				273E0DCE1AAD4074005D73E3 /* AlarmViewController.swift in Sources */,
-				25F03F891AAC317D0002EFB9 /* TimeElementTableViewCell.swift in Sources */,
-				254B59D71AABA52F00A7E3F1 /* HourViewController.swift in Sources */,
-				254B59DD1AABA54A00A7E3F1 /* AmPmViewController.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,
 				25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */,
 				273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */,
-				254B59D91AABA53700A7E3F1 /* MinuteViewController.swift in Sources */,
-				253F9DFB1AA95158007A1457 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

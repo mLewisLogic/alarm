@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlarmViewController" customModule="alarm" customModuleProvider="target">
@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kG-Epd">
-                    <rect key="frame" x="160" y="176" width="160" height="216"/>
+                    <rect key="frame" x="0.0" y="176" width="320" height="216"/>
                     <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="160" id="N4e-xS-QkU"/>
+                        <constraint firstAttribute="width" constant="320" id="N4e-xS-QkU"/>
                     </constraints>
                 </pickerView>
             </subviews>
@@ -27,8 +27,10 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Neu-kG-Epd" secondAttribute="trailing" id="7Lp-bf-WMC"/>
                 <constraint firstAttribute="centerY" secondItem="Neu-kG-Epd" secondAttribute="centerY" id="JtJ-Ep-Sl8"/>
-                <constraint firstItem="Neu-kG-Epd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ddh-z8-MDB"/>
-                <constraint firstAttribute="bottom" secondItem="Neu-kG-Epd" secondAttribute="bottom" id="rLN-vi-LTr"/>
+                <constraint firstItem="Neu-kG-Epd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QDa-LN-0wN"/>
+                <constraint firstItem="Neu-kG-Epd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="176" id="ddh-z8-MDB"/>
+                <constraint firstAttribute="trailing" secondItem="Neu-kG-Epd" secondAttribute="trailing" id="ha2-ze-QtX"/>
+                <constraint firstAttribute="bottom" secondItem="Neu-kG-Epd" secondAttribute="bottom" constant="176" id="rLN-vi-LTr"/>
             </constraints>
             <point key="canvasLocation" x="186" y="363"/>
         </view>
