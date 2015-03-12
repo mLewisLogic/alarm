@@ -9,7 +9,6 @@
 import UIKit
 
 class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
   @IBOutlet weak var scheduleTableView: UITableView!
 
   // An array of 7 TimeElements
@@ -18,7 +17,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     // Do any additional setup after loading the view.
     scheduleTableView.registerNib(
       UINib(
@@ -47,9 +46,11 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       forIndexPath: indexPath
       ) as ScheduleTableViewCell
     cell.alarmEntity = alarmEntityArray[indexPath.row]
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    
     return cell
   }
-
+  
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
@@ -57,7 +58,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
     NSLog("\(indexPath.row)")
   }
-
+  
   // TODO: We need to replace this with live Core Data entities from the database
   // This might be useful as a first-time user initialization routine.
   private func createDummyAlarms() {

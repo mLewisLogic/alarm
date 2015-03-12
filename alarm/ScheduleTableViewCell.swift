@@ -21,13 +21,12 @@ class ScheduleTableViewCell: UITableViewCell {
       //activeSwitch.on = alarmEntity.enabled
     }
   }
-
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-    self.contentView.userInteractionEnabled = false
   }
-
+  
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
 
