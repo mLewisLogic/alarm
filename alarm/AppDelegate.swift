@@ -19,19 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
-    // Load our Alarm view by default
     if let window = self.window {
+      var homeViewController = HomeViewController(
+        nibName: "HomeViewController",
+        bundle: nil
+      )
+
       var alarmViewController = AlarmViewController(
         nibName: "AlarmViewController",
         bundle: nil
       )
-      window.rootViewController = alarmViewController
 
       var scheduleViewController = ScheduleViewController(
         nibName: "ScheduleViewController",
         bundle: nil
       )
-      window.rootViewController = scheduleViewController
+
+      window.rootViewController = homeViewController
 
       window.makeKeyAndVisible()
     }

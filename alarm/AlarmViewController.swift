@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol TimePickerDelegate {
+  func timeSelected(time: TimeElement)
+}
+
+
 class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
   @IBOutlet weak var timePicker: UIPickerView!
@@ -22,8 +27,16 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 
   var pickerData: Array<TimeElement>?
 
+  var delegate: TimePickerDelegate!
+
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    // Set up our visual elements
+    self.view.backgroundColor = UIColor.clearColor()
+    timePicker.backgroundColor = UIColor.clearColor()
+    timePicker.alpha = 1.0
+    timePicker.tintColor = UIColor.greenColor()
 
     // Do any additional setup after loading the view.
     timePicker.dataSource = self
@@ -58,12 +71,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
   func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
     var label = UILabel()
 
-    if let data = pickerData {
-      // Because we're duplicating elements in order to simulate
-      // a circular effect, we need to use modulus when accessing
-      // the data by row number.
-      let numRows = data.count
-      let activeElement = data[row % numRows]
+    if let activeElement = getElementAtRow(row) {
       let displayString = activeElement.wheelDisplayStr() ?? ""
 
       // Create the label with our attributed text
@@ -97,6 +105,32 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
   func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
     return 20.0
   }
+
+
+  // The accept button was selected
+  @IBAction func acceptTapped(sender: UITapGestureRecognizer) {
+    let selectedRow = timePicker.selectedRowInComponent(0)
+    if let activeElement = getElementAtRow(selectedRow) {
+      delegate?.timeSelected(activeElement)
+    }
+  }
+
+
+  // Get the element at a given row
+  // This is helpful because of our circular data
+  private func getElementAtRow(row: Int) -> TimeElement? {
+    if let data = pickerData {
+      // Because we're duplicating elements in order to simulate
+      // a circular effect, we need to use modulus when accessing
+      // the data by row number.
+      let numRows = data.count
+      return data[row % numRows]
+    } else {
+      NSLog("Shouldn't return nil here")
+      return nil
+    }
+  }
+
 
   // Horizontally stretch the time picker to the full height of the
   // surrounding view. This introduces some weird stretching effects that

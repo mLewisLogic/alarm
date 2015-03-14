@@ -16,24 +16,48 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kG-Epd">
-                    <rect key="frame" x="0.0" y="176" width="320" height="216"/>
-                    <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="203" width="320" height="162"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="N4e-xS-QkU"/>
                     </constraints>
                 </pickerView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GG0-tW-oES" userLabel="Accept View">
+                    <rect key="frame" x="0.0" y="504" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCk-pl-O7i">
+                            <rect key="frame" x="128" y="20" width="63" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Ngg-Tb-hWM"/>
+                        <constraint firstAttribute="centerX" secondItem="SCk-pl-O7i" secondAttribute="centerX" constant="0.5" id="U8x-Tc-pmT"/>
+                        <constraint firstAttribute="centerY" secondItem="SCk-pl-O7i" secondAttribute="centerY" id="XVu-xC-Mlp"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="ITU-0S-roY" appends="YES" id="4T5-ZQ-QXR"/>
+                    </connections>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Neu-kG-Epd" secondAttribute="trailing" id="7Lp-bf-WMC"/>
-                <constraint firstAttribute="centerY" secondItem="Neu-kG-Epd" secondAttribute="centerY" id="JtJ-Ep-Sl8"/>
-                <constraint firstItem="Neu-kG-Epd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QDa-LN-0wN"/>
-                <constraint firstItem="Neu-kG-Epd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="176" id="ddh-z8-MDB"/>
-                <constraint firstAttribute="trailing" secondItem="Neu-kG-Epd" secondAttribute="trailing" id="ha2-ze-QtX"/>
-                <constraint firstAttribute="bottom" secondItem="Neu-kG-Epd" secondAttribute="bottom" constant="176" id="rLN-vi-LTr"/>
+                <constraint firstItem="GG0-tW-oES" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dq5-rV-EdW"/>
+                <constraint firstAttribute="centerX" secondItem="Neu-kG-Epd" secondAttribute="centerX" id="Yis-vo-jh5"/>
+                <constraint firstAttribute="trailing" secondItem="GG0-tW-oES" secondAttribute="trailing" id="bko-EL-yWi"/>
+                <constraint firstAttribute="bottom" secondItem="GG0-tW-oES" secondAttribute="bottom" id="hRH-WJ-cnF"/>
+                <constraint firstAttribute="centerY" secondItem="Neu-kG-Epd" secondAttribute="centerY" id="sm8-yF-KKZ"/>
             </constraints>
             <point key="canvasLocation" x="186" y="363"/>
         </view>
+        <tapGestureRecognizer id="ITU-0S-roY">
+            <connections>
+                <action selector="acceptTapped:" destination="-1" id="3D3-eg-RjO"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
