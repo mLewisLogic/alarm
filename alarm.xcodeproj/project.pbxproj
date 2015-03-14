@@ -21,6 +21,7 @@
 		273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DD21AAD6591005D73E3 /* TimeElement.swift */; };
 		274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DA5661AB4E08900891EBF /* HomeViewController.swift */; };
 		274DA5691AB4E08900891EBF /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274DA5671AB4E08900891EBF /* HomeViewController.xib */; };
+		27C827981AB4FCA20021CCD3 /* BlurPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurPresenter.swift */; };
 		27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FE93821AB00FE600059E18 /* AlarmEntity.swift */; };
 		EC1FA470F64B8ECEEF7AD742 /* libPods-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E64FABC2282EEAB01E5D0 /* libPods-alarm.a */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		273E0DD21AAD6591005D73E3 /* TimeElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeElement.swift; sourceTree = "<group>"; };
 		274DA5661AB4E08900891EBF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		274DA5671AB4E08900891EBF /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		27C827971AB4FCA20021CCD3 /* BlurPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurPresenter.swift; sourceTree = "<group>"; };
 		27FE93821AB00FE600059E18 /* AlarmEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmEntity.swift; sourceTree = "<group>"; };
 		B44D3343037B9278CEFF019A /* Pods-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +171,7 @@
 		273E0DD11AAD655B005D73E3 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				27C827971AB4FCA20021CCD3 /* BlurPresenter.swift */,
 				273E0DD21AAD6591005D73E3 /* TimeElement.swift */,
 			);
 			name = Lib;
@@ -339,6 +342,7 @@
 			files = (
 				273C35A01AAFFCDC00743B33 /* ScheduleViewController.swift in Sources */,
 				273E0DCE1AAD4074005D73E3 /* AlarmViewController.swift in Sources */,
+				27C827981AB4FCA20021CCD3 /* BlurPresenter.swift in Sources */,
 				273C35A41AAFFEDC00743B33 /* ScheduleTableViewCell.swift in Sources */,
 				274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,

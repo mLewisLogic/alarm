@@ -15,10 +15,13 @@ class HomeViewController: UIViewController, TimePickerDelegate {
 
   var currentTime: TimeElement!
 
+  var blurPresenter: BlurPresenter!
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
+    blurPresenter = BlurPresenter(parent: self.view)
   }
 
   override func didReceiveMemoryWarning() {
@@ -28,17 +31,7 @@ class HomeViewController: UIViewController, TimePickerDelegate {
 
 
   @IBAction func timeChangeSelected(sender: UIButton) {
-    // Add a blur subview
-    let blurEffect = UIBlurEffect(style: .Dark)
-    var blurEffectView = UIVisualEffectView(effect: blurEffect) as UIVisualEffectView
-    blurEffectView.frame = self.view.bounds
-    self.view.addSubview(blurEffectView)
-
-    // Add a vibrancy subview
-    var vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
-    var vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-    vibrancyEffectView.frame = blurEffectView.frame
-    blurEffectView.addSubview(vibrancyEffectView)
+    blurPresenter.showBlur()
 
     // Create a new AlarmView overlaying
     var alarmViewController = AlarmViewController(
@@ -47,15 +40,10 @@ class HomeViewController: UIViewController, TimePickerDelegate {
     )
     // Assign it's delegate as this view
     alarmViewController.delegate = self
-    //alarmViewController.view.bounds = self.view.bounds
     alarmViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
     alarmViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
 
-    // Transition to the overlay view
-    //vibrancyEffectView.addSubview(alarmViewController.view)
-
     // Present the new controller
-    //addChildViewController(alarmViewController)
     presentViewController(alarmViewController, animated: true, completion: nil)
   }
 
