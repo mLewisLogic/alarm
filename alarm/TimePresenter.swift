@@ -124,7 +124,7 @@ class TimePresenter: Comparable {
 
   /* Private */
 
-  private func amPmToString(amPm: RawTime.AmPm) -> String {
+  func amPmToString(amPm: RawTime.AmPm) -> String {
     switch amPm {
     case .AM:
       return "am"
