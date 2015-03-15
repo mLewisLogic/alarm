@@ -79,33 +79,58 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
 
   // For each picker element, set up the view
   func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-    var label = UILabel()
+    var timeView = UIView()
+    timeView.frame = CGRectMake(0, 0, pickerView.rowSizeForComponent(component).width, pickerView.rowSizeForComponent(component).height)
+    
+    var timeLabel = UILabel()
+    var amPmLabel = UILabel()
 
     if let activeElement = getTimePickerAtRow(row) {
       let displayString = activeElement.stringForWheelDisplay()
+      let amPmString = activeElement.amPmToString(activeElement.calculatedTime().amOrPm)
+      let transformation = CGAffineTransformMakeScale(
+        1.0 / pickerWidthScaleRatio,
+        pickerElementHeightScaleRatio / pickerHeightScaleRatio
+      )
 
-      // Create the label with our attributed text
-      label.attributedText = NSAttributedString(
+      // Create the labels with our attributed text
+      timeLabel.attributedText = NSAttributedString(
         string: displayString,
         attributes: [
           NSFontAttributeName: UIFont(name: "Avenir-Light", size: 32.0)!,
           NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 1.0),
         ]
       )
-      label.textAlignment = .Center
+      timeLabel.textAlignment = .Center
+      
+      amPmLabel.attributedText = NSAttributedString(
+        string: amPmString,
+        attributes: [
+          NSFontAttributeName: UIFont(name: "Avenir-Light", size: 18.0)!,
+          NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 1.0),
+        ]
+      )
+      amPmLabel.textAlignment = .Center
       // Finally, transform the text. This essentially performs two transforms.
       // The first one is an inverse of the transform run on the picker
       // as a whole. This makes sure that while the picker itself is
       // stretched, the individual elements themselves are not.
       // The second one is an individual scale of the element for
       // aesthetics.
-      label.transform = CGAffineTransformMakeScale(
-        1.0 / pickerWidthScaleRatio,
-        pickerElementHeightScaleRatio / pickerHeightScaleRatio
-      )
+      timeLabel.transform = transformation
+      amPmLabel.transform = transformation
     }
+    
+    timeLabel.sizeToFit()
+    timeLabel.center = timeView.center
+    
+    amPmLabel.sizeToFit()
+    amPmLabel.center = CGPoint(x: (timeLabel.center.x + timeLabel.frame.width / 2) + (amPmLabel.frame.width / 2) + 10, y: timeLabel.center.y + amPmLabel.frame.height / 6)
+    
+    timeView.addSubview(timeLabel)
+    timeView.addSubview(amPmLabel)
 
-    return label
+    return timeView
   }
 
   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
