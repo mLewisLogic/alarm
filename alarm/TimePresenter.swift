@@ -102,12 +102,20 @@ class TimePresenter: Comparable {
       } else if time!.hour24 == 12 && time!.minute == 0 {
         return "noon"
       } else {
-        return String(format: "%2d:%02d %@", time!.hour12, time!.minute, self.amPmToString(time!.amOrPm))
+        return String(format: "%2d:%02d %@", time!.hour12, time!.minute, TimePresenter.amPmToString(time!.amOrPm))
       }
     case .Sunrise:
       return "sunrise"
     case .Sunset:
       return "sunset"
+    }
+  }
+
+  func stringForAmPm() -> String {
+    if let time = calculatedTime() {
+      return TimePresenter.amPmToString(time.amOrPm)
+    } else {
+      return "error"
     }
   }
 
@@ -138,10 +146,7 @@ class TimePresenter: Comparable {
     return times.sorted { $0 < $1 }
   }
 
-
-  /* Private */
-
-  func amPmToString(amPm: RawTime.AmPm) -> String {
+  class func amPmToString(amPm: RawTime.AmPm) -> String {
     switch amPm {
     case .AM:
       return "am"
@@ -149,6 +154,8 @@ class TimePresenter: Comparable {
       return "pm"
     }
   }
+
+  /* Private */
 }
 
 // Comparison operators for TimePresenter
