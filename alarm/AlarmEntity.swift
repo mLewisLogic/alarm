@@ -63,23 +63,40 @@ class AlarmEntity: NSManagedObject {
     }
   }
 
-  func applyTimePresenter(time: TimePresenter) {
-    self.alarmTypeEnum = .Time
-    self.hour = Int16(time.hour24)
-    self.minute = Int16(time.minute)
+  // Given a TimePresenter, apply it to this AlarmEntity
+  // This supports both time-based and sunrise/sunset TimePresenters
+  func applyTimePresenter(timePresenter: TimePresenter) {
+    // Keep whatever type it was
+    self.alarmTypeEnum = timePresenter.type
+
+    // If the presenter is a static time, copy it over. Otherwise,
+    // just use the type and allow this instance to figure out it's
+    // own sunrise/sunset times.
+    switch timePresenter.type {
+    case .Time:
+      self.hour = Int16(timePresenter.time!.hour24)
+      self.minute = Int16(timePresenter.time!.minute)
+    default:
+      // If it's for sunrise/sunset, just leave invalid sentinel values.
+      self.hour = -1
+      self.minute = -1
+    }
+
+    // Persist the change to the DB
     self.persistSelf()
   }
 
+  // Get a displayable form of the `dayOfWeek` variable.
   func dayOfWeekForDisplay() -> String {
     return dayOfWeek.capitalizedString
   }
 
   // Generate a displayable version of this time
-  func timeForTableDisplay() -> String {
+  func stringForTableDisplay() -> String {
     switch alarmTypeEnum {
     case .Time:
       let time = TimePresenter(alarmEntity: self)
-      return time.tableDisplayStr()
+      return time.stringForTableDisplay()
     case .Sunrise:
       return "sunrise"
     case .Sunset:
@@ -90,15 +107,10 @@ class AlarmEntity: NSManagedObject {
     }
   }
 
-  // Update the persistance layer for this alarm
-  func updateTime(type: AlarmType, hour: Int16?, minute: Int16?) {
-    self.alarmTypeEnum = type
-    self.hour = hour ?? 0
-    self.minute = minute ?? 0
 
-    self.persistSelf()
-  }
+  /* Private */
 
+  // TODO: Implement me
   private func persistSelf() {
   }
 }

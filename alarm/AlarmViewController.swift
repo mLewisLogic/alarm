@@ -17,6 +17,11 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 
   @IBOutlet weak var timePicker: UIPickerView!
 
+  // We're turning a linear picker into a circular one by
+  // massively duplicating the number of rows, and starting
+  // off in the middle.
+  let circularPickerExplosionFactor = 50
+
   let pickerNaturalWidth = CGFloat(160.0)
   let pickerNaturalHeight = CGFloat(216.0)
   var pickerWidthScaleRatio = CGFloat(1.0)
@@ -26,6 +31,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
   let pickerElementHeightScaleRatio = CGFloat(1.3)
 
   var pickerData: Array<TimePresenter>?
+  var startingTimePresenter: TimePresenter?
 
   var delegate: TimePickerDelegate!
 
@@ -44,6 +50,12 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 
     // Generate our picker data
     pickerData = TimePresenter.generateAllElements()
+
+    // If we were given a TimePresenter to start with,
+    // try to select it.
+    if let timePresenter = startingTimePresenter {
+      selectTimePresenterRow(timePresenter)
+    }
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -55,7 +67,6 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     // Dispose of any resources that can be recreated.
   }
 
-
   func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
     return 1
   }
@@ -64,15 +75,15 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     // Run up the number by a factor of 100 in order to provide fake
     // circular selection. This has been profiled and does not materially
     // hurt memory usage.
-    return (pickerData?.count ?? 0) * 100
+    return (pickerData?.count ?? 0) * circularPickerExplosionFactor * 2
   }
 
-  // For each picker element,
+  // For each picker element, set up the view
   func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
     var label = UILabel()
 
-    if let activeElement = getElementAtRow(row) {
-      let displayString = activeElement.wheelDisplayStr() ?? ""
+    if let activeElement = getTimePickerAtRow(row) {
+      let displayString = activeElement.stringForWheelDisplay()
 
       // Create the label with our attributed text
       label.attributedText = NSAttributedString(
@@ -106,19 +117,34 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     return 20.0
   }
 
-
   // The accept button was selected
   @IBAction func acceptTapped(sender: UITapGestureRecognizer) {
     let selectedRow = timePicker.selectedRowInComponent(0)
-    if let activeElement = getElementAtRow(selectedRow) {
+    if let activeElement = getTimePickerAtRow(selectedRow) {
       delegate?.timeSelected(activeElement)
     }
   }
 
 
+  /* Private */
+
+  // Given a time presenter, select the row in the picker view
+  // that is equal.
+  private func selectTimePresenterRow(timePresenter: TimePresenter, animated: Bool = false) {
+    NSLog("trying to select a presenter row")
+    if let data = pickerData {
+      NSLog("got data")
+      if let index = find(data, timePresenter) {
+        NSLog("got index")
+        let newRowIndex = data.count * circularPickerExplosionFactor + index
+        timePicker.selectRow(newRowIndex, inComponent: 0, animated: animated)
+      }
+    }
+  }
+
   // Get the element at a given row
   // This is helpful because of our circular data
-  private func getElementAtRow(row: Int) -> TimePresenter? {
+  private func getTimePickerAtRow(row: Int) -> TimePresenter? {
     if let data = pickerData {
       // Because we're duplicating elements in order to simulate
       // a circular effect, we need to use modulus when accessing
@@ -130,7 +156,6 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
       return nil
     }
   }
-
 
   // Horizontally stretch the time picker to the full height of the
   // surrounding view. This introduces some weird stretching effects that

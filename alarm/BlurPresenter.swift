@@ -44,7 +44,6 @@ class BlurPresenter {
   }
 
   func showBlur() {
-    NSLog("Showing blur")
     resetBounds()
     blurEffectView.hidden = false
   }
@@ -53,6 +52,11 @@ class BlurPresenter {
     blurEffectView.hidden = true
   }
 
+
+  /* Private */
+
+  // When we show the view, frames could have changed so we want
+  // to reset them easily.
   private func resetBounds() {
     blurEffectView.frame = self.parentView.bounds
     vibrancyEffectView.frame = self.parentView.bounds
