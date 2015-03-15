@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TimePickerDelegate {
-  func timeSelected(time: TimeElement)
+  func timeSelected(time: TimePresenter)
 }
 
 
@@ -25,7 +25,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
   // Vertically stretch up the picker element text
   let pickerElementHeightScaleRatio = CGFloat(1.3)
 
-  var pickerData: Array<TimeElement>?
+  var pickerData: Array<TimePresenter>?
 
   var delegate: TimePickerDelegate!
 
@@ -43,7 +43,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     timePicker.delegate = self
 
     // Generate our picker data
-    pickerData = TimeElement.generateAllElements()
+    pickerData = TimePresenter.generateAllElements()
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -118,7 +118,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
 
   // Get the element at a given row
   // This is helpful because of our circular data
-  private func getElementAtRow(row: Int) -> TimeElement? {
+  private func getElementAtRow(row: Int) -> TimePresenter? {
     if let data = pickerData {
       // Because we're duplicating elements in order to simulate
       // a circular effect, we need to use modulus when accessing

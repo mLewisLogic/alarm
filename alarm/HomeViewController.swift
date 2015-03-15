@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, TimePickerDelegate {
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
 
-  var currentTime: TimeElement!
+  var currentTime: TimePresenter!
 
   var blurPresenter: BlurPresenter!
 
@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, TimePickerDelegate {
   }
 
   // Delegate callback from the time picker
-  func timeSelected(time: TimeElement) {
+  func timeSelected(time: TimePresenter) {
     currentTime = time
     updateDisplayTime()
   }

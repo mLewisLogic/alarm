@@ -11,7 +11,7 @@ import UIKit
 class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   @IBOutlet weak var scheduleTableView: UITableView!
 
-  // An array of 7 TimeElements
+  // An array of 7 TimeEntities
   // One for each day of the week (Sun-Sat)
   var alarmEntityArray: Array<AlarmEntity>!
 

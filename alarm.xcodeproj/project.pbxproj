@@ -18,7 +18,7 @@
 		273C35A51AAFFEDC00743B33 /* ScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273C35A31AAFFEDC00743B33 /* ScheduleTableViewCell.xib */; };
 		273E0DCE1AAD4074005D73E3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */; };
 		273E0DCF1AAD4074005D73E3 /* AlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */; };
-		273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DD21AAD6591005D73E3 /* TimeElement.swift */; };
+		273E0DD31AAD6591005D73E3 /* TimePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DD21AAD6591005D73E3 /* TimePresenter.swift */; };
 		274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DA5661AB4E08900891EBF /* HomeViewController.swift */; };
 		274DA5691AB4E08900891EBF /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274DA5671AB4E08900891EBF /* HomeViewController.xib */; };
 		27C827981AB4FCA20021CCD3 /* BlurPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurPresenter.swift */; };
@@ -56,7 +56,7 @@
 		273E0DCC1AAD4074005D73E3 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		273E0DCD1AAD4074005D73E3 /* AlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmViewController.xib; sourceTree = "<group>"; };
 		273E0DD01AAD5FAB005D73E3 /* scratch.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = scratch.playground; sourceTree = "<group>"; };
-		273E0DD21AAD6591005D73E3 /* TimeElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeElement.swift; sourceTree = "<group>"; };
+		273E0DD21AAD6591005D73E3 /* TimePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePresenter.swift; sourceTree = "<group>"; };
 		274DA5661AB4E08900891EBF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		274DA5671AB4E08900891EBF /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurPresenter.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				27C827971AB4FCA20021CCD3 /* BlurPresenter.swift */,
-				273E0DD21AAD6591005D73E3 /* TimeElement.swift */,
+				273E0DD21AAD6591005D73E3 /* TimePresenter.swift */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 				274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,
 				25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */,
-				273E0DD31AAD6591005D73E3 /* TimeElement.swift in Sources */,
+				273E0DD31AAD6591005D73E3 /* TimePresenter.swift in Sources */,
 				27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
