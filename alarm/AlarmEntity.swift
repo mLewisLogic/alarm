@@ -27,7 +27,7 @@ class AlarmEntity: NSManagedObject {
   enum AlarmType: String {
     case Time    = "time"
     case Sunrise = "sunrise"
-    case Sunset  = "Sunset"
+    case Sunset  = "sunset"
 
     static let allValues = [Time, Sunrise, Sunset]
   }
