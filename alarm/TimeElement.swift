@@ -31,6 +31,10 @@ class TimeElement {
     self.minute = minute
   }
 
+  init(alarm: AlarmEntity) {
+    init(hour: alarm.hour, minute: alarm.minute)
+  }
+
   func wheelDisplayStr() -> String {
     // Special formatting for special times
     if hour == 0 && minute == 0 {
