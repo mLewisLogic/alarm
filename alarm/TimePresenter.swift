@@ -70,12 +70,12 @@ class TimePresenter: Comparable {
       } else if time.hour24 == 12 && time.minute == 0 {
         return "noon"
       } else {
-        return String(format: "%02d : %02d", time.hour12, time.minute)
+        return String(format: "%2d : %02d", time.hour12, time.minute)
       }
     case .Sunrise:
-      return String(format: "sunrise (%02d:%02d)", time.hour12, time.minute)
+      return String(format: "sunrise (%2d:%02d)", time.hour12, time.minute)
     case .Sunset:
-      return String(format: "sunset (%02d:%02d)", time.hour12, time.minute)
+      return String(format: "sunset (%2d:%02d)", time.hour12, time.minute)
     }
   }
 
@@ -92,7 +92,7 @@ class TimePresenter: Comparable {
       } else if time.hour24 == 12 && time.minute == 0 {
         return "noon"
       } else {
-        return String(format: "%02d:%02d %@", time.hour12, time.minute, self.amPmToString(time.amOrPm))
+        return String(format: "%2d:%02d %@", time.hour12, time.minute, self.amPmToString(time.amOrPm))
       }
     case .Sunrise:
       return "sunrise"
