@@ -46,7 +46,7 @@ class TimePresenter: Comparable {
   // This presenter supports static times as well as sun-based times
   // This function will return a raw time representing what the
   // true time is, no matter how this presenter was constructed.
-  func calculatedTime() -> RawTime {
+  func calculatedTime() -> RawTime? {
     switch self.type {
     case .Time:
       return time!
@@ -59,40 +59,50 @@ class TimePresenter: Comparable {
 
   // Don't include the am/pm portion in the main wheel
   func stringForWheelDisplay() -> String {
-    // Precalculate the time for speed
+    // Precalculate the time
     let time = calculatedTime()
 
     switch self.type {
     case .Time:
       // Special formatting for special times
-      if time.hour24 == 0 && time.minute == 0 {
+      if time!.hour24 == 0 && time!.minute == 0 {
         return "midnight"
-      } else if time.hour24 == 12 && time.minute == 0 {
+      } else if time!.hour24 == 12 && time!.minute == 0 {
         return "noon"
       } else {
-        return String(format: "%2d : %02d", time.hour12, time.minute)
+        return String(format: "%2d : %02d", time!.hour12, time!.minute)
       }
     case .Sunrise:
-      return String(format: "sunrise (%2d:%02d)", time.hour12, time.minute)
+      // If we can't comput the time, just return "sunrise"
+      if (time == nil) {
+        return "sunrise"
+      } else {
+        return String(format: "sunrise (%2d:%02d)", time!.hour12, time!.minute)
+      }
     case .Sunset:
-      return String(format: "sunset (%2d:%02d)", time.hour12, time.minute)
+      // If we can't comput the time, just return "sunrise"
+      if (time == nil) {
+        return "sunset"
+      } else {
+        return String(format: "sunset (%2d:%02d)", time!.hour12, time!.minute)
+      }
     }
   }
 
   // The table display view doesn't need times for sunrise/sunset
   func stringForTableDisplay() -> String {
-    // Precalculate the time for speed
+    // Precalculate the time
     let time = calculatedTime()
 
     switch self.type {
     case .Time:
       // Special formatting for special times
-      if time.hour24 == 0 && time.minute == 0 {
+      if time!.hour24 == 0 && time!.minute == 0 {
         return "midnight"
-      } else if time.hour24 == 12 && time.minute == 0 {
+      } else if time!.hour24 == 12 && time!.minute == 0 {
         return "noon"
       } else {
-        return String(format: "%2d:%02d %@", time.hour12, time.minute, self.amPmToString(time.amOrPm))
+        return String(format: "%2d:%02d %@", time!.hour12, time!.minute, self.amPmToString(time!.amOrPm))
       }
     case .Sunrise:
       return "sunrise"
@@ -101,7 +111,7 @@ class TimePresenter: Comparable {
     }
   }
 
-  // Generate all of the time elements that we will allow
+  // Generate all of the time elements that we will allow.
   // This includes sunset and sunrise.
   class func generateAllElements() -> Array<TimePresenter> {
     // Start by generating the static times
@@ -113,9 +123,16 @@ class TimePresenter: Comparable {
       }
     }.reduce([], +)
 
-    // Add in sunrise and sunset
-    times.append(TimePresenter(type: AlarmEntity.AlarmType.Sunrise))
-    times.append(TimePresenter(type: AlarmEntity.AlarmType.Sunset))
+    // Add in sunrise and sunset.
+    // Skip them if they can't be calculated
+    let sunrise = TimePresenter(type: AlarmEntity.AlarmType.Sunrise)
+    if sunrise.calculatedTime() != nil {
+      times.append(sunrise)
+    }
+    let sunset = TimePresenter(type: AlarmEntity.AlarmType.Sunset)
+    if sunset.calculatedTime() != nil {
+      times.append(sunset)
+    }
 
     // Sort the entire array, based upon calculated time
     return times.sorted { $0 < $1 }

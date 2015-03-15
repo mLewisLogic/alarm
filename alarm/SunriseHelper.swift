@@ -6,26 +6,27 @@
 //  Copyright (c) 2015 Kevin Farst. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
 
 
+// Stash a singleton global instance
 private let _SunriseHelperSharedInstance = SunriseHelper()
 
 class SunriseHelper {
 
   let calendar: NSCalendar
-  let calculator: EDSunriseSet
+  // We'll only have a valid calculator when we can get location
+  var calculator: EDSunriseSet?
   // Store the last time we ran the sunrise/sunset calculations.
-  // They need to be re-run every time we roll over a day.
+  // They need to be re-run every time we roll over a day or move too far.
   var lastCalculation: NSDate?
+  var lastLocation: CLLocation?
+
+  let distanceRecalcThreshold = 50000.0 // 50km
 
   init() {
     calendar = NSCalendar.currentCalendar()
-    calculator = EDSunriseSet(
-      timezone: NSTimeZone.localTimeZone(),
-      latitude: 37.7833,
-      longitude: -122.4167
-    )
   }
 
   // Create and hold onto a singleton instance of this class
@@ -37,16 +38,26 @@ class SunriseHelper {
 
   // Return a RawTime struct set to sunrise
   // This is clearly only valid for the day it was generated
-  func sunrise() -> RawTime {
+  func sunrise() -> RawTime? {
     self.updateIfNeeded()
-    return getRawTimeForLocalNSDate(calculator.sunrise)
+
+    if let calc = self.calculator {
+      return getRawTimeForLocalNSDate(calc.sunrise)
+    } else {
+      return nil
+    }
   }
 
   // Return a RawTime struct set to sunset
   // This is clearly only valid for the day it was generated
-  func sunset() -> RawTime {
+  func sunset() -> RawTime? {
     self.updateIfNeeded()
-    return getRawTimeForLocalNSDate(calculator.sunset)
+
+    if let calc = self.calculator {
+      return getRawTimeForLocalNSDate(calc.sunset)
+    } else {
+      return nil
+    }
   }
 
 
@@ -55,17 +66,50 @@ class SunriseHelper {
   // If we haven't recalculated sunrise and sunset for today
   // then recalculate here and timestamp it.
   private func updateIfNeeded() {
+    if (calculator == nil || lastCalculationIsStale() || lastLocationIsStale()) {
+      // We can only update if we have a location
+      if let newLocation = currentLocation() {
+        // We got here if we need to recalculate
+        NSLog("Recalculating sunrise and sunset")
+        self.lastCalculation = NSDate()
+        self.lastLocation = newLocation
+
+        calculator = EDSunriseSet(
+          timezone: NSTimeZone.localTimeZone(),
+          latitude: newLocation.coordinate.latitude,
+          longitude: newLocation.coordinate.longitude
+        )
+        calculator!.calculateSunriseSunset(self.lastCalculation)
+      }
+    }
+  }
+
+  private func lastCalculationIsStale() -> Bool {
     if let lastCalc = lastCalculation {
       if calendar.isDateInToday(lastCalc) {
         // The `lastCalc` NSDate is within today. Skip calculations.
-        return
+        return false
       }
     }
+    return true
+  }
 
-    // We got here if we need to recalculate
-    NSLog("Recalculating sunrise and sunset")
-    self.lastCalculation = NSDate()
-    calculator.calculateSunriseSunset(self.lastCalculation)
+  // Return true if we don't have a lastLocation or if it has drifted
+  // too far from where we last calculated.
+  private func lastLocationIsStale() -> Bool {
+    if let lastLoc = lastLocation {
+      if let currentLoc = currentLocation() {
+        if (currentLoc.distanceFromLocation(lastLoc) < distanceRecalcThreshold) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  // Ask the LocationHelper for our latest location
+  private func currentLocation() -> CLLocation? {
+    return LocationHelper.singleton.latestLocation
   }
 
   // Get the NSDateComponents for the current calendar/timezone

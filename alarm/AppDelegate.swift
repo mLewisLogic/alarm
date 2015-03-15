@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     setupMagicalRecord()
+    LocationHelper.enableMonitoring()
 
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
@@ -33,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window.rootViewController = homeViewController
 
       window.makeKeyAndVisible()
+
+      // Request location access
+      // We should move this into the onboarding
+      LocationHelper.requestLocationAccess()
     }
     
     return true
