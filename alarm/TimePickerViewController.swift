@@ -1,5 +1,5 @@
 //
-//  AlarmViewController.swift
+//  TimePickerViewController.swift
 //  alarm
 //
 //  Created by Michael Lewis on 3/8/15.
@@ -13,7 +13,7 @@ protocol TimePickerDelegate {
 }
 
 
-class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
   @IBOutlet weak var timePicker: UIPickerView!
 
@@ -42,7 +42,6 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     self.view.backgroundColor = UIColor.clearColor()
     timePicker.backgroundColor = UIColor.clearColor()
     timePicker.alpha = 1.0
-    timePicker.tintColor = UIColor.greenColor()
 
     // Do any additional setup after loading the view.
     timePicker.dataSource = self
@@ -131,11 +130,8 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
   // Given a time presenter, select the row in the picker view
   // that is equal.
   private func selectTimePresenterRow(timePresenter: TimePresenter, animated: Bool = false) {
-    NSLog("trying to select a presenter row")
     if let data = pickerData {
-      NSLog("got data")
       if let index = find(data, timePresenter) {
-        NSLog("got index")
         let newRowIndex = data.count * circularPickerExplosionFactor + index
         timePicker.selectRow(newRowIndex, inComponent: 0, animated: animated)
       }
@@ -152,7 +148,7 @@ class AlarmViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
       let numRows = data.count
       return data[row % numRows]
     } else {
-      NSLog("Shouldn't return nil here")
+      NSLog("Should never nil here")
       return nil
     }
   }

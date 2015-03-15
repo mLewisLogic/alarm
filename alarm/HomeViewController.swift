@@ -15,7 +15,8 @@ class HomeViewController: UIViewController, TimePickerDelegate {
 
   var currentTime: TimePresenter!
 
-  var blurPresenter: BlurPresenter!
+  var blurViewPresenter: BlurViewPresenter!
+  var alarmPickerPresenter: AlarmPickerPresenter!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,8 +26,9 @@ class HomeViewController: UIViewController, TimePickerDelegate {
     currentTime = TimePresenter(hour24: 7, minute: 30)
     updateDisplayTime()
 
-    // Do any additional setup after loading the view.
-    blurPresenter = BlurPresenter(parent: self.view)
+    // Set up our presenters for later use
+    blurViewPresenter = BlurViewPresenter(parent: self.view)
+    alarmPickerPresenter = AlarmPickerPresenter(delegate: self)
   }
 
   override func didReceiveMemoryWarning() {
@@ -36,23 +38,11 @@ class HomeViewController: UIViewController, TimePickerDelegate {
 
 
   @IBAction func timeChangeSelected(sender: UIButton) {
-    blurPresenter.showBlur()
+    blurViewPresenter.showBlur()
 
-    // Create a new AlarmView overlaying
-    var alarmViewController = AlarmViewController(
-      nibName: "AlarmViewController",
-      bundle: nil
-    )
-    // Assign it's delegate as this view
-    alarmViewController.delegate = self
-    alarmViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-    alarmViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-
-    // Let the picker know what it should have selected
-    alarmViewController.startingTimePresenter = currentTime
-
-    // Present the new controller
-    presentViewController(alarmViewController, animated: true, completion: nil)
+    // Prepare and present the alarm picker controller
+    let timePickerViewController = alarmPickerPresenter.prepareAlarmPicker(currentTime)
+    presentViewController(timePickerViewController, animated: true, completion: nil)
   }
 
   // Delegate callback from the time picker
@@ -66,5 +56,6 @@ class HomeViewController: UIViewController, TimePickerDelegate {
 
   // Update the displayed time
   private func updateDisplayTime() {
+    // TODO: Implement me
   }
 }

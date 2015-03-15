@@ -25,11 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         bundle: nil
       )
 
-      var alarmViewController = AlarmViewController(
-        nibName: "AlarmViewController",
-        bundle: nil
-      )
-
       var scheduleViewController = ScheduleViewController(
         nibName: "ScheduleViewController",
         bundle: nil

@@ -14,7 +14,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   // An array of 7 TimeEntities
   // One for each day of the week (Sun-Sat)
   var alarmEntityArray: Array<AlarmEntity>!
-  var blurPresenter: BlurPresenter!
+
+  var blurViewPresenter: BlurViewPresenter!
+  var alarmPickerPresenter: AlarmPickerPresenter!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +32,10 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // Set up our dummy data
     createDummyAlarms()
-    blurPresenter = BlurPresenter(parent: self.view)
+
+    // Set up our presenters for later use
+    blurViewPresenter = BlurViewPresenter(parent: self.view)
+    alarmPickerPresenter = AlarmPickerPresenter(delegate: self)
   }
 
   override func didReceiveMemoryWarning() {
@@ -71,23 +76,11 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     if let indexPath = scheduleTableView.indexPathForCell(cell) {
       let alarmEntity = alarmEntityArray[indexPath.row]
       
-      blurPresenter.showBlur()
-      
-      // Create a new AlarmView overlaying
-      var alarmViewController = AlarmViewController(
-        nibName: "AlarmViewController",
-        bundle: nil
-      )
-      // Assign it's delegate as this view
-      alarmViewController.delegate = self
-      alarmViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-      alarmViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+      blurViewPresenter.showBlur()
 
-      // Let the picker know what it should have selected by default
-      alarmViewController.startingTimePresenter = currentTime
-
-      // Present the new controller
-      presentViewController(alarmViewController, animated: true, completion: nil)
+      // Prepare and present the alarm picker controller
+      let timePickerViewController = alarmPickerPresenter.prepareAlarmPicker(TimePresenter(alarmEntity: alarmEntity))
+      presentViewController(timePickerViewController, animated: true, completion: nil)
     }
   }
 
