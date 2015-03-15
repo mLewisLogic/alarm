@@ -22,9 +22,13 @@ struct RawTime: Comparable, Hashable {
   var minute: Int
 
   // All other variables are derived
+  // `hour12` is the hours, as it would be displayed on a 12-hour
+  // clock.
   var hour12: Int {
     get {
-      if hour24 < 12 {
+      if hour24 == 0 {
+        return 12
+      } else if hour24 < 13 {
         return hour24
       } else {
         return hour24 - 12
