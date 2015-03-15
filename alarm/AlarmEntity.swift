@@ -63,11 +63,11 @@ class AlarmEntity: NSManagedObject {
     }
   }
 
-  func applyTimeElement(timeElement: TimeElement) {
-    alarmTypeEnum = .Time
-    // Convert hour + am/pm to 24-hour
-    hour = Int16(timeElement.hour + (timeElement.amOrPm == "pm" ? 12 : 0))
-    minute = Int16(timeElement.minute)
+  func applyTimePresenter(time: TimePresenter) {
+    self.alarmTypeEnum = .Time
+    self.hour = Int16(time.hour24)
+    self.minute = Int16(time.minute)
+    self.persistSelf()
   }
 
   func dayOfWeekForDisplay() -> String {
@@ -78,8 +78,8 @@ class AlarmEntity: NSManagedObject {
   func timeForTableDisplay() -> String {
     switch alarmTypeEnum {
     case .Time:
-      let timeElement = TimeElement(hour: Int(hour), minute: Int(minute))
-      return timeElement.tableDisplayStr()
+      let time = TimePresenter(alarmEntity: self)
+      return time.tableDisplayStr()
     case .Sunrise:
       return "sunrise"
     case .Sunset:
@@ -88,5 +88,17 @@ class AlarmEntity: NSManagedObject {
       NSLog("Bad alarm type: \(alarmTypeEnum)")
       return ""
     }
+  }
+
+  // Update the persistance layer for this alarm
+  func updateTime(type: AlarmType, hour: Int16?, minute: Int16?) {
+    self.alarmTypeEnum = type
+    self.hour = hour ?? 0
+    self.minute = minute ?? 0
+
+    self.persistSelf()
+  }
+
+  private func persistSelf() {
   }
 }
