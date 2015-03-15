@@ -21,7 +21,7 @@ class ScheduleTableViewCell: UITableViewCell {
   var alarmEntity: AlarmEntity! {
     didSet {
       dayLabel.text = alarmEntity.dayOfWeekForDisplay()
-      timeButton.setTitle(alarmEntity.timeForTableDisplay(), forState: UIControlState.Normal)
+      timeButton.setTitle(alarmEntity.stringForTableDisplay(), forState: UIControlState.Normal)
       //activeSwitch.on = alarmEntity.enabled
     }
   }

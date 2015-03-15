@@ -20,6 +20,11 @@ class HomeViewController: UIViewController, TimePickerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Set up a default TimePresenter
+    // TODO: Make this real, based upon active alarms
+    currentTime = TimePresenter(hour24: 7, minute: 30)
+    updateDisplayTime()
+
     // Do any additional setup after loading the view.
     blurPresenter = BlurPresenter(parent: self.view)
   }
@@ -43,6 +48,9 @@ class HomeViewController: UIViewController, TimePickerDelegate {
     alarmViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
     alarmViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
 
+    // Let the picker know what it should have selected
+    alarmViewController.startingTimePresenter = currentTime
+
     // Present the new controller
     presentViewController(alarmViewController, animated: true, completion: nil)
   }
@@ -52,6 +60,9 @@ class HomeViewController: UIViewController, TimePickerDelegate {
     currentTime = time
     updateDisplayTime()
   }
+
+
+  /* Private */
 
   // Update the displayed time
   private func updateDisplayTime() {

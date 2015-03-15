@@ -63,7 +63,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   }
   
   // Delegate callback from the time picker
-  func timeSelected(time: TimeElement) {
+  func timeSelected(time: TimePresenter) {
     updateDisplayTime()
   }
   
@@ -82,14 +82,21 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       alarmViewController.delegate = self
       alarmViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
       alarmViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-      
+
+      // Let the picker know what it should have selected by default
+      alarmViewController.startingTimePresenter = currentTime
+
       // Present the new controller
       presentViewController(alarmViewController, animated: true, completion: nil)
     }
   }
+
+
+  /* Private */
   
   // Update the displayed time
   private func updateDisplayTime() {
+    // TODO: Implement me
   }
   
   // TODO: We need to replace this with live Core Data entities from the database
