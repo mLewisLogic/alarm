@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TimePickerDelegate, DayOfWeekAlarmDelegate {
   @IBOutlet weak var scheduleTableView: UITableView!
 
   // An array of 7 TimeEntities
   // One for each day of the week (Sun-Sat)
   var alarmEntityArray: Array<AlarmEntity>!
+  var blurPresenter: BlurPresenter!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,6 +30,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // Set up our dummy data
     createDummyAlarms()
+    blurPresenter = BlurPresenter(parent: self.view)
   }
 
   override func didReceiveMemoryWarning() {
@@ -47,6 +49,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       ) as ScheduleTableViewCell
     cell.alarmEntity = alarmEntityArray[indexPath.row]
     cell.selectionStyle = UITableViewCellSelectionStyle.None
+    cell.delegate = self
     
     return cell
   }
@@ -57,6 +60,36 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
   func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
     NSLog("\(indexPath.row)")
+  }
+  
+  // Delegate callback from the time picker
+  func timeSelected(time: TimeElement) {
+    updateDisplayTime()
+  }
+  
+  func updateTimeSelected(cell: ScheduleTableViewCell) {
+    if let indexPath = scheduleTableView.indexPathForCell(cell) {
+      let alarmEntity = alarmEntityArray[indexPath.row]
+      
+      blurPresenter.showBlur()
+      
+      // Create a new AlarmView overlaying
+      var alarmViewController = AlarmViewController(
+        nibName: "AlarmViewController",
+        bundle: nil
+      )
+      // Assign it's delegate as this view
+      alarmViewController.delegate = self
+      alarmViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+      alarmViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+      
+      // Present the new controller
+      presentViewController(alarmViewController, animated: true, completion: nil)
+    }
+  }
+  
+  // Update the displayed time
+  private func updateDisplayTime() {
   }
   
   // TODO: We need to replace this with live Core Data entities from the database

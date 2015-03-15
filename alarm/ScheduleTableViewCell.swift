@@ -8,19 +8,25 @@
 
 import UIKit
 
+protocol DayOfWeekAlarmDelegate {
+  func updateTimeSelected(cell: ScheduleTableViewCell)
+}
+
 class ScheduleTableViewCell: UITableViewCell {
 
   @IBOutlet weak var dayLabel: UILabel!
-  @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var timeButton: UIButton!
   @IBOutlet weak var activeSwitch: UISwitch!
 
   var alarmEntity: AlarmEntity! {
     didSet {
       dayLabel.text = alarmEntity.dayOfWeekForDisplay()
-      timeLabel.text = alarmEntity.timeForTableDisplay()
+      timeButton.setTitle(alarmEntity.timeForTableDisplay(), forState: UIControlState.Normal)
       //activeSwitch.on = alarmEntity.enabled
     }
   }
+  
+  var delegate: DayOfWeekAlarmDelegate!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -35,5 +41,9 @@ class ScheduleTableViewCell: UITableViewCell {
 
   @IBAction func switchChanged(sender: UISwitch) {
     NSLog("Switch toggled: \(sender.on)")
+  }
+  
+  @IBAction func timeChangeSelected(sender: UIButton) {
+    delegate.updateTimeSelected(self)
   }
 }

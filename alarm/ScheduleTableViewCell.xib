@@ -20,12 +20,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azm-eg-TnN">
-                        <rect key="frame" x="129" y="19" width="62" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-ks-xVn">
                         <rect key="frame" x="255" y="13" width="51" height="31"/>
                         <gestureRecognizers/>
@@ -33,12 +27,26 @@
                             <action selector="switchChanged:" destination="-1" eventType="valueChanged" id="MyZ-bG-oLa"/>
                         </connections>
                     </switch>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xig-eW-L0I" userLabel="Time">
+                        <rect key="frame" x="128.5" y="12" width="63" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="4Ij-DL-8K1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="8:00 pm">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="timeChangeSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oik-XV-7eY"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="t6p-wV-ZzO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="6WX-Hb-5pz"/>
-                    <constraint firstAttribute="centerY" secondItem="Azm-eg-TnN" secondAttribute="centerY" constant="-1" id="7J2-CC-yn0"/>
                     <constraint firstItem="t6p-wV-ZzO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="ARY-WH-Bhd"/>
-                    <constraint firstAttribute="centerX" secondItem="Azm-eg-TnN" secondAttribute="centerX" id="dj1-me-3jE"/>
+                    <constraint firstAttribute="centerX" secondItem="Xig-eW-L0I" secondAttribute="centerX" id="V8a-HE-RnQ"/>
+                    <constraint firstAttribute="centerY" secondItem="Xig-eW-L0I" secondAttribute="centerY" constant="-0.25" id="a0L-i5-reP"/>
                     <constraint firstItem="Yho-ks-xVn" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-8" id="h9m-ML-yRo"/>
                     <constraint firstAttribute="centerY" secondItem="t6p-wV-ZzO" secondAttribute="centerY" id="kOO-ag-NUJ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="t6p-wV-ZzO" secondAttribute="bottom" constant="10" id="r3M-bF-VCv"/>
@@ -48,7 +56,7 @@
             <connections>
                 <outlet property="activeSwitch" destination="Yho-ks-xVn" id="ft8-b8-EGT"/>
                 <outlet property="dayLabel" destination="t6p-wV-ZzO" id="dw6-C7-173"/>
-                <outlet property="timeLabel" destination="Azm-eg-TnN" id="ZBb-Mw-Glh"/>
+                <outlet property="timeButton" destination="Xig-eW-L0I" id="JfZ-bD-UIH"/>
             </connections>
             <point key="canvasLocation" x="300" y="438.5"/>
         </tableViewCell>
