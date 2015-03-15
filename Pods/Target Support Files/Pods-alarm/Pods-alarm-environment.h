@@ -6,6 +6,12 @@
 // project.
 
 
+// EDSunriseSet
+#define COCOAPODS_POD_AVAILABLE_EDSunriseSet
+#define COCOAPODS_VERSION_MAJOR_EDSunriseSet 1
+#define COCOAPODS_VERSION_MINOR_EDSunriseSet 0
+#define COCOAPODS_VERSION_PATCH_EDSunriseSet 0
+
 // MagicalRecord
 #define COCOAPODS_POD_AVAILABLE_MagicalRecord
 #define COCOAPODS_VERSION_MAJOR_MagicalRecord 2
