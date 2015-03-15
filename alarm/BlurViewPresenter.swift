@@ -1,5 +1,5 @@
 //
-//  BlurPresenter.swift
+//  BlurViewPresenter.swift
 //  alarm
 //
 //  Created by Michael Lewis on 3/14/15.
@@ -10,7 +10,7 @@ import Foundation
 
 // This will create a blur layer on top of the parent view.
 
-class BlurPresenter {
+class BlurViewPresenter {
 
   let blurEffect: UIBlurEffect
   let vibrancyEffect: UIVibrancyEffect
