@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2544787B1AB63411002FA3CB /* SettingsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254478791AB63411002FA3CB /* SettingsModalViewController.swift */; };
+		2544787C1AB63411002FA3CB /* SettingsModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */; };
 		25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68D1AA8284100431A81 /* AppDelegate.swift */; };
 		25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68F1AA8284100431A81 /* alarm.xcdatamodeld */; };
 		25E7C6981AA8284100431A81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6971AA8284100431A81 /* Images.xcassets */; };
@@ -28,7 +30,7 @@
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
 		27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FE93821AB00FE600059E18 /* AlarmEntity.swift */; };
-		EC1FA470F64B8ECEEF7AD742 /* libPods-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E64FABC2282EEAB01E5D0 /* libPods-alarm.a */; };
+		76C06047841EFB0C443D54BB /* libPods-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 225B0BBD7F243D40B3608C0A /* libPods-alarm.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		034E64FABC2282EEAB01E5D0 /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B39A0D2F7E331BB496FA50 /* Pods-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.debug.xcconfig"; sourceTree = "<group>"; };
+		225B0BBD7F243D40B3608C0A /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		254478791AB63411002FA3CB /* SettingsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModalViewController.swift; sourceTree = "<group>"; };
+		2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsModalViewController.xib; sourceTree = "<group>"; };
 		256C67C21AAEA6320074F260 /* alarm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "alarm-Bridging-Header.h"; sourceTree = "<group>"; };
 		25E7C6881AA8284100431A81 /* alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C68C1AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC1FA470F64B8ECEEF7AD742 /* libPods-alarm.a in Frameworks */,
+				76C06047841EFB0C443D54BB /* libPods-alarm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				273E0DCC1AAD4074005D73E3 /* TimePickerViewController.swift */,
+				254478791AB63411002FA3CB /* SettingsModalViewController.swift */,
 				274DA5661AB4E08900891EBF /* HomeViewController.swift */,
 				273C35A21AAFFEDC00743B33 /* ScheduleTableViewCell.swift */,
 				273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */,
@@ -107,6 +112,7 @@
 		254B59CD1AABA36E00A7E3F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */,
 				273E0DCD1AAD4074005D73E3 /* TimePickerViewController.xib */,
 				274DA5671AB4E08900891EBF /* HomeViewController.xib */,
 				25E7C6991AA8284100431A81 /* LaunchScreen.xib */,
@@ -212,7 +218,7 @@
 		A1FFBE7D1FB3B8E248EE8966 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				034E64FABC2282EEAB01E5D0 /* libPods-alarm.a */,
+				225B0BBD7F243D40B3608C0A /* libPods-alarm.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2544787C1AB63411002FA3CB /* SettingsModalViewController.xib in Resources */,
 				25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */,
 				273C35A11AAFFCDC00743B33 /* ScheduleViewController.xib in Resources */,
 				25E7C6981AA8284100431A81 /* Images.xcassets in Resources */,
@@ -364,6 +371,7 @@
 				273E0DCE1AAD4074005D73E3 /* TimePickerViewController.swift in Sources */,
 				27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */,
 				27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */,
+				2544787B1AB63411002FA3CB /* SettingsModalViewController.swift in Sources */,
 				2751201E1AB5C738007F1219 /* AlarmPickerPresenter.swift in Sources */,
 				273C35A41AAFFEDC00743B33 /* ScheduleTableViewCell.swift in Sources */,
 				275120221AB64932007F1219 /* SoundMonitorHelper.swift in Sources */,

@@ -149,7 +149,6 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
   }
 
-
   /* Private */
 
   // Given a time presenter, select the row in the picker view

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsModalViewController" customModule="alarm" customModuleProvider="target">
+            <connections>
+                <outlet property="alarmSwitch" destination="V0K-8e-mmT" id="kDe-ry-ynt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="SettingsModalViewController" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0F-zo-q7h">
+                    <rect key="frame" x="20" y="15" width="45" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="1cn-R5-GII"/>
+                        <constraint firstAttribute="width" constant="45" id="u9O-fd-Wmr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0K-8e-mmT">
+                    <rect key="frame" x="252" y="10" width="51" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="aHi-0B-l66"/>
+                        <constraint firstAttribute="width" constant="49" id="mXM-Qs-lSp"/>
+                    </constraints>
+                    <connections>
+                        <action selector="alarmToggled:" destination="-1" eventType="valueChanged" id="uaF-FH-iOs"/>
+                    </connections>
+                </switch>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="V0K-8e-mmT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="EVb-Rg-w09"/>
+                <constraint firstItem="T0F-zo-q7h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="FJQ-M8-s35"/>
+                <constraint firstItem="T0F-zo-q7h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="o7z-5B-ABp"/>
+                <constraint firstAttribute="trailing" secondItem="V0K-8e-mmT" secondAttribute="trailing" constant="19" id="qdB-Nk-XxX"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="ebJ-ez-dwL" appends="YES" id="Hxj-fE-X0a"/>
+            </connections>
+            <point key="canvasLocation" x="314" y="388"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="ebJ-ez-dwL">
+            <connections>
+                <action selector="moveModal:" destination="-1" id="PHS-nJ-XcG"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
