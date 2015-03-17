@@ -109,6 +109,7 @@
 			children = (
 				273E0DCD1AAD4074005D73E3 /* TimePickerViewController.xib */,
 				274DA5671AB4E08900891EBF /* HomeViewController.xib */,
+				25E7C6991AA8284100431A81 /* LaunchScreen.xib */,
 				273C35A31AAFFEDC00743B33 /* ScheduleTableViewCell.xib */,
 				273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */,
 			);
@@ -142,13 +143,11 @@
 				253F9DFC1AA95162007A1457 /* Controllers */,
 				273E0DD11AAD655B005D73E3 /* Lib */,
 				27FE937F1AB0088700059E18 /* Models */,
-				254B59CD1AABA36E00A7E3F1 /* Views */,
-				25E7C68D1AA8284100431A81 /* AppDelegate.swift */,
-				25E7C6971AA8284100431A81 /* Images.xcassets */,
-				25E7C6991AA8284100431A81 /* LaunchScreen.xib */,
-				25E7C68F1AA8284100431A81 /* alarm.xcdatamodeld */,
 				25E7C68B1AA8284100431A81 /* Supporting Files */,
+				254B59CD1AABA36E00A7E3F1 /* Views */,
+				25E7C68F1AA8284100431A81 /* alarm.xcdatamodeld */,
 				256C67C21AAEA6320074F260 /* alarm-Bridging-Header.h */,
+				25E7C68D1AA8284100431A81 /* AppDelegate.swift */,
 			);
 			path = alarm;
 			sourceTree = "<group>";
@@ -156,6 +155,7 @@
 		25E7C68B1AA8284100431A81 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				25E7C6971AA8284100431A81 /* Images.xcassets */,
 				25E7C68C1AA8284100431A81 /* Info.plist */,
 			);
 			name = "Supporting Files";
