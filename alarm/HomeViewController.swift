@@ -30,14 +30,15 @@ class HomeViewController: UIViewController, TimePickerDelegate {
     // Set up our presenters for later use
     blurViewPresenter = BlurViewPresenter(parent: self.view)
     alarmPickerPresenter = AlarmPickerPresenter(delegate: self)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
     addSettingsModal()
   }
-
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
 
   @IBAction func timeChangeSelected(sender: UIButton) {
     blurViewPresenter.showBlur()
@@ -64,8 +65,8 @@ class HomeViewController: UIViewController, TimePickerDelegate {
     settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
     self.addChildViewController(settingsModal)
     settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-    settingsModal.openPosition = (self.view.frame.size.height  - (self.view.frame.size.height * 0.8)) / 2
-    settingsModal.view.frame = CGRectMake((self.view.frame.size.width - (self.view.frame.size.width * 0.8)) / 2, self.view.frame.size.height - settingsModal.openPosition, self.view.frame.size.width * 0.8, self.view.frame.size.height * 0.8)
+    settingsModal.openPosition = self.view.center.y
+    settingsModal.view.frame = CGRectMake((self.view.frame.size.width - (self.view.frame.size.width * 0.8)) / 2, self.view.frame.size.height - settingsModal.alarmSwitch.frame.height - 25, self.view.frame.size.width * 0.8, self.view.frame.size.height * 0.8)
     settingsModal.view.layer.cornerRadius = 12.0
     settingsModal.view.layer.masksToBounds = true
     settingsModal.view.clipsToBounds = false
