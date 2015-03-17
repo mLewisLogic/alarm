@@ -33,6 +33,7 @@ class HomeViewController: UIViewController, TimePickerDelegate {
   }
   
   override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(false)
     addSettingsModal()
   }
   override func didReceiveMemoryWarning() {
