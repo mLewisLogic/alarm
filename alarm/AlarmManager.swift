@@ -18,7 +18,7 @@ class AlarmManager {
   // In practice, this function should be called anytime there is
   // a meaninful change to the persistence layer of alarms, ie. if
   // a user changes an alarm.
-  func updateAlarmHelper() {
+  class func updateAlarmHelper() {
     // Get all of the known alarms
     let alarms = AlarmEntity.MR_findAll() as [AlarmEntity]
     // Get an array of upcoming alarms, impending first
