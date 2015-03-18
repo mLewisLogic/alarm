@@ -14,6 +14,10 @@
 		25E7C6981AA8284100431A81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6971AA8284100431A81 /* Images.xcassets */; };
 		25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E7C6991AA8284100431A81 /* LaunchScreen.xib */; };
 		25E7C6A71AA8284100431A81 /* alarmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C6A61AA8284100431A81 /* alarmTests.swift */; };
+		25FC1DDA1AB92E5700D9D67B /* day.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD61AB92E5700D9D67B /* day.jpg */; };
+		25FC1DDB1AB92E5700D9D67B /* night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD71AB92E5700D9D67B /* night.jpg */; };
+		25FC1DDC1AB92E5700D9D67B /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD81AB92E5700D9D67B /* sunrise.png */; };
+		25FC1DDD1AB92E5700D9D67B /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD91AB92E5700D9D67B /* sunset.png */; };
 		273C35A01AAFFCDC00743B33 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */; };
 		273C35A11AAFFCDC00743B33 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */; };
 		273C35A41AAFFEDC00743B33 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C35A21AAFFEDC00743B33 /* ScheduleTableViewCell.swift */; };
@@ -58,6 +62,10 @@
 		25E7C6A01AA8284100431A81 /* alarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C6A51AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E7C6A61AA8284100431A81 /* alarmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmTests.swift; sourceTree = "<group>"; };
+		25FC1DD61AB92E5700D9D67B /* day.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = day.jpg; sourceTree = "<group>"; };
+		25FC1DD71AB92E5700D9D67B /* night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = night.jpg; sourceTree = "<group>"; };
+		25FC1DD81AB92E5700D9D67B /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
+		25FC1DD91AB92E5700D9D67B /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
 		273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
 		273C35A21AAFFEDC00743B33 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +154,7 @@
 		25E7C68A1AA8284100431A81 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
+				25FC1DD51AB92DDF00D9D67B /* Assets */,
 				253F9DFC1AA95162007A1457 /* Controllers */,
 				273E0DD11AAD655B005D73E3 /* Lib */,
 				27FE937F1AB0088700059E18 /* Models */,
@@ -182,6 +191,17 @@
 				25E7C6A51AA8284100431A81 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25FC1DD51AB92DDF00D9D67B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				25FC1DD61AB92E5700D9D67B /* day.jpg */,
+				25FC1DD71AB92E5700D9D67B /* night.jpg */,
+				25FC1DD81AB92E5700D9D67B /* sunrise.png */,
+				25FC1DD91AB92E5700D9D67B /* sunset.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		273E0DD11AAD655B005D73E3 /* Lib */ = {
@@ -310,10 +330,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25FC1DDB1AB92E5700D9D67B /* night.jpg in Resources */,
+				25FC1DDD1AB92E5700D9D67B /* sunset.png in Resources */,
 				2544787C1AB63411002FA3CB /* SettingsModalViewController.xib in Resources */,
 				25E7C69B1AA8284100431A81 /* LaunchScreen.xib in Resources */,
+				25FC1DDC1AB92E5700D9D67B /* sunrise.png in Resources */,
 				273C35A11AAFFCDC00743B33 /* ScheduleViewController.xib in Resources */,
 				25E7C6981AA8284100431A81 /* Images.xcassets in Resources */,
+				25FC1DDA1AB92E5700D9D67B /* day.jpg in Resources */,
 				273C35A51AAFFEDC00743B33 /* ScheduleTableViewCell.xib in Resources */,
 				273E0DCF1AAD4074005D73E3 /* TimePickerViewController.xib in Resources */,
 				274DA5691AB4E08900891EBF /* HomeViewController.xib in Resources */,

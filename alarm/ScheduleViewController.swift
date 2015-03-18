@@ -36,6 +36,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     // Set up our presenters for later use
     blurViewPresenter = BlurViewPresenter(parent: self.view)
     alarmPickerPresenter = AlarmPickerPresenter(delegate: self)
+    
+    scheduleTableView.alwaysBounceVertical = false;
+    scheduleTableView.separatorColor = UIColor.clearColor()
   }
 
   override func didReceiveMemoryWarning() {

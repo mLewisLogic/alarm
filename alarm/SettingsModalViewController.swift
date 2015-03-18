@@ -53,15 +53,17 @@ class SettingsModalViewController: UIViewController {
   }
   
   @IBOutlet weak var alarmSwitch: UISwitch!
+  @IBOutlet weak var scheduleView: UIView!
   
   var openPosition: CGFloat!
   var closedPosition: CGFloat!
+  var scheduleVC: ScheduleViewController!
   
   private var open = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    addScheduleView()
     // Do any additional setup after loading the view.
   }
   
@@ -70,6 +72,17 @@ class SettingsModalViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
+  func addScheduleView() {
+    scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
+    self.addChildViewController(scheduleVC)
+    scheduleVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+    scheduleVC.view.frame = scheduleView.frame
+    scheduleVC.view.layer.masksToBounds = true
+    scheduleVC.view.clipsToBounds = false
+    
+    self.view.addSubview(scheduleVC.view)
+    scheduleVC.didMoveToParentViewController(self)
+  }
   
   /*
   // MARK: - Navigation
