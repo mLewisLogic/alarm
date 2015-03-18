@@ -28,6 +28,7 @@
 		275120201AB60D4C007F1219 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751201F1AB60D4C007F1219 /* LocationHelper.swift */; };
 		275120221AB64932007F1219 /* SoundMonitorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275120211AB64932007F1219 /* SoundMonitorHelper.swift */; };
 		275120261AB8E4F6007F1219 /* AlarmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275120251AB8E4F6007F1219 /* AlarmHelper.swift */; };
+		277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FFD091ABA10890003BE2A /* AlarmManager.swift */; };
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
 		27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FE93821AB00FE600059E18 /* AlarmEntity.swift */; };
@@ -74,6 +75,7 @@
 		2751201F1AB60D4C007F1219 /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		275120211AB64932007F1219 /* SoundMonitorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundMonitorHelper.swift; sourceTree = "<group>"; };
 		275120251AB8E4F6007F1219 /* AlarmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmHelper.swift; sourceTree = "<group>"; };
+		277FFD091ABA10890003BE2A /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		27A71A981AB51551003CABC4 /* SunriseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseHelper.swift; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewPresenter.swift; sourceTree = "<group>"; };
 		27FE93821AB00FE600059E18 /* AlarmEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmEntity.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				275120251AB8E4F6007F1219 /* AlarmHelper.swift */,
+				277FFD091ABA10890003BE2A /* AlarmManager.swift */,
 				2751201D1AB5C738007F1219 /* AlarmPickerPresenter.swift */,
 				27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */,
 				2751201F1AB60D4C007F1219 /* LocationHelper.swift */,
@@ -377,6 +380,7 @@
 				2544787B1AB63411002FA3CB /* SettingsModalViewController.swift in Sources */,
 				2751201E1AB5C738007F1219 /* AlarmPickerPresenter.swift in Sources */,
 				273C35A41AAFFEDC00743B33 /* ScheduleTableViewCell.swift in Sources */,
+				277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */,
 				275120221AB64932007F1219 /* SoundMonitorHelper.swift in Sources */,
 				274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */,
 				275120261AB8E4F6007F1219 /* AlarmHelper.swift in Sources */,

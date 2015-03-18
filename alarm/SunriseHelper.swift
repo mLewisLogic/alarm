@@ -26,7 +26,7 @@ class SunriseHelper {
   let distanceRecalcThreshold = 50000.0 // 50km
 
   init() {
-    calendar = NSCalendar.currentCalendar()
+    calendar = NSCalendar.autoupdatingCurrentCalendar()
   }
 
   // Create and hold onto a singleton instance of this class

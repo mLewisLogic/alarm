@@ -17,12 +17,13 @@ import Foundation
 // Stash a singleton global instance
 private let _alarmHelper = AlarmHelper()
 
-class AlarmHelper {
+class AlarmHelper: NSObject {
 
   var activeAlarm: AlarmEntity?
   var activeTimer: NSTimer?
 
-  init() {
+  override init() {
+    super.init()
   }
 
   // Create and hold onto a singleton instance of this class
@@ -34,20 +35,48 @@ class AlarmHelper {
   /* Public interface */
 
   // Set the active alarm
-  class func setAlarm(alarm: AlarmEntity) {
+  class func setAlarm(alarm: AlarmEntity?) {
     singleton.setAlarm(alarm)
   }
 
+  // Alarm activation handler
+  func alarmFired(timer: NSTimer) {
+    NSLog("Triggering alarmFired notification")
+    NSNotificationCenter().postNotificationName("AlarmFired", object: activeAlarm)
+  }
 
   /* Private */
 
-  private func setAlarm(alarm: AlarmEntity) {
+  private func setAlarm(alarm: AlarmEntity?) {
+    // If this is the same alarm that is already active, break.
+    if alarm == activeAlarm {
+      return
+    }
+
+    // Store our new alarm
     activeAlarm = alarm
+
     // If there's an existing timer, kill it
     if let timer = activeTimer {
       timer.invalidate()
+      activeTimer = nil
     }
 
-    // Create a new timer using the new alarm
+    if let unwrappedAlarm = alarm {
+      if let alarmTime = unwrappedAlarm.nextAlarmTime() {
+        NSLog("alarmTime: \(alarmTime)")
+        // Calculate the number of seconds until the alarm time.
+        let secondsUntilAlarm = alarmTime.timeIntervalSinceDate(NSDate())
+        // Create a new timer using the new alarm
+        NSLog(String(format: "Setting an alarm for %.0f seconds in the future.", secondsUntilAlarm))
+        activeTimer = NSTimer.scheduledTimerWithTimeInterval(
+          secondsUntilAlarm,
+          target: self,
+          selector: "alarmFired:",
+          userInfo: nil,
+          repeats: false
+        )
+      }
+    }
   }
 }

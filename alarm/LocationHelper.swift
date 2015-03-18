@@ -60,19 +60,19 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
   /* Location update handler functions */
   func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
     latestLocation = locations.last as? CLLocation
-    NSLog("location: \(latestLocation?.description)")
+    NSLog("locationManager: didUpdateLocations: \(latestLocation?.description)")
   }
 
   func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-    NSLog("didFailWithError: \(error.description)")
+    NSLog("locationManager: didFailWithError: \(error.description)")
   }
 
   func locationManager(manager: CLLocationManager!, didFinishDeferredUpdatesWithError error: NSError!) {
-    NSLog("didFinishDeferredUpdatesWithError: \(error.description)")
+    NSLog("locationManager: didFinishDeferredUpdatesWithError: \(error.description)")
   }
 
   func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-    NSLog("Authorization status changed to: \(status.rawValue)")
+    NSLog("locationManager: auth status changed to: \(status.rawValue)")
     setupLocationMonitoring()
   }
 

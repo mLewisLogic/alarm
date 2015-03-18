@@ -87,14 +87,11 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
     NSLog("\(error.localizedDescription)")
   }
 
-  func updateAudioMeter(timer:NSTimer) {
+  func updateAudioMeter(timer: NSTimer) {
     if recorder.recording {
       recorder.updateMeters()
       var apc0  = recorder.averagePowerForChannel(0)
       var peak0 = recorder.peakPowerForChannel(0)
-
-      let dFormat = "%02d"
-      NSLog("seconds: \(recorder.currentTime), avg: \(apc0), peak: \(peak0)")
     }
   }
 

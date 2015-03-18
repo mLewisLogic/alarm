@@ -98,7 +98,6 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     alarmEntityArray = AlarmEntity.DayOfWeek.allValues.map {
       (dayOfWeekEnum: AlarmEntity.DayOfWeek) -> AlarmEntity in
       var alarmEntity = AlarmEntity.MR_createEntity() as AlarmEntity
-      //alarmEntity.setValue(dayOfWeekEnum, forKey: "dayOfWeekEnum")
       alarmEntity.dayOfWeekEnum = dayOfWeekEnum
       alarmEntity.alarmTypeEnum = .Time
       alarmEntity.setValue(false, forKey: "enabled")
