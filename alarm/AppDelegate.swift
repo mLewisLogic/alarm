@@ -42,8 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       SoundMonitorHelper.startRecording()
     }
-    
+
+    sandboxTest()
+
     return true
+  }
+
+  // This is a dummy func for testing things at startup
+  private func sandboxTest() {
+    var alarmEntity = AlarmEntity.MR_createEntity() as AlarmEntity
+    alarmEntity.dayOfWeekEnum = AlarmEntity.DayOfWeek.Thursday
+    alarmEntity.alarmTypeEnum = .Time
+    alarmEntity.setValue(true, forKey: "enabled")
+    alarmEntity.hour = 7
+    alarmEntity.minute = 0
+
+    AlarmHelper.setAlarm(alarmEntity)
   }
 
   private func setupMagicalRecord() {
