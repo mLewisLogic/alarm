@@ -17,6 +17,8 @@
             <subviews>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kG-Epd">
                     <rect key="frame" x="0.0" y="203" width="320" height="162"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="N4e-xS-QkU"/>
                     </constraints>
@@ -27,7 +29,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCk-pl-O7i">
                             <rect key="frame" x="128" y="20" width="63" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -43,7 +45,7 @@
                     </connections>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="GG0-tW-oES" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dq5-rV-EdW"/>
                 <constraint firstAttribute="centerX" secondItem="Neu-kG-Epd" secondAttribute="centerX" id="Yis-vo-jh5"/>

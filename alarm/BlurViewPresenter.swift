@@ -37,7 +37,6 @@ class BlurViewPresenter {
 
     // Set up the view relationships
     blurEffectView.addSubview(vibrancyEffectView)
-    parent.addSubview(blurEffectView)
 
     // Make sure the blur starts out hidden
     hideBlur()
@@ -45,10 +44,12 @@ class BlurViewPresenter {
 
   func showBlur() {
     resetBounds()
+    parentView.addSubview(blurEffectView)
     blurEffectView.hidden = false
   }
 
   func hideBlur() {
+    blurEffectView.removeFromSuperview()
     blurEffectView.hidden = true
   }
 

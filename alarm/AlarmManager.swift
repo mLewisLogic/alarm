@@ -39,4 +39,35 @@ class AlarmManager {
     }
   }
 
+  // If we don't have any alarms in the system, create
+  // initial, default alarms.
+  class func createInitialAlarms() {
+    AlarmEntity.DayOfWeek.allValues.map {
+      (dayOfWeekEnum: AlarmEntity.DayOfWeek) -> () in
+
+      let existingAlarmEntity = AlarmEntity.MR_findFirstByAttribute("dayOfWeek", withValue: dayOfWeekEnum.rawValue) as AlarmEntity?
+
+      // If it's nil, we need to create it
+      if existingAlarmEntity == nil {
+        var newAlarmEntity = AlarmEntity.MR_createEntity() as AlarmEntity
+        newAlarmEntity.dayOfWeekEnum = dayOfWeekEnum
+        newAlarmEntity.alarmTypeEnum = .Time
+        newAlarmEntity.setValue(false, forKey: "enabled")
+        newAlarmEntity.hour = 7
+        newAlarmEntity.minute = 0
+      }
+    }
+    // Save newly created records
+    NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+  }
+
+  // Get alarms in Sunday -> Saturday order
+  class func loadAlarmsOrdered() -> [AlarmEntity] {
+    var alarms = AlarmEntity.MR_findAll() as [AlarmEntity]
+    // Sort them by day of week
+    return alarms.sorted {
+      (a: AlarmEntity, b: AlarmEntity) -> Bool in
+      a.weekday < b.weekday
+    }
+  }
 }
