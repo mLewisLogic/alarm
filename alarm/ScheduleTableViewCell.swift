@@ -20,9 +20,7 @@ class ScheduleTableViewCell: UITableViewCell {
 
   var alarmEntity: AlarmEntity! {
     didSet {
-      dayLabel.text = alarmEntity.dayOfWeekForDisplay()
-      timeButton.setTitle(alarmEntity.stringForTableDisplay(), forState: UIControlState.Normal)
-      //activeSwitch.on = alarmEntity.enabled
+      updateDisplay()
     }
   }
   
@@ -35,15 +33,21 @@ class ScheduleTableViewCell: UITableViewCell {
   
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-
     // Configure the view for the selected state
   }
 
   @IBAction func switchChanged(sender: UISwitch) {
-    NSLog("Switch toggled: \(sender.on)")
+    //NSLog("Switch toggled: \(sender.on)")
   }
   
   @IBAction func timeChangeSelected(sender: UIButton) {
     delegate.updateTimeSelected(self)
+  }
+
+  // Given details of our alarm entity, update the display
+  func updateDisplay() {
+    dayLabel.text = alarmEntity.dayOfWeekForDisplay()
+    timeButton.setTitle(alarmEntity.stringForTableDisplay(), forState: UIControlState.Normal)
+    //activeSwitch.on = alarmEntity.enabled
   }
 }
