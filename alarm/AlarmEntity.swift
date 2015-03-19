@@ -32,7 +32,8 @@ class AlarmEntity: NSManagedObject {
     static let allValues = [Time, Sunrise, Sunset]
   }
 
-  // Valid values: sunday, monday, tuesday, wednesday, thursday, friday, saturday
+  // Valid values:
+  //  sunday, monday, tuesday, wednesday, thursday, friday, saturday
   @NSManaged private var dayOfWeek: String
   // Valid values: time, sunrise, sunset
   @NSManaged private var alarmType: String
@@ -157,7 +158,9 @@ class AlarmEntity: NSManagedObject {
   /* Private */
 
   // Persist the context, and therefore this object
-  private func persistSelf() {
-    NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+  func persistSelf() {
+    NSManagedObjectContext
+      .MR_defaultContext()
+      .MR_saveToPersistentStoreAndWait()
   }
 }

@@ -74,7 +74,8 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
     NSLog("\(indexPath.row)")
   }
-  
+
+  // Delegate of DayOfWeekAlarmDelegate
   func updateTimeSelected(cell: ScheduleTableViewCell) {
     // Stash the cell under change
     cellBeingChanged = cell
@@ -92,6 +93,14 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   func timeSelected(time: TimePresenter) {
     updateCellBeingChanged(time)
     timePickerManagerDelegate.dismissTimePicker()
+  }
+
+  // Delegate of DayOfWeekAlarmDelegate
+  func updateAlarmEnabled(cell: ScheduleTableViewCell, enabled: Bool) {
+    var alarm = cell.alarmEntity
+    alarm.enabled = enabled
+    alarm.persistSelf()
+    cell.updateDisplay()
   }
 
   /* Private */
