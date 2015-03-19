@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         bundle: nil
       )
       window.rootViewController = homeViewController
-
       window.makeKeyAndVisible()
 
       // Request location and recording access
