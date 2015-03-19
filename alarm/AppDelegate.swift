@@ -25,12 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nibName: "HomeViewController",
         bundle: nil
       )
-
-      var scheduleViewController = ScheduleViewController(
-        nibName: "ScheduleViewController",
-        bundle: nil
-      )
-
       window.rootViewController = homeViewController
 
       window.makeKeyAndVisible()
