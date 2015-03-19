@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   var settingsModal: SettingsModalViewController!
-  var backgroundImagePresenter: BackgroundImagePresenter!
   
   override func viewDidLoad() {
     super.viewDidLoad()
