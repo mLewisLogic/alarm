@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2508E83F1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2508E83E1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift */; };
+		2508E8411ABB27CB00DFB9D5 /* SwiftColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2508E8401ABB27CB00DFB9D5 /* SwiftColors.swift */; };
 		2544787B1AB63411002FA3CB /* SettingsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254478791AB63411002FA3CB /* SettingsModalViewController.swift */; };
 		2544787C1AB63411002FA3CB /* SettingsModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */; };
 		25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7C68D1AA8284100431A81 /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 		12B39A0D2F7E331BB496FA50 /* Pods-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.debug.xcconfig"; sourceTree = "<group>"; };
 		225B0BBD7F243D40B3608C0A /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2508E83E1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImagePresenter.swift; sourceTree = "<group>"; };
+		2508E8401ABB27CB00DFB9D5 /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftColors.swift; sourceTree = "<group>"; };
 		254478791AB63411002FA3CB /* SettingsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModalViewController.swift; sourceTree = "<group>"; };
 		2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsModalViewController.xib; sourceTree = "<group>"; };
 		256C67C21AAEA6320074F260 /* alarm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "alarm-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				27A71A981AB51551003CABC4 /* SunriseHelper.swift */,
 				2751201D1AB5C738007F1219 /* TimePickerPresenter.swift */,
 				273E0DD21AAD6591005D73E3 /* TimePresenter.swift */,
+				2508E8401ABB27CB00DFB9D5 /* SwiftColors.swift */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				2751201C1AB5AB9A007F1219 /* RawTime.swift in Sources */,
 				273E0DD31AAD6591005D73E3 /* TimePresenter.swift in Sources */,
 				27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */,
+				2508E8411ABB27CB00DFB9D5 /* SwiftColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,6 +44,8 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
     scheduleTableView.alwaysBounceVertical = false;
     scheduleTableView.separatorColor = UIColor.clearColor()
+    self.view.backgroundColor = UIColor.darkGrayColor()
+    scheduleTableView.backgroundColor = UIColor.darkGrayColor()
   }
 
   override func didReceiveMemoryWarning() {

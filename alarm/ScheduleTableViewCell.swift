@@ -30,6 +30,9 @@ class ScheduleTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    self.backgroundColor = UIColor.darkGrayColor()
+    self.dayLabel.textColor = UIColor.whiteColor()
+    self.timeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
   }
   
   override func setSelected(selected: Bool, animated: Bool) {

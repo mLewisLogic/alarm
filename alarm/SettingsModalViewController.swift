@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsModalViewController: UIViewController {
   
+  @IBOutlet weak var alarmLabel: UILabel!
+  
   @IBAction func moveModal(sender: UIPanGestureRecognizer) {
     let velocity = sender.velocityInView(self.view)
     
@@ -85,6 +87,8 @@ class SettingsModalViewController: UIViewController {
 
     self.view.addSubview(scheduleVC.view)
     scheduleVC.didMoveToParentViewController(self)
+    self.view.backgroundColor = UIColor.grayColor()
+    self.alarmLabel.textColor = UIColor.whiteColor()
   }
   
   /*

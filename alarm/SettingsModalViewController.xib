@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsModalViewController" customModule="alarm" customModuleProvider="target">
             <connections>
+                <outlet property="alarmLabel" destination="T0F-zo-q7h" id="N9P-L0-6zE"/>
                 <outlet property="alarmSwitch" destination="V0K-8e-mmT" id="kDe-ry-ynt"/>
                 <outlet property="scheduleView" destination="kUb-u9-H2m" id="w8Z-mB-m4P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
