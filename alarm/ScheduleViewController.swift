@@ -16,7 +16,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   var alarmEntityArray: Array<AlarmEntity>!
 
   var blurViewPresenter: BlurViewPresenter!
-  var alarmPickerPresenter: AlarmPickerPresenter!
+  var timePickerViewController: UIViewController?
+  // The home view controls display of the time picker
+  var timePickerManagerDelegate: TimePickerManagerDelegate!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,13 +32,13 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       forCellReuseIdentifier: "ScheduleTableViewCell"
     )
 
-    // Set up our dummy data
-    createDummyAlarms()
+    // Load in the alarms for presentation
+    alarmEntityArray = AlarmManager.loadAlarmsOrdered()
 
     // Set up our presenters for later use
-    blurViewPresenter = BlurViewPresenter(parent: self.view)
-    alarmPickerPresenter = AlarmPickerPresenter(delegate: self)
     
+    blurViewPresenter = BlurViewPresenter(parent: self.view)
+
     scheduleTableView.alwaysBounceVertical = false;
     scheduleTableView.separatorColor = UIColor.clearColor()
   }
@@ -73,17 +75,16 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   // Delegate callback from the time picker
   func timeSelected(time: TimePresenter) {
     updateDisplayTime()
+    timePickerManagerDelegate.dismissTimePicker()
   }
   
   func updateTimeSelected(cell: ScheduleTableViewCell) {
     if let indexPath = scheduleTableView.indexPathForCell(cell) {
       let alarmEntity = alarmEntityArray[indexPath.row]
-      
-      blurViewPresenter.showBlur()
-
-      // Prepare and present the alarm picker controller
-      let timePickerViewController = alarmPickerPresenter.prepareAlarmPicker(TimePresenter(alarmEntity: alarmEntity))
-      presentViewController(timePickerViewController, animated: true, completion: nil)
+      timePickerManagerDelegate.showTimePicker(
+        self,
+        time: TimePresenter(alarmEntity: alarmEntity)
+      )
     }
   }
 
@@ -94,19 +95,5 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   private func updateDisplayTime() {
     // TODO: Implement me
   }
-  
-  // TODO: We need to replace this with live Core Data entities from the database
-  // This might be useful as a first-time user initialization routine.
-  private func createDummyAlarms() {
-    alarmEntityArray = AlarmEntity.DayOfWeek.allValues.map {
-      (dayOfWeekEnum: AlarmEntity.DayOfWeek) -> AlarmEntity in
-      var alarmEntity = AlarmEntity.MR_createEntity() as AlarmEntity
-      alarmEntity.dayOfWeekEnum = dayOfWeekEnum
-      alarmEntity.alarmTypeEnum = .Time
-      alarmEntity.setValue(false, forKey: "enabled")
-      alarmEntity.hour = 7
-      alarmEntity.minute = 0
-      return alarmEntity
-    }
-  }
+
 }

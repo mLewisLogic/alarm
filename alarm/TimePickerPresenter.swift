@@ -1,5 +1,5 @@
 //
-//  AlarmPickerPresenter.swift
+//  TimePickerPresenter.swift
 //  alarm
 //
 //  Created by Michael Lewis on 3/15/15.
@@ -8,23 +8,17 @@
 
 import Foundation
 
-class AlarmPickerPresenter {
-
-  let delegate: TimePickerDelegate
-
-  init(delegate: TimePickerDelegate) {
-    self.delegate = delegate
-  }
+class TimePickerPresenter {
 
   // Present the alarm picker over a given view
-  func prepareAlarmPicker(time: TimePresenter) -> TimePickerViewController {
+  class func preparePicker(delegate: TimePickerDelegate, time: TimePresenter) -> TimePickerViewController {
     // Create a new AlarmView overlaying
     var timePickerViewController = TimePickerViewController(
       nibName: "TimePickerViewController",
       bundle: nil
     )
     // Assign it's delegate as this view
-    timePickerViewController.delegate = self.delegate
+    timePickerViewController.delegate = delegate
     timePickerViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
     timePickerViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
 

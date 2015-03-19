@@ -79,7 +79,10 @@ class SettingsModalViewController: UIViewController {
     scheduleVC.view.frame = scheduleView.frame
     scheduleVC.view.layer.masksToBounds = true
     scheduleVC.view.clipsToBounds = false
-    
+
+    // Let the settings modal know who controls the time picker
+    scheduleVC.timePickerManagerDelegate = self.parentViewController! as HomeViewController
+
     self.view.addSubview(scheduleVC.view)
     scheduleVC.didMoveToParentViewController(self)
   }

@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // Initial setup before we start the UI
     setupMagicalRecord()
+    AlarmManager.createInitialAlarms()
     LocationHelper.enableMonitoring()
 
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

@@ -8,7 +8,14 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, TimePickerDelegate {
+
+protocol TimePickerManagerDelegate {
+  func showTimePicker(pickerDelegate: TimePickerDelegate, time: TimePresenter)
+  func dismissTimePicker()
+}
+
+
+class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManagerDelegate {
 
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
@@ -16,7 +23,7 @@ class HomeViewController: UIViewController, TimePickerDelegate {
   var currentTime: TimePresenter!
 
   var blurViewPresenter: BlurViewPresenter!
-  var alarmPickerPresenter: AlarmPickerPresenter!
+  var timePickerViewController: UIViewController?
   var settingsModal: SettingsModalViewController!
   
   override func viewDidLoad() {
@@ -29,7 +36,6 @@ class HomeViewController: UIViewController, TimePickerDelegate {
 
     // Set up our presenters for later use
     blurViewPresenter = BlurViewPresenter(parent: self.view)
-    alarmPickerPresenter = AlarmPickerPresenter(delegate: self)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -42,17 +48,34 @@ class HomeViewController: UIViewController, TimePickerDelegate {
   }
 
   @IBAction func timeChangeSelected(sender: UIButton) {
-    blurViewPresenter.showBlur()
-
-    // Prepare and present the alarm picker controller
-    let timePickerViewController = alarmPickerPresenter.prepareAlarmPicker(currentTime)
-    presentViewController(timePickerViewController, animated: true, completion: nil)
+    showTimePicker(self, time: currentTime)
   }
 
   // Delegate callback from the time picker
   func timeSelected(time: TimePresenter) {
     currentTime = time
     updateDisplayTime()
+    dismissTimePicker()
+  }
+
+  func showTimePicker(pickerDelegate: TimePickerDelegate, time: TimePresenter) {
+    blurViewPresenter.showBlur()
+
+    // Prepare and present the alarm picker controller
+    timePickerViewController = TimePickerPresenter.preparePicker(pickerDelegate, time: time)
+    presentViewController(
+      timePickerViewController!,
+      animated: true,
+      completion: nil
+    )
+  }
+
+  // Dismiss the previously created timePicker
+  func dismissTimePicker() {
+    // dismiss and kill the timePickerViewController
+    timePickerViewController?.dismissViewControllerAnimated(true, completion: nil)
+    timePickerViewController = nil
+    blurViewPresenter.hideBlur()
   }
   
   /* Private */

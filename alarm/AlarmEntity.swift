@@ -156,7 +156,8 @@ class AlarmEntity: NSManagedObject {
 
   /* Private */
 
-  // TODO: Implement me
+  // Persist the context, and therefore this object
   private func persistSelf() {
+    NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
   }
 }
