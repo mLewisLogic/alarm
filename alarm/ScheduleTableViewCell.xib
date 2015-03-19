@@ -20,15 +20,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-ks-xVn">
-                        <rect key="frame" x="255" y="13" width="51" height="31"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <action selector="switchChanged:" destination="-1" eventType="valueChanged" id="MyZ-bG-oLa"/>
-                        </connections>
-                    </switch>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xig-eW-L0I" userLabel="Time">
-                        <rect key="frame" x="128.5" y="12" width="63" height="33"/>
+                        <rect key="frame" x="128" y="12" width="63" height="33"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="33" id="4Ij-DL-8K1"/>
                         </constraints>
@@ -41,6 +34,13 @@
                             <action selector="timeChangeSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oik-XV-7eY"/>
                         </connections>
                     </button>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-ks-xVn">
+                        <rect key="frame" x="255" y="13" width="51" height="31"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <action selector="switchChanged:" destination="-1" eventType="valueChanged" id="0pA-gC-JRz"/>
+                        </connections>
+                    </switch>
                 </subviews>
                 <constraints>
                     <constraint firstItem="t6p-wV-ZzO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="6WX-Hb-5pz"/>

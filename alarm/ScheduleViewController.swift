@@ -15,6 +15,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   // One for each day of the week (Sun-Sat)
   var alarmEntityArray: Array<AlarmEntity>!
 
+  // If the time picker is up, we're modifying a cell
+  var cellBeingChanged: ScheduleTableViewCell?
+
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   // The home view controls display of the time picker
@@ -72,13 +75,10 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     NSLog("\(indexPath.row)")
   }
   
-  // Delegate callback from the time picker
-  func timeSelected(time: TimePresenter) {
-    updateDisplayTime()
-    timePickerManagerDelegate.dismissTimePicker()
-  }
-  
   func updateTimeSelected(cell: ScheduleTableViewCell) {
+    // Stash the cell under change
+    cellBeingChanged = cell
+    // Get the cell's underlying alarm and trigger a picker for it
     if let indexPath = scheduleTableView.indexPathForCell(cell) {
       let alarmEntity = alarmEntityArray[indexPath.row]
       timePickerManagerDelegate.showTimePicker(
@@ -88,12 +88,22 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     }
   }
 
+  // Delegate callback from the time picker
+  func timeSelected(time: TimePresenter) {
+    updateCellBeingChanged(time)
+    timePickerManagerDelegate.dismissTimePicker()
+  }
 
   /* Private */
   
   // Update the displayed time
-  private func updateDisplayTime() {
+  private func updateCellBeingChanged(time: TimePresenter) {
     // TODO: Implement me
+    if let cell = cellBeingChanged {
+      cell.alarmEntity.applyTimePresenter(time)
+      cell.updateDisplay()
+      cellBeingChanged = nil
+    }
   }
 
 }
