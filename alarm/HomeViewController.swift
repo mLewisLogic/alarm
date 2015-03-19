@@ -25,6 +25,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   var settingsModal: SettingsModalViewController!
+  var backgroundImagePresenter: BackgroundImagePresenter!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -83,6 +84,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // Update the displayed time
   private func updateDisplayTime() {
     // TODO: Implement me
+    setBackgroundImage()
   }
   
   private func addSettingsModal() {
@@ -110,5 +112,10 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     layer.shadowOffset = CGSize(width: 0, height: 10)
     layer.shadowOpacity = 0.4
     layer.shadowRadius = 5
+  }
+  
+  private func setBackgroundImage() {
+    let backgroundImageView = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!)
+    self.view.insertSubview(backgroundImageView.getImage(), atIndex: 0)
   }
 }
