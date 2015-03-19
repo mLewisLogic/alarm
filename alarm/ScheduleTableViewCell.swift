@@ -10,6 +10,7 @@ import UIKit
 
 protocol DayOfWeekAlarmDelegate {
   func updateTimeSelected(cell: ScheduleTableViewCell)
+  func updateAlarmEnabled(cell: ScheduleTableViewCell, enabled: Bool)
 }
 
 class ScheduleTableViewCell: UITableViewCell {
@@ -37,7 +38,8 @@ class ScheduleTableViewCell: UITableViewCell {
   }
 
   @IBAction func switchChanged(sender: UISwitch) {
-    //NSLog("Switch toggled: \(sender.on)")
+    NSLog("Switch toggled: \(sender.on)")
+    delegate.updateAlarmEnabled(self, enabled: sender.on)
   }
   
   @IBAction func timeChangeSelected(sender: UIButton) {
@@ -48,6 +50,6 @@ class ScheduleTableViewCell: UITableViewCell {
   func updateDisplay() {
     dayLabel.text = alarmEntity.dayOfWeekForDisplay()
     timeButton.setTitle(alarmEntity.stringForTableDisplay(), forState: UIControlState.Normal)
-    //activeSwitch.on = alarmEntity.enabled
+    activeSwitch.on = alarmEntity.enabled
   }
 }

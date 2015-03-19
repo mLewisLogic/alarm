@@ -38,7 +38,7 @@
                         <rect key="frame" x="255" y="13" width="51" height="31"/>
                         <gestureRecognizers/>
                         <connections>
-                            <action selector="switchChanged:" destination="-1" eventType="valueChanged" id="0pA-gC-JRz"/>
+                            <action selector="switchChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="JN1-LU-yqv"/>
                         </connections>
                     </switch>
                 </subviews>
