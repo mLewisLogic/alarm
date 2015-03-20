@@ -78,6 +78,13 @@ class SettingsModalViewController: UIViewController {
     scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
     self.addChildViewController(scheduleVC)
     scheduleVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+    
+    let scheduleTableViewCell = scheduleVC.scheduleTableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell") as ScheduleTableViewCell
+    let scheduleTableViewHeight = scheduleTableViewCell.frame.height * 8
+    
+    scheduleView.frame = CGRectMake(0, 0, self.view.frame.width, scheduleTableViewHeight)
+    scheduleView.center = self.view.center
+    scheduleView.backgroundColor = UIColor.darkGrayColor()
     scheduleVC.view.frame = scheduleView.frame
     scheduleVC.view.layer.masksToBounds = true
     scheduleVC.view.clipsToBounds = false

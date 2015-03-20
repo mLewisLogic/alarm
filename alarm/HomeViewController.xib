@@ -16,35 +16,61 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wake up at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-po-tWk">
-                    <rect key="frame" x="117" y="130" width="87" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wake up at" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-po-tWk">
+                    <rect key="frame" x="98" y="123" width="123" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="vdT-sQ-4Eh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunrise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-3M-BxU">
-                    <rect key="frame" x="126" y="176" width="73" height="27"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-3M-BxU">
+                    <rect key="frame" x="81" y="170" width="158" height="67"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="67" id="oX8-4j-33L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNl-pD-WAb">
-                    <rect key="frame" x="118" y="269" width="85" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNl-pD-WAb">
+                    <rect key="frame" x="120" y="322" width="85" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Fmr-ha-TN7"/>
+                    </constraints>
                     <state key="normal" title="change time">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="timeChangeSelected:" destination="-1" eventType="touchUpInside" id="txp-lZ-c6b"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7:30am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o74-Zt-b9A">
-                    <rect key="frame" x="133" y="211" width="58" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:30am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o74-Zt-b9A">
+                    <rect key="frame" x="120" y="239" width="80" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="SdV-ai-6eQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="bK2-3M-BxU" secondAttribute="centerY" constant="80.5" id="4oJ-yJ-fW9"/>
+                <constraint firstItem="ao4-po-tWk" firstAttribute="centerX" secondItem="bK2-3M-BxU" secondAttribute="centerX" id="EcE-Uv-g0y"/>
+                <constraint firstItem="bK2-3M-BxU" firstAttribute="top" secondItem="ao4-po-tWk" secondAttribute="bottom" constant="13" id="JM0-qr-RWV"/>
+                <constraint firstItem="o74-Zt-b9A" firstAttribute="top" secondItem="bK2-3M-BxU" secondAttribute="bottom" constant="2" id="Ye9-Fw-GNl"/>
+                <constraint firstItem="ao4-po-tWk" firstAttribute="centerX" secondItem="nNl-pD-WAb" secondAttribute="centerX" constant="-3" id="ZN3-vH-Aan"/>
+                <constraint firstItem="nNl-pD-WAb" firstAttribute="top" secondItem="o74-Zt-b9A" secondAttribute="bottom" constant="49" id="csP-rS-jTl"/>
+                <constraint firstAttribute="centerX" secondItem="o74-Zt-b9A" secondAttribute="centerX" id="t9O-Fb-3Hq"/>
+                <constraint firstItem="ao4-po-tWk" firstAttribute="centerX" secondItem="o74-Zt-b9A" secondAttribute="centerX" id="zpI-rW-3br"/>
+            </constraints>
             <point key="canvasLocation" x="604" y="334"/>
         </view>
     </objects>

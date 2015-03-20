@@ -107,6 +107,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   private func applyPlainShadow(view: UIView) {
     var layer = view.layer
     
+    layer.shadowPath = UIBezierPath(rect: CGRectMake(0, 0, settingsModal.view.frame.width, settingsModal.view.frame.height)).CGPath
     layer.shadowColor = UIColor.blackColor().CGColor
     layer.shadowOffset = CGSize(width: 0, height: 10)
     layer.shadowOpacity = 0.4
