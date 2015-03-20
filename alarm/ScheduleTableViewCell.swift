@@ -10,14 +10,12 @@ import UIKit
 
 protocol DayOfWeekAlarmDelegate {
   func updateTimeSelected(cell: ScheduleTableViewCell)
-  func updateAlarmEnabled(cell: ScheduleTableViewCell, enabled: Bool)
 }
 
 class ScheduleTableViewCell: UITableViewCell {
 
   @IBOutlet weak var dayLabel: UILabel!
   @IBOutlet weak var timeButton: UIButton!
-  @IBOutlet weak var activeSwitch: UISwitch!
 
   var alarmEntity: AlarmEntity! {
     didSet {
@@ -34,17 +32,13 @@ class ScheduleTableViewCell: UITableViewCell {
     self.dayLabel.textColor = UIColor.whiteColor()
     self.timeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
   }
-  
+
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
   }
 
-  @IBAction func switchChanged(sender: UISwitch) {
-    NSLog("Switch toggled: \(sender.on)")
-    delegate.updateAlarmEnabled(self, enabled: sender.on)
-  }
-  
+  // Triggered when the user taps the time
   @IBAction func timeChangeSelected(sender: UIButton) {
     delegate.updateTimeSelected(self)
   }
@@ -53,6 +47,5 @@ class ScheduleTableViewCell: UITableViewCell {
   func updateDisplay() {
     dayLabel.text = alarmEntity.dayOfWeekForDisplay()
     timeButton.setTitle(alarmEntity.stringForTableDisplay(), forState: UIControlState.Normal)
-    activeSwitch.on = alarmEntity.enabled
   }
 }
