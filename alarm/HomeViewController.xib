@@ -6,8 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="alarm" customModuleProvider="target">
             <connections>
+                <outlet property="overrideLabel" destination="EP2-5i-bZd" id="iWb-6K-vbi"/>
+                <outlet property="primaryTimeLabel" destination="bK2-3M-BxU" id="Dgw-VJ-FVB"/>
                 <outlet property="secondaryTimeLabel" destination="o74-Zt-b9A" id="xfS-ux-GUj"/>
-                <outlet property="timeLabel" destination="bK2-3M-BxU" id="kCP-0o-RdS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
