@@ -91,9 +91,6 @@ class TimePresenter: Comparable {
 
   // The table display view doesn't need times for sunrise/sunset
   func stringForTableDisplay() -> String {
-    // Precalculate the time
-    let time = calculatedTime()
-
     switch self.type {
     case .Time:
       // Special formatting for special times
@@ -116,6 +113,41 @@ class TimePresenter: Comparable {
       return TimePresenter.amPmToString(time.amOrPm)
     } else {
       return "error"
+    }
+  }
+
+  func primaryStringForTwoPartDisplay() -> String {
+    switch self.type {
+    case .Time:
+      // Special formatting for special times
+      if time!.hour24 == 0 && time!.minute == 0 {
+        return "midnight"
+      } else if time!.hour24 == 12 && time!.minute == 0 {
+        return "noon"
+      } else {
+        return String(format: "%2d:%02d %@", time!.hour12, time!.minute, TimePresenter.amPmToString(time!.amOrPm))
+      }
+    case .Sunrise:
+      return "sunrise"
+    case .Sunset:
+      return "sunset"
+    }
+  }
+
+  func secondaryStringForTwoPartDisplay() -> String {
+    switch self.type {
+    case .Time:
+      return ""
+    case .Sunrise, .Sunset:
+      let time = calculatedTime()
+      // Special formatting for special times
+      if time!.hour24 == 0 && time!.minute == 0 {
+        return "midnight"
+      } else if time!.hour24 == 12 && time!.minute == 0 {
+        return "noon"
+      } else {
+        return String(format: "%2d:%02d %@", time!.hour12, time!.minute, TimePresenter.amPmToString(time!.amOrPm))
+      }
     }
   }
 

@@ -17,9 +17,10 @@ protocol TimePickerManagerDelegate {
 
 class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManagerDelegate {
 
-  @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var primaryTimeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
-  
+  @IBOutlet weak var overrideLabel: UILabel!
+
   var currentTime: TimePresenter!
 
   var blurViewPresenter: BlurViewPresenter!
@@ -30,9 +31,8 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     super.viewDidLoad()
 
     // Set up a default TimePresenter
-    // TODO: Make this real, based upon active alarms
-    currentTime = TimePresenter(hour24: 7, minute: 30)
-    updateDisplayTime()
+    currentTime = TimePresenter(alarmEntity: AlarmManager.nextAlarm())
+    updateDisplay()
 
     // Set up our presenters for later use
     blurViewPresenter = BlurViewPresenter(parent: self.view)
@@ -51,13 +51,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     showTimePicker(self, time: currentTime)
   }
 
-  // Delegate callback from the time picker
-  func timeSelected(time: TimePresenter) {
-    currentTime = time
-    updateDisplayTime()
-    dismissTimePicker()
-  }
-
+  // Activate the time picker
   func showTimePicker(pickerDelegate: TimePickerDelegate, time: TimePresenter) {
     blurViewPresenter.showBlur()
 
@@ -70,20 +64,38 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     )
   }
 
+  // Delegate callback from the time picker
+  func timeSelected(time: TimePresenter) {
+    currentTime = time
+    AlarmManager.setOverrideAlarm(time)
+    dismissTimePicker()
+  }
+
   // Dismiss the previously created timePicker
   func dismissTimePicker() {
     // dismiss and kill the timePickerViewController
     timePickerViewController?.dismissViewControllerAnimated(true, completion: nil)
     timePickerViewController = nil
     blurViewPresenter.hideBlur()
+    updateDisplay()
   }
-  
+
+
+  @IBAction func activateAlarm(sender: UIButton) {
+  }
+
+
   /* Private */
 
   // Update the displayed time
-  private func updateDisplayTime() {
+  private func updateDisplay() {
+    // Update the display labels
+    primaryTimeLabel.text = currentTime.primaryStringForTwoPartDisplay()
+    secondaryTimeLabel.text = currentTime.secondaryStringForTwoPartDisplay()
+    // Unhide the overriden label if this alarm is an override
+    overrideLabel.hidden = !AlarmManager.isOverridden()
+    // Update the background image
     setBackgroundImage()
-    // TODO: Implement label updates
   }
   
   private func addSettingsModal() {
