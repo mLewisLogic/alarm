@@ -6,8 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="alarm" customModuleProvider="target">
             <connections>
+                <outlet property="overrideLabel" destination="EP2-5i-bZd" id="iWb-6K-vbi"/>
+                <outlet property="primaryTimeLabel" destination="bK2-3M-BxU" id="Dgw-VJ-FVB"/>
                 <outlet property="secondaryTimeLabel" destination="o74-Zt-b9A" id="xfS-ux-GUj"/>
-                <outlet property="timeLabel" destination="bK2-3M-BxU" id="kCP-0o-RdS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,20 +17,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wake up at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-po-tWk">
-                    <rect key="frame" x="117" y="130" width="87" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wake up at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-po-tWk">
+                    <rect key="frame" x="117" y="130" width="86.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunrise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-3M-BxU">
-                    <rect key="frame" x="126" y="176" width="73" height="27"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-3M-BxU">
+                    <rect key="frame" x="124" y="175" width="72.5" height="26.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNl-pD-WAb">
-                    <rect key="frame" x="118" y="269" width="85" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:30am" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o74-Zt-b9A">
+                    <rect key="frame" x="131" y="209" width="57.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNl-pD-WAb">
+                    <rect key="frame" x="118" y="267" width="85" height="30"/>
                     <state key="normal" title="change time">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -37,14 +44,37 @@
                         <action selector="timeChangeSelected:" destination="-1" eventType="touchUpInside" id="txp-lZ-c6b"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7:30am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o74-Zt-b9A">
-                    <rect key="frame" x="133" y="211" width="58" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7H3-10-QIj">
+                    <rect key="frame" x="133" y="338" width="54" height="30"/>
+                    <state key="normal" title="activate">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="activateAlarm:" destination="-1" eventType="touchUpInside" id="uHJ-06-pFJ"/>
+                    </connections>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(override)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EP2-5i-bZd">
+                    <rect key="frame" x="124" y="237" width="72" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="nNl-pD-WAb" secondAttribute="centerX" id="2lx-Ja-nM1"/>
+                <constraint firstAttribute="centerX" secondItem="7H3-10-QIj" secondAttribute="centerX" id="6Aq-ov-TDa"/>
+                <constraint firstItem="o74-Zt-b9A" firstAttribute="top" secondItem="bK2-3M-BxU" secondAttribute="bottom" constant="8" id="8uj-PR-Y5p"/>
+                <constraint firstItem="ao4-po-tWk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="130" id="ILV-um-8QE"/>
+                <constraint firstAttribute="centerX" secondItem="ao4-po-tWk" secondAttribute="centerX" id="TBE-Ar-6BB"/>
+                <constraint firstAttribute="centerX" secondItem="o74-Zt-b9A" secondAttribute="centerX" id="TrN-Wz-Quz"/>
+                <constraint firstItem="nNl-pD-WAb" firstAttribute="top" secondItem="EP2-5i-bZd" secondAttribute="bottom" constant="9" id="Tws-TZ-jc2"/>
+                <constraint firstItem="EP2-5i-bZd" firstAttribute="top" secondItem="o74-Zt-b9A" secondAttribute="bottom" constant="7.5" id="ZVL-bx-BVl"/>
+                <constraint firstItem="7H3-10-QIj" firstAttribute="top" secondItem="nNl-pD-WAb" secondAttribute="bottom" constant="41" id="bza-Wi-HKE"/>
+                <constraint firstAttribute="centerX" secondItem="bK2-3M-BxU" secondAttribute="centerX" id="c4Z-DZ-aBY"/>
+                <constraint firstAttribute="centerX" secondItem="EP2-5i-bZd" secondAttribute="centerX" id="xPo-7H-jw7"/>
+                <constraint firstItem="bK2-3M-BxU" firstAttribute="top" secondItem="ao4-po-tWk" secondAttribute="bottom" constant="25" id="yK2-sH-uFx"/>
+            </constraints>
             <point key="canvasLocation" x="604" y="334"/>
         </view>
     </objects>

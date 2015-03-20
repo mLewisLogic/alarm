@@ -54,24 +54,31 @@ class AlarmEntity: NSManagedObject {
     }
   }
 
+  let weekdayToInt = [
+    DayOfWeek.Sunday:    1,
+    DayOfWeek.Monday:    2,
+    DayOfWeek.Tuesday:   3,
+    DayOfWeek.Wednesday: 4,
+    DayOfWeek.Thursday:  5,
+    DayOfWeek.Friday:    6,
+    DayOfWeek.Saturday:  7,
+  ]
+
+
   // For compatability with NSDateComponent
   var weekday: Int {
     get {
-      switch dayOfWeekEnum {
-      case .Sunday:
-        return 1
-      case .Monday:
-        return 2
-      case .Tuesday:
-        return 3
-      case .Wednesday:
-        return 4
-      case .Thursday:
-        return 5
-      case .Friday:
-        return 6
-      case .Saturday:
-        return 7
+      return weekdayToInt[dayOfWeekEnum]!
+    }
+    set {
+      // WTF Swift? I can't easily invert a dictionary?
+      // Scan through each key until we find a value that matches
+      for key in weekdayToInt.keys {
+        let value = weekdayToInt[key]
+        if (value == newValue) {
+          dayOfWeekEnum = key
+          return
+        }
       }
     }
   }
@@ -130,28 +137,23 @@ class AlarmEntity: NSManagedObject {
     }
   }
 
-  // If this alarm is enabled, when is the next NSDate
-  // for it?
+  // When is the next NSDate for this alarm?
   // This currently does not handle individual days.
   func nextAlarmTime() -> NSDate? {
-    if self.enabled {
-      // Match on day of week and time
-      var matchingComponents = NSDateComponents()
-      matchingComponents.weekday = weekday
-      matchingComponents.hour = Int(hour)
-      matchingComponents.minute = Int(minute)
+    // Match on day of week and time
+    var matchingComponents = NSDateComponents()
+    matchingComponents.weekday = weekday
+    matchingComponents.hour = Int(hour)
+    matchingComponents.minute = Int(minute)
 
-      // Find the next local time that matches what we're looking for
-      // NSCalendar handles timezones for us
-      let calendar = NSCalendar.currentCalendar()
-      return calendar.nextDateAfterDate(
-        NSDate(),
-        matchingComponents: matchingComponents,
-        options: NSCalendarOptions.MatchNextTime
-      )
-    } else {
-      return nil
-    }
+    // Find the next local time that matches what we're looking for
+    // NSCalendar handles timezones for us
+    let calendar = NSCalendar.currentCalendar()
+    return calendar.nextDateAfterDate(
+      NSDate(),
+      matchingComponents: matchingComponents,
+      options: NSCalendarOptions.MatchNextTime
+    )
   }
 
 
