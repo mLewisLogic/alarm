@@ -18,8 +18,6 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   // If the time picker is up, we're modifying a cell
   var cellBeingChanged: ScheduleTableViewCell?
 
-  var blurViewPresenter: BlurViewPresenter!
-  var timePickerViewController: UIViewController?
   // The home view controls display of the time picker
   var timePickerManagerDelegate: TimePickerManagerDelegate!
 
@@ -37,10 +35,6 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // Load in the alarms for presentation
     alarmEntityArray = AlarmManager.loadAlarmsOrdered()
-
-    // Set up our presenters for later use
-    
-    blurViewPresenter = BlurViewPresenter(parent: self.view)
 
     scheduleTableView.alwaysBounceVertical = false;
     scheduleTableView.separatorColor = UIColor.clearColor()
@@ -95,13 +89,6 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     timePickerManagerDelegate.dismissTimePicker()
   }
 
-  // Delegate of DayOfWeekAlarmDelegate
-  func updateAlarmEnabled(cell: ScheduleTableViewCell, enabled: Bool) {
-    var alarm = cell.alarmEntity
-    alarm.enabled = enabled
-    alarm.persistSelf()
-    cell.updateDisplay()
-  }
 
   /* Private */
   
