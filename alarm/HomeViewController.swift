@@ -82,16 +82,23 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
   // Update the displayed time
   private func updateDisplayTime() {
-    // TODO: Implement me
     setBackgroundImage()
+    // TODO: Implement label updates
   }
   
   private func addSettingsModal() {
+    let modalWidthRatio = CGFloat(0.92)
+    let modalHeightRatio = CGFloat(0.8)
     settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
     self.addChildViewController(settingsModal)
     settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
     settingsModal.openPosition = self.view.center.y
-    settingsModal.view.frame = CGRectMake((self.view.frame.size.width - (self.view.frame.size.width * 0.8)) / 2, self.view.frame.size.height - settingsModal.alarmSwitch.frame.height - 25, self.view.frame.size.width * 0.8, self.view.frame.size.height * 0.8)
+    settingsModal.view.frame = CGRectMake(
+      (self.view.frame.size.width - (self.view.frame.size.width * modalWidthRatio)) / 2.0,
+      self.view.frame.size.height - 50,
+      self.view.frame.size.width * modalWidthRatio,
+      self.view.frame.size.height * modalHeightRatio
+    )
     settingsModal.view.layer.cornerRadius = 12.0
     settingsModal.view.layer.masksToBounds = true
     settingsModal.view.clipsToBounds = false
