@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   var settingsModal: SettingsModalViewController!
+  var backgroundImageView: UIImageView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -134,7 +135,12 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
   
   private func setBackgroundImage() {
-    let backgroundImageView = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!)
-    self.view.insertSubview(backgroundImageView.getImage(), atIndex: 0)
+    if backgroundImageView != nil {
+      backgroundImageView.removeFromSuperview()
+    }
+    
+    let presenter = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!)
+    backgroundImageView = presenter.getImage()
+    self.view.insertSubview(backgroundImageView, atIndex: 0)
   }
 }
