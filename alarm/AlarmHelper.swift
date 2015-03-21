@@ -39,11 +39,26 @@ class AlarmHelper: NSObject {
     singleton.setAlarm(alarm)
   }
 
+  // Activate the currently set alarm
+  // This means starting the timer
+  class func activateAlarm() {
+    singleton.activateAlarm()
+  }
+
+  // Deactivate the alarm if it's running
+  class func deactivateAlarm() {
+    singleton.deactivateAlarm()
+  }
+
+
+  /* Event handlers */
+
   // Alarm activation handler
   func alarmFired(timer: NSTimer) {
     NSLog("Triggering alarmFired notification")
     NSNotificationCenter().postNotificationName("AlarmFired", object: activeAlarm)
   }
+
 
   /* Private */
 
@@ -56,15 +71,20 @@ class AlarmHelper: NSObject {
     // Store our new alarm
     activeAlarm = alarm
 
-    // If there's an existing timer, kill it
-    if let timer = activeTimer {
-      timer.invalidate()
-      activeTimer = nil
-    }
+    // deactivate any existing alarm
+    deactivateAlarm()
+  }
 
-    if let unwrappedAlarm = alarm {
+  // If we have an alarm set, activate it
+  // Returns true if an alarm was activated
+  private func activateAlarm() -> Bool {
+    // Make sure any existing one is deactivated
+    deactivateAlarm()
+
+    // If we have a current alarm, activate it
+    if let unwrappedAlarm = activeAlarm {
       if let alarmTime = unwrappedAlarm.nextAlarmTime() {
-        NSLog("alarmTime: \(alarmTime)")
+        NSLog("Activating alarm: \(alarmTime)")
         // Calculate the number of seconds until the alarm time.
         let secondsUntilAlarm = alarmTime.timeIntervalSinceDate(NSDate())
         // Create a new timer using the new alarm
@@ -76,7 +96,19 @@ class AlarmHelper: NSObject {
           userInfo: nil,
           repeats: false
         )
+        return true
       }
+    }
+
+    return false
+  }
+
+  private func deactivateAlarm() {
+    // If there's an existing timer, kill it
+    if let timer = activeTimer {
+      NSLog("Deactivating existing alarm")
+      timer.invalidate()
+      activeTimer = nil
     }
   }
 }

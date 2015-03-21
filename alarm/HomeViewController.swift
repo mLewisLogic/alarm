@@ -90,6 +90,8 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
 
   @IBAction func activateAlarm(sender: UIButton) {
+    AlarmHelper.activateAlarm()
+    // TODO: Update the UI to reflect the fact that an alarm is active
   }
 
 
