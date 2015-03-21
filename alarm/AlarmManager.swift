@@ -12,14 +12,34 @@ import Foundation
 // loaded with the most impending alarm
 
 // Stash a singleton global instance
-private var _overrideAlarm: AlarmEntity?
+private let _alarmManager = AlarmManager()
 
-class AlarmManager {
+class AlarmManager: NSObject {
+
+  // Stash a singleton global instance
+  var overrideAlarm: AlarmEntity?
+
+  // This class uses a dummy context to hold the override alarms
+  var dummyContext: NSManagedObjectContext
+
+  override init() {
+    // Use a new context that will never be persisted
+    dummyContext = NSManagedObjectContext()
+    let existingContext = NSManagedObjectContext.MR_context()
+    // Borrow the existing store coordinator, just never persist
+    dummyContext.persistentStoreCoordinator = existingContext.persistentStoreCoordinator
+    super.init()
+  }
+
+  // Create and hold onto a singleton instance of this class
+  class var singleton: AlarmManager {
+    return _alarmManager
+  }
 
   // Is it a scheduled alarm or an override?! Who knows?!
   // If there is an override, use that, otherwise
   class func nextAlarm() -> AlarmEntity {
-    if let override = _overrideAlarm {
+    if let override = singleton.overrideAlarm {
       return override
     } else {
       return nextScheduledAlarm()!
@@ -40,13 +60,10 @@ class AlarmManager {
     // If the incoming time didn't match our next scheduled alarm,
     // we're setting a new override.
 
-    // Use a new context that will never be persisted
-    let existingContext = NSManagedObjectContext.MR_context()
-    var newContext = NSManagedObjectContext()
-    newContext.persistentStoreCoordinator = existingContext.persistentStoreCoordinator
-    // Use our new shil context to create an override alarm object
-    _overrideAlarm = AlarmEntity.MR_createInContext(newContext) as? AlarmEntity
-    _overrideAlarm!.applyTimePresenter(timePresenter)
+    // Use our shil context to create an override alarm object
+    singleton.dummyContext.reset()
+    singleton.overrideAlarm = AlarmEntity.MR_createInContext(singleton.dummyContext) as? AlarmEntity
+    singleton.overrideAlarm!.applyTimePresenter(timePresenter)
 
     // Now we have to figure out what the next time that this
     // alarm would go off at.
@@ -62,20 +79,21 @@ class AlarmManager {
       options: NSCalendarOptions.MatchNextTime
     )!
     let weekday = calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: nextTime)
-    _overrideAlarm!.weekday = weekday
+    singleton.overrideAlarm!.weekday = weekday
 
     updateAlarmHelper()
   }
 
   // Clear out the override alarm
   class func clearOverrideAlarm() {
-    _overrideAlarm = nil
+    NSLog("Clearing alarm override")
+    singleton.overrideAlarm = nil
     updateAlarmHelper()
   }
 
   // True if the the current alarm is an override
   class func isOverridden() -> Bool {
-    return _overrideAlarm != nil
+    return singleton.overrideAlarm != nil
   }
 
   // Update the alarm helper with the impending alarm
@@ -85,8 +103,8 @@ class AlarmManager {
   // a user changes an alarm.
   class func updateAlarmHelper() {
     // If we have an override, use that
-    if _overrideAlarm != nil {
-      AlarmHelper.setAlarm(_overrideAlarm)
+    if singleton.overrideAlarm != nil {
+      AlarmHelper.setAlarm(singleton.overrideAlarm)
     } else {
       // check the schedule and activate the next alarm
       AlarmHelper.setAlarm(nextScheduledAlarm())

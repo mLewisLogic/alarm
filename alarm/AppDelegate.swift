@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Initial setup before we start the UI
     setupMagicalRecord()
     AlarmManager.createInitialAlarms()
+    AlarmManager.updateAlarmHelper()
     LocationHelper.enableMonitoring()
 
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

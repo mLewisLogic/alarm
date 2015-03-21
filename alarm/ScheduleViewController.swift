@@ -96,9 +96,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   
   // Update the displayed time
   private func updateCellBeingChanged(time: TimePresenter) {
-    // TODO: Implement me
     if let cell = cellBeingChanged {
       cell.alarmEntity.applyTimePresenter(time)
+      AlarmManager.updateAlarmHelper()
       cell.updateDisplay()
       cellBeingChanged = nil
     }

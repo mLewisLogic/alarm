@@ -138,22 +138,25 @@ class AlarmEntity: NSManagedObject {
   }
 
   // When is the next NSDate for this alarm?
-  // This currently does not handle individual days.
   func nextAlarmTime() -> NSDate? {
-    // Match on day of week and time
-    var matchingComponents = NSDateComponents()
-    matchingComponents.weekday = weekday
-    matchingComponents.hour = Int(hour)
-    matchingComponents.minute = Int(minute)
+    if let time = TimePresenter(alarmEntity: self).calculatedTime() {
+      // Match on day of week and time
+      var matchingComponents = NSDateComponents()
+      matchingComponents.weekday = weekday
+      matchingComponents.hour = time.hour24
+      matchingComponents.minute = time.minute
 
-    // Find the next local time that matches what we're looking for
-    // NSCalendar handles timezones for us
-    let calendar = NSCalendar.currentCalendar()
-    return calendar.nextDateAfterDate(
-      NSDate(),
-      matchingComponents: matchingComponents,
-      options: NSCalendarOptions.MatchNextTime
-    )
+      // Find the next local time that matches what we're looking for
+      // NSCalendar handles timezones for us
+      let calendar = NSCalendar.currentCalendar()
+      return calendar.nextDateAfterDate(
+        NSDate(),
+        matchingComponents: matchingComponents,
+        options: NSCalendarOptions.MatchNextTime
+      )
+    } else {
+      return nil
+    }
   }
 
 
