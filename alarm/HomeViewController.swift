@@ -14,8 +14,12 @@ protocol TimePickerManagerDelegate {
   func dismissTimePicker()
 }
 
+protocol AlarmFiredViewDelegate {
+  func dismissAlarmFiredView()
+}
 
-class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManagerDelegate {
+
+class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManagerDelegate, AlarmFiredViewDelegate {
 
   @IBOutlet weak var primaryTimeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
@@ -28,10 +32,14 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var settingsModal: SettingsModalViewController!
   var backgroundImagePresenter: BackgroundImagePresenter!
   var backgroundImageView = UIImageView()
+  var alarmFiredViewController: AlarmFiredViewController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
+    // Insert the background image in our view structure
+    self.view.insertSubview(backgroundImageView, atIndex: 0)
+
     // Set up a default TimePresenter
     currentTime = TimePresenter(alarmEntity: AlarmManager.nextAlarm())
     // Set up our presenters for later use
@@ -40,10 +48,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(false)
-    
+
+    // Set the sizing for the background view
     backgroundImageView.frame = self.view.frame
-    self.view.insertSubview(backgroundImageView, atIndex: 0)
-    
     backgroundImagePresenter = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!,
       imageView: backgroundImageView)
       
@@ -55,6 +62,13 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       self,
       selector: "updateCurrentTime:",
       name: Notifications.NextScheduledAlarmChanged,
+      object: nil
+    )
+
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "activateAlarmFiredView:",
+      name: Notifications.AlarmFired,
       object: nil
     )
   }
@@ -110,6 +124,35 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     // TODO: Update the UI to reflect the fact that an alarm is active
   }
 
+  // The alarm has activated. Create the alarm activation view as a subview
+  // and present it over the app.
+  func activateAlarmFiredView(notification: NSNotification) {
+    alarmFiredViewController = AlarmFiredViewController(
+      nibName: "AlarmFiredViewController",
+      bundle: nil
+    )
+    alarmFiredViewController?.delegate = self
+    presentViewController(
+      alarmFiredViewController!,
+      animated: true,
+      completion: nil
+    )
+  }
+
+  // The user has dismissed the alarm. Kill the alarmFired view
+  func dismissAlarmFiredView() {
+    // dismiss and kill the alarmFiredViewController
+    alarmFiredViewController?.dismissViewControllerAnimated(true, completion: nil)
+    alarmFiredViewController = nil
+  }
+
+  // TODO: kill me
+  @IBAction func testAlarm(sender: UIButton) {
+    NSNotificationCenter.defaultCenter().postNotificationName(
+      Notifications.AlarmFired,
+      object: nil
+    )
+  }
 
   /* Private */
 
@@ -123,30 +166,33 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     // Update the background image
     setBackgroundImage()
   }
-  
-  private func addSettingsModal() {
-    let modalWidthRatio = CGFloat(0.92)
-    let modalHeightRatio = CGFloat(0.8)
-    settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
-    self.addChildViewController(settingsModal)
-    settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-    settingsModal.openPosition = self.view.center.y
-    settingsModal.view.frame = CGRectMake(
-      (self.view.frame.size.width - (self.view.frame.size.width * modalWidthRatio)) / 2.0,
-      self.view.frame.size.height - settingsModal.scheduleView.frame.minY,
-      self.view.frame.size.width * modalWidthRatio,
-      self.view.frame.size.height * modalHeightRatio
-    )
-    settingsModal.view.layer.cornerRadius = 12.0
-    settingsModal.view.layer.masksToBounds = true
-    settingsModal.view.clipsToBounds = false
-    
-    settingsModal.closedPosition = settingsModal.view.center.y
-    
-    applyPlainShadow(settingsModal.view)
 
-    self.view.addSubview(settingsModal.view)
-    settingsModal.didMoveToParentViewController(self)
+  // Create and size our floating settings modal
+  private func addSettingsModal() {
+    if settingsModal == nil {
+      let modalWidthRatio = CGFloat(0.92)
+      let modalHeightRatio = CGFloat(0.8)
+      settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
+      self.addChildViewController(settingsModal)
+      settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+      settingsModal.openPosition = self.view.center.y
+      settingsModal.view.frame = CGRectMake(
+        (self.view.frame.size.width - (self.view.frame.size.width * modalWidthRatio)) / 2.0,
+        self.view.frame.size.height - settingsModal.scheduleView.frame.minY,
+        self.view.frame.size.width * modalWidthRatio,
+        self.view.frame.size.height * modalHeightRatio
+      )
+      settingsModal.view.layer.cornerRadius = 12.0
+      settingsModal.view.layer.masksToBounds = true
+      settingsModal.view.clipsToBounds = false
+      
+      settingsModal.closedPosition = settingsModal.view.center.y
+      
+      applyPlainShadow(settingsModal.view)
+
+      self.view.addSubview(settingsModal.view)
+      settingsModal.didMoveToParentViewController(self)
+    }
   }
   
   private func applyPlainShadow(view: UIView) {

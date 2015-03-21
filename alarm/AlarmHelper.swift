@@ -58,7 +58,7 @@ class AlarmHelper: NSObject {
     NSLog("Triggering alarmFired notification")
     NSNotificationCenter.defaultCenter().postNotificationName(
       Notifications.AlarmFired,
-      object: activeAlarm
+      object: nil
     )
   }
 

@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nibName: "HomeViewController",
         bundle: nil
       )
+
       window.rootViewController = homeViewController
       window.makeKeyAndVisible()
 

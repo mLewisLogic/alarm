@@ -39,8 +39,8 @@
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
 		27DD02911ABDF94B00CE0105 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DD02901ABDF94B00CE0105 /* GlobalConstants.swift */; };
-		27DD02941ABE056A00CE0105 /* AlarmActivationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DD02921ABE056A00CE0105 /* AlarmActivationViewController.swift */; };
-		27DD02951ABE056A00CE0105 /* AlarmActivationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27DD02931ABE056A00CE0105 /* AlarmActivationViewController.xib */; };
+		27DD02941ABE056A00CE0105 /* AlarmFiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DD02921ABE056A00CE0105 /* AlarmFiredViewController.swift */; };
+		27DD02951ABE056A00CE0105 /* AlarmFiredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27DD02931ABE056A00CE0105 /* AlarmFiredViewController.xib */; };
 		27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FE93821AB00FE600059E18 /* AlarmEntity.swift */; };
 		76C06047841EFB0C443D54BB /* libPods-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 225B0BBD7F243D40B3608C0A /* libPods-alarm.a */; };
 /* End PBXBuildFile section */
@@ -96,8 +96,8 @@
 		27A71A981AB51551003CABC4 /* SunriseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseHelper.swift; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewPresenter.swift; sourceTree = "<group>"; };
 		27DD02901ABDF94B00CE0105 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
-		27DD02921ABE056A00CE0105 /* AlarmActivationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmActivationViewController.swift; sourceTree = "<group>"; };
-		27DD02931ABE056A00CE0105 /* AlarmActivationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmActivationViewController.xib; sourceTree = "<group>"; };
+		27DD02921ABE056A00CE0105 /* AlarmFiredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmFiredViewController.swift; sourceTree = "<group>"; };
+		27DD02931ABE056A00CE0105 /* AlarmFiredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmFiredViewController.xib; sourceTree = "<group>"; };
 		27FE93821AB00FE600059E18 /* AlarmEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmEntity.swift; sourceTree = "<group>"; };
 		B44D3343037B9278CEFF019A /* Pods-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +124,7 @@
 		253F9DFC1AA95162007A1457 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				27DD02921ABE056A00CE0105 /* AlarmActivationViewController.swift */,
+				27DD02921ABE056A00CE0105 /* AlarmFiredViewController.swift */,
 				274DA5661AB4E08900891EBF /* HomeViewController.swift */,
 				273C35A21AAFFEDC00743B33 /* ScheduleTableViewCell.swift */,
 				273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */,
@@ -137,7 +137,7 @@
 		254B59CD1AABA36E00A7E3F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				27DD02931ABE056A00CE0105 /* AlarmActivationViewController.xib */,
+				27DD02931ABE056A00CE0105 /* AlarmFiredViewController.xib */,
 				274DA5671AB4E08900891EBF /* HomeViewController.xib */,
 				25E7C6991AA8284100431A81 /* LaunchScreen.xib */,
 				273C35A31AAFFEDC00743B33 /* ScheduleTableViewCell.xib */,
@@ -362,7 +362,7 @@
 				273C35A11AAFFCDC00743B33 /* ScheduleViewController.xib in Resources */,
 				25E7C6981AA8284100431A81 /* Images.xcassets in Resources */,
 				25FC1DDA1AB92E5700D9D67B /* day.jpg in Resources */,
-				27DD02951ABE056A00CE0105 /* AlarmActivationViewController.xib in Resources */,
+				27DD02951ABE056A00CE0105 /* AlarmFiredViewController.xib in Resources */,
 				273C35A51AAFFEDC00743B33 /* ScheduleTableViewCell.xib in Resources */,
 				273E0DCF1AAD4074005D73E3 /* TimePickerViewController.xib in Resources */,
 				270F1BA01ABE0EB100C2A85E /* alarm.m4a in Resources */,
@@ -417,7 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27DD02941ABE056A00CE0105 /* AlarmActivationViewController.swift in Sources */,
+				27DD02941ABE056A00CE0105 /* AlarmFiredViewController.swift in Sources */,
 				273C35A01AAFFCDC00743B33 /* ScheduleViewController.swift in Sources */,
 				273E0DCE1AAD4074005D73E3 /* TimePickerViewController.swift in Sources */,
 				27DD02911ABDF94B00CE0105 /* GlobalConstants.swift in Sources */,
