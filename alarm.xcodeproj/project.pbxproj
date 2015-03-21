@@ -21,6 +21,7 @@
 		25FC1DDC1AB92E5700D9D67B /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD81AB92E5700D9D67B /* sunrise.png */; };
 		25FC1DDD1AB92E5700D9D67B /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD91AB92E5700D9D67B /* sunset.png */; };
 		270F1BA01ABE0EB100C2A85E /* alarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 270F1B9F1ABE0EB100C2A85E /* alarm.m4a */; };
+		272DAC421ABE368B00BB072F /* AlarmSoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */; };
 		273C35A01AAFFCDC00743B33 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */; };
 		273C35A11AAFFCDC00743B33 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */; };
 		273C35A41AAFFEDC00743B33 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C35A21AAFFEDC00743B33 /* ScheduleTableViewCell.swift */; };
@@ -28,6 +29,7 @@
 		273E0DCE1AAD4074005D73E3 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DCC1AAD4074005D73E3 /* TimePickerViewController.swift */; };
 		273E0DCF1AAD4074005D73E3 /* TimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E0DCD1AAD4074005D73E3 /* TimePickerViewController.xib */; };
 		273E0DD31AAD6591005D73E3 /* TimePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E0DD21AAD6591005D73E3 /* TimePresenter.swift */; };
+		274122E31ABE393100BBB2E1 /* AlarmFiredPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274122E21ABE393100BBB2E1 /* AlarmFiredPresenter.swift */; };
 		274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274DA5661AB4E08900891EBF /* HomeViewController.swift */; };
 		274DA5691AB4E08900891EBF /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274DA5671AB4E08900891EBF /* HomeViewController.xib */; };
 		2751201C1AB5AB9A007F1219 /* RawTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751201B1AB5AB9A007F1219 /* RawTime.swift */; };
@@ -77,6 +79,7 @@
 		25FC1DD81AB92E5700D9D67B /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
 		25FC1DD91AB92E5700D9D67B /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
 		270F1B9F1ABE0EB100C2A85E /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
+		272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmSoundHelper.swift; sourceTree = "<group>"; };
 		273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
 		273C35A21AAFFEDC00743B33 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		273E0DCD1AAD4074005D73E3 /* TimePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerViewController.xib; sourceTree = "<group>"; };
 		273E0DD01AAD5FAB005D73E3 /* scratch.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = scratch.playground; sourceTree = "<group>"; };
 		273E0DD21AAD6591005D73E3 /* TimePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePresenter.swift; sourceTree = "<group>"; };
+		274122E21ABE393100BBB2E1 /* AlarmFiredPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmFiredPresenter.swift; sourceTree = "<group>"; };
 		274DA5661AB4E08900891EBF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		274DA5671AB4E08900891EBF /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		2751201B1AB5AB9A007F1219 /* RawTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawTime.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 		273E0DD11AAD655B005D73E3 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				274122E21ABE393100BBB2E1 /* AlarmFiredPresenter.swift */,
+				272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */,
 				275120251AB8E4F6007F1219 /* AlarmHelper.swift */,
 				277FFD091ABA10890003BE2A /* AlarmManager.swift */,
 				2508E83E1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift */,
@@ -420,8 +426,10 @@
 				27DD02941ABE056A00CE0105 /* AlarmFiredViewController.swift in Sources */,
 				273C35A01AAFFCDC00743B33 /* ScheduleViewController.swift in Sources */,
 				273E0DCE1AAD4074005D73E3 /* TimePickerViewController.swift in Sources */,
+				272DAC421ABE368B00BB072F /* AlarmSoundHelper.swift in Sources */,
 				27DD02911ABDF94B00CE0105 /* GlobalConstants.swift in Sources */,
 				27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */,
+				274122E31ABE393100BBB2E1 /* AlarmFiredPresenter.swift in Sources */,
 				27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */,
 				2544787B1AB63411002FA3CB /* SettingsModalViewController.swift in Sources */,
 				2751201E1AB5C738007F1219 /* TimePickerPresenter.swift in Sources */,

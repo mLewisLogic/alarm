@@ -14,6 +14,7 @@ import Foundation
 private let _soundMonitorHelper = SoundMonitorHelper()
 
 class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
+
   let recordSettings = [
     AVFormatIDKey: kAudioFormatAppleLossless,
     AVEncoderAudioQualityKey : AVAudioQuality.Min.rawValue,
@@ -24,20 +25,12 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
   // We don't need to save the recorded sound. We just
   // want to monitor it's levels as it's being recorded.
   let soundFileURL = NSURL(fileURLWithPath: "/dev/null")
-  let session: AVAudioSession = AVAudioSession.sharedInstance()
   let recorder: AVAudioRecorder
 
   // A periodic time checks levels
   var meterTimer: NSTimer?
 
   override init() {
-    var sessionError: NSError?
-    session = AVAudioSession.sharedInstance()
-    session.setCategory(AVAudioSessionCategoryRecord, error: &sessionError)
-    if let e = sessionError {
-      println(e.localizedDescription)
-    }
-
     var recorderError: NSError?
     recorder = AVAudioRecorder(
       URL: soundFileURL!,
@@ -61,9 +54,9 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
   }
 
   class func requestPermissionIfNeeded() {
-    singleton.session.requestRecordPermission({
+    AVAudioSession.sharedInstance().requestRecordPermission({
       (granted: Bool)-> Void in
-
+      // handle as needed
     })
   }
 
@@ -77,6 +70,10 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
       userInfo: nil,
       repeats: true
     )
+  }
+
+  class func stopRecording() {
+    singleton.recorder.stop()
   }
 
   func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
@@ -97,6 +94,6 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
 
   // Returns true if we need to ask for microphone permission
   private func needsPermission() -> Bool {
-    return AVAudioSessionRecordPermission.Undetermined == session.recordPermission()
+    return AVAudioSessionRecordPermission.Undetermined == AVAudioSession.sharedInstance().recordPermission()
   }
 }
