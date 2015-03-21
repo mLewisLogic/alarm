@@ -26,20 +26,28 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   var settingsModal: SettingsModalViewController!
+  var backgroundImagePresenter: BackgroundImagePresenter!
+  var backgroundImageView = UIImageView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     // Set up a default TimePresenter
     currentTime = TimePresenter(alarmEntity: AlarmManager.nextAlarm())
-    updateDisplay()
-
     // Set up our presenters for later use
     blurViewPresenter = BlurViewPresenter(parent: self.view)
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(false)
+    
+    backgroundImageView.frame = self.view.frame
+    self.view.insertSubview(backgroundImageView, atIndex: 0)
+    
+    backgroundImagePresenter = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!,
+      imageView: backgroundImageView)
+      
+    updateDisplay()
     addSettingsModal()
   }
   override func didReceiveMemoryWarning() {
@@ -134,7 +142,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
   
   private func setBackgroundImage() {
-    let backgroundImageView = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!)
-    self.view.insertSubview(backgroundImageView.getImage(), atIndex: 0)
+    backgroundImagePresenter.alarmTime = currentTime.calculatedTime()
+    backgroundImagePresenter.updateBackground(transition: true)
   }
 }
