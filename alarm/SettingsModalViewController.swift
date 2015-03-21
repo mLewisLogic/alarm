@@ -21,6 +21,17 @@ class SettingsModalViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = UIColor.grayColor()
+    self.alarmLabel.textColor = UIColor.whiteColor()
+    
+    scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
+    self.addChildViewController(scheduleVC)
+    scheduleView.addSubview(scheduleVC.view)
+    scheduleVC.didMoveToParentViewController(self)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     addScheduleView()
   }
   
@@ -30,27 +41,24 @@ class SettingsModalViewController: UIViewController {
   }
   
   func addScheduleView() {
-    scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
-    self.addChildViewController(scheduleVC)
     scheduleVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
     
     let scheduleTableViewCell = scheduleVC.scheduleTableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell") as ScheduleTableViewCell
     let scheduleTableViewHeight = scheduleTableViewCell.frame.height * 8
     
+    scheduleView.layer.masksToBounds = true
+    scheduleView.clipsToBounds = true
     scheduleView.frame = CGRectMake(0, 0, self.view.frame.width, scheduleTableViewHeight)
+    scheduleVC.view.frame = scheduleView.frame
     scheduleView.center = self.view.center
     scheduleView.backgroundColor = UIColor.darkGrayColor()
-    scheduleVC.view.frame = scheduleView.frame
     scheduleVC.view.layer.masksToBounds = true
-    scheduleVC.view.clipsToBounds = false
+    scheduleVC.view.clipsToBounds = true
 
     // Let the settings modal know who controls the time picker
     scheduleVC.timePickerManagerDelegate = self.parentViewController! as HomeViewController
-
-    self.view.addSubview(scheduleVC.view)
-    scheduleVC.didMoveToParentViewController(self)
-    self.view.backgroundColor = UIColor.grayColor()
-    self.alarmLabel.textColor = UIColor.whiteColor()
+    println("schedule view height is: \(scheduleView.frame.height)")
+    println("schedule view controller height is: \(scheduleVC.view.frame.height)")
   }
   
 
