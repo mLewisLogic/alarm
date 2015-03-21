@@ -95,6 +95,10 @@ class AlarmEntity: NSManagedObject {
 
   // Given a TimePresenter, apply it to this AlarmEntity
   // This supports both time-based and sunrise/sunset TimePresenters
+  //
+  // NOTE: This is intended to be called exclusively by
+  //  AlarmManager.updateAlarmEntity() so that it can notify
+  //  the app when this change has global schedule impacts.
   func applyTimePresenter(timePresenter: TimePresenter) {
     // Keep whatever type it was
     self.alarmTypeEnum = timePresenter.type

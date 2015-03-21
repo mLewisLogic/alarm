@@ -56,7 +56,10 @@ class AlarmHelper: NSObject {
   // Alarm activation handler
   func alarmFired(timer: NSTimer) {
     NSLog("Triggering alarmFired notification")
-    NSNotificationCenter().postNotificationName("AlarmFired", object: activeAlarm)
+    NSNotificationCenter.defaultCenter().postNotificationName(
+      Notifications.AlarmFired,
+      object: activeAlarm
+    )
   }
 
 

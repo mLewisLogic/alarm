@@ -49,6 +49,14 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       
     updateDisplay()
     addSettingsModal()
+
+    // If the next scheduled time changes, we want to overwrite our override
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "updateCurrentTime:",
+      name: Notifications.NextScheduledAlarmChanged,
+      object: nil
+    )
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -85,6 +93,14 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     timePickerViewController?.dismissViewControllerAnimated(true, completion: nil)
     timePickerViewController = nil
     blurViewPresenter.hideBlur()
+    updateDisplay()
+  }
+
+  // Allow the currently selected Home screen time to be updated
+  func updateCurrentTime(notification: NSNotification) {
+    let alarmEntity = notification.object as AlarmEntity!
+    NSLog("updateCurrentTime: \(alarmEntity)")
+    currentTime = TimePresenter(alarmEntity: alarmEntity)
     updateDisplay()
   }
 

@@ -9,7 +9,9 @@
 import Foundation
 
 // This is responsible for ensuring that the AlarmHelper is always
-// loaded with the most impending alarm
+// loaded with the most impending alarm.
+// It manages the override alarm, the handling of the persisted scheduled
+// alarms, and
 
 // Stash a singleton global instance
 private let _alarmManager = AlarmManager()
@@ -36,13 +38,34 @@ class AlarmManager: NSObject {
     return _alarmManager
   }
 
+
+
   // Is it a scheduled alarm or an override?! Who knows?!
   // If there is an override, use that, otherwise
   class func nextAlarm() -> AlarmEntity {
     if let override = singleton.overrideAlarm {
       return override
     } else {
-      return nextScheduledAlarm()!
+      return nextScheduledAlarm()
+    }
+  }
+
+  // Allow for the update of an AlarmEntity
+  // This provides support for sending out a notification if the update
+  // also changed the impending alarm.
+  class func updateAlarmEntity(alarm: AlarmEntity, timePresenter: TimePresenter) {
+    let nextAlarm = nextScheduledAlarm()
+    let originalNextScheduledAlarmTime = nextAlarm.nextAlarmTime()
+    alarm.applyTimePresenter(timePresenter)
+    // If this changed the nextScheduledAlarm, we have updating to do.
+    let newNextScheduledAlarmTime = nextAlarm.nextAlarmTime()
+    if originalNextScheduledAlarmTime != newNextScheduledAlarmTime {
+      NSLog("Next scheduled time has changed")
+      clearOverrideAlarm()
+      NSNotificationCenter.defaultCenter().postNotificationName(
+        Notifications.NextScheduledAlarmChanged,
+        object: nextAlarm
+      )
     }
   }
 
@@ -50,11 +73,9 @@ class AlarmManager: NSObject {
   class func setOverrideAlarm(timePresenter: TimePresenter) {
     // If this time is the same as the next scheduled alarm, we should
     // actually kill the existing override, if it exists.
-    if let scheduledAlarm = nextScheduledAlarm() {
-      if timePresenter == TimePresenter(alarmEntity: scheduledAlarm) {
-        clearOverrideAlarm()
-        return
-      }
+    if timePresenter == TimePresenter(alarmEntity: nextScheduledAlarm()) {
+      clearOverrideAlarm()
+      return
     }
 
     // If the incoming time didn't match our next scheduled alarm,
@@ -112,7 +133,7 @@ class AlarmManager: NSObject {
   }
 
   // Get the next scheduled alarm time
-  class func nextScheduledAlarm() -> AlarmEntity? {
+  class func nextScheduledAlarm() -> AlarmEntity {
     // Get all of the known alarms
     let alarms = AlarmEntity.MR_findAll() as [AlarmEntity]
     // Get an array of upcoming alarms, impending first
@@ -126,12 +147,7 @@ class AlarmManager: NSObject {
       a.nextAlarmTime()!.compare(b.nextAlarmTime()!) == NSComparisonResult.OrderedAscending
     })
 
-    if activeAlarms.count > 0 {
-      return activeAlarms.first!
-    } else {
-      NSLog("How did this happen?!")
-      return nil
-    }
+    return activeAlarms.first!
   }
 
   // If we don't have any alarms in the system, create
