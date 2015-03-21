@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Kevin Farst. All rights reserved.
 //
 
-import UIKit
+import AVFoundation
 import CoreData
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Initial setup before we start the UI
     setupMagicalRecord()
+    setupAVAudioSession()
     AlarmManager.createInitialAlarms()
     AlarmManager.updateAlarmHelper()
     LocationHelper.enableMonitoring()
@@ -45,6 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func setupMagicalRecord() {
     MagicalRecord.setupAutoMigratingCoreDataStack()
+  }
+
+  private func setupAVAudioSession() {
+    let session = AVAudioSession.sharedInstance()
+    var sessionError: NSError?
+    session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: &sessionError)
+    if let e = sessionError {
+      println(e.localizedDescription)
+    }
   }
 
   func applicationWillResignActive(application: UIApplication) {
