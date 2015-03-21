@@ -33,6 +33,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       forCellReuseIdentifier: "ScheduleTableViewCell"
     )
 
+    scheduleTableView.delegate = self
+    scheduleTableView.dataSource = self
+
     // Load in the alarms for presentation
     alarmEntityArray = AlarmManager.loadAlarmsOrdered()
 
@@ -40,6 +43,12 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     scheduleTableView.separatorColor = UIColor.clearColor()
     self.view.backgroundColor = UIColor.darkGrayColor()
     scheduleTableView.backgroundColor = UIColor.darkGrayColor()
+
+    scheduleTableView.reloadData()
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    scheduleTableView.reloadData()
   }
 
   override func didReceiveMemoryWarning() {
@@ -60,6 +69,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       ) as ScheduleTableViewCell
     cell.alarmEntity = alarmEntityArray[indexPath.row]
     cell.selectionStyle = UITableViewCellSelectionStyle.None
+    cell.contentView.autoresizingMask = .FlexibleHeight
     cell.delegate = self
     
     return cell
