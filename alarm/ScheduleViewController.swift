@@ -47,6 +47,8 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     // Dispose of any resources that can be recreated.
   }
 
+  /* Table functions */
+
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return alarmEntityArray.count
   }
@@ -70,6 +72,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
     NSLog("\(indexPath.row)")
   }
+
+
+  /* Alarm cell time updating */
 
   // Delegate of DayOfWeekAlarmDelegate
   func updateTimeSelected(cell: ScheduleTableViewCell) {
@@ -97,9 +102,10 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   // Update the displayed time
   private func updateCellBeingChanged(time: TimePresenter) {
     if let cell = cellBeingChanged {
-      cell.alarmEntity.applyTimePresenter(time)
-      AlarmManager.updateAlarmHelper()
+      AlarmManager.updateAlarmEntity(cell.alarmEntity, timePresenter: time)
+      // Update the display for the cell
       cell.updateDisplay()
+      // Clear out our stashed cell reference
       cellBeingChanged = nil
     }
   }
