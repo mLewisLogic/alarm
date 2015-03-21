@@ -11,13 +11,15 @@ import Foundation
 class BackgroundImagePresenter {
   var sunrise: RawTime!
   var sunset: RawTime!
-  let alarmTime: RawTime!
+  var alarmTime: RawTime!
+  let imageView: UIImageView!
   
-  init(alarmTime: RawTime) {
+  init(alarmTime: RawTime, imageView: UIImageView) {
     // Set calculated defaults
     self.sunrise = TimePresenter(type: AlarmEntity.AlarmType.Sunrise).calculatedTime()
     self.sunset = TimePresenter(type: AlarmEntity.AlarmType.Sunset).calculatedTime()
     self.alarmTime = alarmTime
+    self.imageView = imageView
     
     // Set hard defaults in case of calculation failures
     if sunrise == nil {
@@ -27,13 +29,28 @@ class BackgroundImagePresenter {
     if sunset == nil {
       sunset = RawTime(hour24: 20, minute: 00)
     }
+    
+    updateBackground(transition: false)
   }
   
-  func getImage() -> UIImageView! {
+  func updateBackground(transition withTransition: Bool = true) {
+    let toImage = getImage()
+    
+    if withTransition {
+      UIView.transitionWithView(self.imageView,
+        duration: 5,
+        options: UIViewAnimationOptions.TransitionCrossDissolve,
+        animations: { self.imageView.image = toImage },
+        completion: nil)
+    } else {
+      imageView.image = toImage
+    }
+  }
+  
+  private func getImage() -> UIImage! {
     // Create and return the background image view
     let imageName = self.getImageName()
-    let image = UIImage(named: imageName)
-    return UIImageView(image: image)
+    return UIImage(named: imageName)
   }
   
   private func getImageName() -> String! {
