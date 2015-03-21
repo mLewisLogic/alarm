@@ -12,7 +12,7 @@ import UIKit
 class AlarmFiredViewController: UIViewController {
 
   var delegate: AlarmFiredViewDelegate!
-  private var audioPlayer: AVAudioPlayer?
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,23 +41,11 @@ class AlarmFiredViewController: UIViewController {
 
   // Cancel the alarm
   func cancelAlarmSequence() {
-    audioPlayer?.stop()
-    audioPlayer = nil
+    AlarmSoundHelper.stopPlaying()
     delegate.dismissAlarmFiredView()
   }
 
   private func playWakeupSound() {
-    var alertSound = NSURL(
-      fileURLWithPath: NSBundle.mainBundle().pathForResource("alarm", ofType: "m4a")!
-    )
-
-    // Removed deprecated use of AVAudioSessionDelegate protocol
-    AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
-    AVAudioSession.sharedInstance().setActive(true, error: nil)
-
-    var error:NSError?
-    audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-    audioPlayer!.prepareToPlay()
-    audioPlayer!.play()
+    AlarmSoundHelper.startPlaying()
   }
 }

@@ -127,11 +127,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // The alarm has activated. Create the alarm activation view as a subview
   // and present it over the app.
   func activateAlarmFiredView(notification: NSNotification) {
-    alarmFiredViewController = AlarmFiredViewController(
-      nibName: "AlarmFiredViewController",
-      bundle: nil
-    )
-    alarmFiredViewController?.delegate = self
+    alarmFiredViewController = AlarmFiredPresenter.prepare(self)
     presentViewController(
       alarmFiredViewController!,
       animated: true,
