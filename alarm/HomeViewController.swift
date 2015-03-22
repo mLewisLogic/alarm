@@ -148,6 +148,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       Notifications.AlarmFired,
       object: nil
     )
+    AlarmHelper.deactivateAlarm()
   }
 
   /* Private */

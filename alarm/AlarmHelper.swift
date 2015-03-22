@@ -136,12 +136,14 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
     return nil
   }
 
-  private func deactivateAlarm() {
+  func deactivateAlarm() {
     // If there's an existing timer, kill it
     if let timer = activeTimer {
       NSLog("Deactivating existing alarm")
       timer.invalidate()
       activeTimer = nil
+      // Activate the SleepQualityMonitor
+      sleepQualityMonitor.stopMonitoring()
     }
   }
 }

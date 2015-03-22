@@ -47,7 +47,12 @@ class SleepQualityMonitor: SoundMonitorHelperDelegate {
 
   /* Public interface */
   func startMonitoring() {
+    soundData = []
     soundMonitor.startRecording()
+  }
+
+  func stopMonitoring() {
+    soundMonitor.stopRecording()
   }
 
 
