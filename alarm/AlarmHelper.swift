@@ -17,13 +17,21 @@ import Foundation
 // Stash a singleton global instance
 private let _alarmHelper = AlarmHelper()
 
-class AlarmHelper: NSObject {
+class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
 
   var activeAlarm: AlarmEntity?
   var activeTimer: NSTimer?
 
+  let sleepQualityMonitor: SleepQualityMonitor
+
+  let EARLY_WAKEUP_WINDOW = 30.0 * 60.0 // 30 minutes (in seconds)
+
+
   override init() {
+    sleepQualityMonitor = SleepQualityMonitor()
     super.init()
+
+    sleepQualityMonitor.delegate = self
   }
 
   // Create and hold onto a singleton instance of this class
@@ -54,12 +62,23 @@ class AlarmHelper: NSObject {
   /* Event handlers */
 
   // Alarm activation handler
-  func alarmFired(timer: NSTimer) {
+  func alarmFired(timer: NSTimer?) {
     NSLog("Triggering alarmFired notification")
     NSNotificationCenter.defaultCenter().postNotificationName(
       Notifications.AlarmFired,
       object: nil
     )
+    deactivateAlarm()
+  }
+
+  // If this function is called by the SleepQualityMonitor and
+  // we're within our 30 minute window, we want to wake up.
+  func userShouldWakeUp() {
+    if let secondsLeft = secondsUntilAlarm() {
+      if secondsLeft < EARLY_WAKEUP_WINDOW {
+        alarmFired(nil)
+      }
+    }
   }
 
 
@@ -85,25 +104,36 @@ class AlarmHelper: NSObject {
     deactivateAlarm()
 
     // If we have a current alarm, activate it
-    if let unwrappedAlarm = activeAlarm {
-      if let alarmTime = unwrappedAlarm.nextAlarmTime() {
-        NSLog("Activating alarm: \(alarmTime)")
-        // Calculate the number of seconds until the alarm time.
-        let secondsUntilAlarm = alarmTime.timeIntervalSinceDate(NSDate())
-        // Create a new timer using the new alarm
-        NSLog(String(format: "Setting an alarm for %.0f seconds in the future.", secondsUntilAlarm))
-        activeTimer = NSTimer.scheduledTimerWithTimeInterval(
-          secondsUntilAlarm,
-          target: self,
-          selector: "alarmFired:",
-          userInfo: nil,
-          repeats: false
-        )
-        return true
-      }
+    if let secondsUntilAlarm = secondsUntilAlarm() {
+      NSLog("Activating alarm: \(activeAlarm!)")
+      // Activate the SleepQualityMonitor
+      sleepQualityMonitor.startMonitoring()
+
+      // Create a new timer using the new alarm
+      NSLog(String(format: "Setting an alarm for %.0f seconds in the future.", secondsUntilAlarm))
+      activeTimer = NSTimer.scheduledTimerWithTimeInterval(
+        secondsUntilAlarm,
+        target: self,
+        selector: "alarmFired:",
+        userInfo: nil,
+        repeats: false
+      )
+      return true
     }
 
     return false
+  }
+
+  // Calculate the number of seconds until the alarm time.
+  private func secondsUntilAlarm() -> NSTimeInterval? {
+    // If we have a current alarm, activate it
+    if let unwrappedAlarm = activeAlarm {
+      if let alarmTime = unwrappedAlarm.nextAlarmTime() {
+        return alarmTime.timeIntervalSinceDate(NSDate())
+      }
+    }
+
+    return nil
   }
 
   private func deactivateAlarm() {
