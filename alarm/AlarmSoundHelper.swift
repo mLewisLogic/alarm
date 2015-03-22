@@ -15,6 +15,7 @@ private let _alarmSoundHelper = AlarmSoundHelper()
 
 class AlarmSoundHelper: NSObject {
 
+  let VOLUME_INITIAL: Float = 0.20 // start at 20%
   let VOLUME_RAMP_UP_STEP: Float = 0.01 // 1% at a time
   let VOLUME_RAMP_UP_TIME: Float = 60.0 // seconds
   let VOLUME_RAMP_DOWN_STEP: Float = 0.05 // 5% at a time
@@ -68,7 +69,7 @@ class AlarmSoundHelper: NSObject {
   /* Instance functions */
   // Start playing the sound, and ramp up the volume
   func startPlaying() {
-    player.volume = 0.05
+    player.volume = VOLUME_INITIAL
     player.currentTime = 0
     player.numberOfLoops = 100
     player.prepareToPlay()
@@ -157,6 +158,7 @@ class AlarmSoundHelper: NSObject {
 
     // If we've reached full volume, stop the timer
     if player.volume >= 1.0 {
+      NSLog("Volume at 100%")
       invalidateVolumeTimer()
       // For sanity, make sure volume is not above 1.0
       player.volume = 1.0
@@ -169,6 +171,7 @@ class AlarmSoundHelper: NSObject {
 
     // If we've reached zero volume, stop the player and the timer
     if player.volume <= 0.0 {
+      NSLog("Volume at 0%")
       invalidateVolumeTimer()
       // For sanity, make sure volume is not below 0.0
       player.volume = 0.0
