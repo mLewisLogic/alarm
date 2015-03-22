@@ -1,5 +1,5 @@
 //
-//  SoundMonitorHelper.swift
+//  SoundMonitor.swift
 //  alarm
 //
 //  Created by Michael Lewis on 3/15/15.
@@ -9,11 +9,16 @@
 import AVFoundation
 import Foundation
 
-protocol SoundMonitorHelperDelegate {
-  func receiveSoundMonitorData(intensity: Float)
+
+// Monitor the sound levels of the environment. We can look for
+// intesity spikes caused by the user moving around.
+
+
+protocol SoundMonitorDelegate {
+  func receiveSoundMonitorData(intensity: Double)
 }
 
-class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
+class SoundMonitor: NSObject, AVAudioRecorderDelegate {
 
   let recordSettings = [
     AVFormatIDKey: kAudioFormatAppleLossless,
@@ -32,7 +37,7 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
   var meterTimer: NSTimer?
 
   // Feed the delegate our raw data
-  var delegate: SoundMonitorHelperDelegate!
+  var delegate: SoundMonitorDelegate!
 
   override init() {
     var error: NSError?
@@ -96,7 +101,7 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
   func updateAudioMeter(timer: NSTimer) {
     if recorder.recording {
       recorder.updateMeters()
-      delegate.receiveSoundMonitorData(recorder.peakPowerForChannel(0))
+      delegate.receiveSoundMonitorData(Double(recorder.peakPowerForChannel(0)))
     }
   }
 

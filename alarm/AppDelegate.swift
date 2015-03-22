@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Request location and recording access
       // We should move this into the onboarding
       LocationHelper.requestLocationAccess()
-      SoundMonitorHelper.requestPermissionIfNeeded()
+      SoundMonitor.requestPermissionIfNeeded()
     }
 
     return true

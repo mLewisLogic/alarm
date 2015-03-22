@@ -35,10 +35,11 @@
 		2751201C1AB5AB9A007F1219 /* RawTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751201B1AB5AB9A007F1219 /* RawTime.swift */; };
 		2751201E1AB5C738007F1219 /* TimePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751201D1AB5C738007F1219 /* TimePickerPresenter.swift */; };
 		275120201AB60D4C007F1219 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751201F1AB60D4C007F1219 /* LocationHelper.swift */; };
-		275120221AB64932007F1219 /* SoundMonitorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275120211AB64932007F1219 /* SoundMonitorHelper.swift */; };
+		275120221AB64932007F1219 /* SoundMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275120211AB64932007F1219 /* SoundMonitor.swift */; };
 		275120261AB8E4F6007F1219 /* AlarmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275120251AB8E4F6007F1219 /* AlarmHelper.swift */; };
 		2768BD551ABE4E3700939690 /* SleepQualityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD541ABE4E3700939690 /* SleepQualityMonitor.swift */; };
 		2768BD571ABE56A600939690 /* LinearRegression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD561ABE56A600939690 /* LinearRegression.swift */; };
+		2768BD5D1ABF6A1200939690 /* MotionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */; };
 		277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FFD091ABA10890003BE2A /* AlarmManager.swift */; };
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
@@ -96,10 +97,11 @@
 		2751201B1AB5AB9A007F1219 /* RawTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawTime.swift; sourceTree = "<group>"; };
 		2751201D1AB5C738007F1219 /* TimePickerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerPresenter.swift; sourceTree = "<group>"; };
 		2751201F1AB60D4C007F1219 /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
-		275120211AB64932007F1219 /* SoundMonitorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundMonitorHelper.swift; sourceTree = "<group>"; };
+		275120211AB64932007F1219 /* SoundMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundMonitor.swift; sourceTree = "<group>"; };
 		275120251AB8E4F6007F1219 /* AlarmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmHelper.swift; sourceTree = "<group>"; };
 		2768BD541ABE4E3700939690 /* SleepQualityMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepQualityMonitor.swift; sourceTree = "<group>"; };
 		2768BD561ABE56A600939690 /* LinearRegression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegression.swift; sourceTree = "<group>"; };
+		2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionMonitor.swift; sourceTree = "<group>"; };
 		277FFD091ABA10890003BE2A /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		27A71A981AB51551003CABC4 /* SunriseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseHelper.swift; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewPresenter.swift; sourceTree = "<group>"; };
@@ -234,24 +236,49 @@
 		273E0DD11AAD655B005D73E3 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				274122E21ABE393100BBB2E1 /* AlarmFiredPresenter.swift */,
-				272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */,
-				275120251AB8E4F6007F1219 /* AlarmHelper.swift */,
-				277FFD091ABA10890003BE2A /* AlarmManager.swift */,
+				2768BD591ABF698A00939690 /* SleepTracking */,
+				2768BD5B1ABF69D200939690 /* TimeHandling */,
+				2768BD5A1ABF69A200939690 /* Wakeup */,
 				2508E83E1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift */,
 				27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */,
 				27DD02901ABDF94B00CE0105 /* GlobalConstants.swift */,
-				2768BD561ABE56A600939690 /* LinearRegression.swift */,
-				2751201F1AB60D4C007F1219 /* LocationHelper.swift */,
-				2751201B1AB5AB9A007F1219 /* RawTime.swift */,
-				2768BD541ABE4E3700939690 /* SleepQualityMonitor.swift */,
-				275120211AB64932007F1219 /* SoundMonitorHelper.swift */,
-				27A71A981AB51551003CABC4 /* SunriseHelper.swift */,
 				2508E8401ABB27CB00DFB9D5 /* SwiftColors.swift */,
 				2751201D1AB5C738007F1219 /* TimePickerPresenter.swift */,
-				273E0DD21AAD6591005D73E3 /* TimePresenter.swift */,
 			);
 			name = Lib;
+			sourceTree = "<group>";
+		};
+		2768BD591ABF698A00939690 /* SleepTracking */ = {
+			isa = PBXGroup;
+			children = (
+				2768BD561ABE56A600939690 /* LinearRegression.swift */,
+				2768BD541ABE4E3700939690 /* SleepQualityMonitor.swift */,
+				2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */,
+				275120211AB64932007F1219 /* SoundMonitor.swift */,
+			);
+			name = SleepTracking;
+			sourceTree = "<group>";
+		};
+		2768BD5A1ABF69A200939690 /* Wakeup */ = {
+			isa = PBXGroup;
+			children = (
+				274122E21ABE393100BBB2E1 /* AlarmFiredPresenter.swift */,
+				275120251AB8E4F6007F1219 /* AlarmHelper.swift */,
+				277FFD091ABA10890003BE2A /* AlarmManager.swift */,
+				272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */,
+			);
+			name = Wakeup;
+			sourceTree = "<group>";
+		};
+		2768BD5B1ABF69D200939690 /* TimeHandling */ = {
+			isa = PBXGroup;
+			children = (
+				2751201F1AB60D4C007F1219 /* LocationHelper.swift */,
+				2751201B1AB5AB9A007F1219 /* RawTime.swift */,
+				27A71A981AB51551003CABC4 /* SunriseHelper.swift */,
+				273E0DD21AAD6591005D73E3 /* TimePresenter.swift */,
+			);
+			name = TimeHandling;
 			sourceTree = "<group>";
 		};
 		27FE937F1AB0088700059E18 /* Models */ = {
@@ -330,6 +357,7 @@
 				TargetAttributes = {
 					25E7C6871AA8284100431A81 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = R4BDQ3WQN7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -444,11 +472,12 @@
 				273C35A41AAFFEDC00743B33 /* ScheduleTableViewCell.swift in Sources */,
 				277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */,
 				2508E83F1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift in Sources */,
-				275120221AB64932007F1219 /* SoundMonitorHelper.swift in Sources */,
+				275120221AB64932007F1219 /* SoundMonitor.swift in Sources */,
 				274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */,
 				275120261AB8E4F6007F1219 /* AlarmHelper.swift in Sources */,
 				275120201AB60D4C007F1219 /* LocationHelper.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,
+				2768BD5D1ABF6A1200939690 /* MotionMonitor.swift in Sources */,
 				25E7C6911AA8284100431A81 /* alarm.xcdatamodeld in Sources */,
 				2751201C1AB5AB9A007F1219 /* RawTime.swift in Sources */,
 				273E0DD31AAD6591005D73E3 /* TimePresenter.swift in Sources */,
@@ -570,6 +599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = alarm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -584,6 +614,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = alarm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
