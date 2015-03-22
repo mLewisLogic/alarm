@@ -38,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // We should move this into the onboarding
       LocationHelper.requestLocationAccess()
       SoundMonitorHelper.requestPermissionIfNeeded()
-
-      SoundMonitorHelper.startRecording()
     }
 
     return true

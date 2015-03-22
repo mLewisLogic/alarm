@@ -9,9 +9,9 @@
 import AVFoundation
 import Foundation
 
-
-// Stash a singleton global instance
-private let _soundMonitorHelper = SoundMonitorHelper()
+protocol SoundMonitorHelperDelegate {
+  func receiveSoundMonitorData(intensity: Float)
+}
 
 class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
 
@@ -28,29 +28,28 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
   let recorder: AVAudioRecorder
 
   // A periodic time checks levels
+  var timerPeriod = NSTimeInterval(5.0) // seconds
   var meterTimer: NSTimer?
 
+  // Feed the delegate our raw data
+  var delegate: SoundMonitorHelperDelegate!
+
   override init() {
-    var recorderError: NSError?
+    var error: NSError?
     recorder = AVAudioRecorder(
       URL: soundFileURL!,
       settings: recordSettings,
-      error: &recorderError
+      error: &error
     )
 
     super.init()
 
-    if let e = recorderError {
-      println(e.localizedDescription)
+    if let e = error {
+      println(e.description)
     } else {
       recorder.delegate = self
       recorder.meteringEnabled = true
     }
-  }
-
-  // Create and hold onto a singleton instance of this class
-  class var singleton: SoundMonitorHelper {
-    return _soundMonitorHelper
   }
 
   class func requestPermissionIfNeeded() {
@@ -60,22 +59,32 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
     })
   }
 
-  class func startRecording() {
-    singleton.recorder.record()
 
-    singleton.meterTimer = NSTimer.scheduledTimerWithTimeInterval(
-      5.0, // seconds
-      target: singleton,
+  /* Public interface */
+  func startRecording() {
+    // Clean up any residual timer
+    invalidateTimer()
+
+    // Start recording
+    recorder.record()
+
+    // Set up periodic
+    meterTimer = NSTimer.scheduledTimerWithTimeInterval(
+      timerPeriod, // seconds
+      target: self,
       selector: "updateAudioMeter:",
       userInfo: nil,
       repeats: true
     )
   }
 
-  class func stopRecording() {
-    singleton.recorder.stop()
+  func stopRecording() {
+    invalidateTimer()
+    recorder.stop()
   }
 
+
+  /* Delegate and event handling */
   func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
     NSLog("finished recording \(flag)")
   }
@@ -87,8 +96,16 @@ class SoundMonitorHelper: NSObject, AVAudioRecorderDelegate {
   func updateAudioMeter(timer: NSTimer) {
     if recorder.recording {
       recorder.updateMeters()
-      var apc0  = recorder.averagePowerForChannel(0)
-      var peak0 = recorder.peakPowerForChannel(0)
+      delegate.receiveSoundMonitorData(recorder.peakPowerForChannel(0))
+    }
+  }
+
+
+  /* Private functions */
+  private func invalidateTimer() {
+    if let timer = meterTimer {
+      timer.invalidate()
+      meterTimer = nil
     }
   }
 
