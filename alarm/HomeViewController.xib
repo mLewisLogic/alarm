@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Shuteye" customModuleProvider="target">
             <connections>
+                <outlet property="activateButton" destination="QKQ-hW-exd" id="dZO-T6-iRs"/>
                 <outlet property="overrideLabel" destination="2Dz-1S-65k" id="huF-WS-1F4"/>
                 <outlet property="primaryTimeLabel" destination="bK2-3M-BxU" id="Dgw-VJ-FVB"/>
                 <outlet property="secondaryTimeLabel" destination="o74-Zt-b9A" id="xfS-ux-GUj"/>
