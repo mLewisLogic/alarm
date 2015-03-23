@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   @IBOutlet weak var primaryTimeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
   @IBOutlet weak var overrideLabel: UILabel!
+  @IBOutlet weak var activateButton: UIButton!
 
   var currentTime: TimePresenter!
 
@@ -69,6 +70,20 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       self,
       selector: "activateAlarmFiredView:",
       name: Notifications.AlarmFired,
+      object: nil
+    )
+
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "updateActivationButton",
+      name: Notifications.AlarmActivated,
+      object: nil
+    )
+
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "updateActivationButton",
+      name: Notifications.AlarmDeactivated,
       object: nil
     )
   }
@@ -118,10 +133,22 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     updateDisplay()
   }
 
-
   @IBAction func activateAlarm(sender: UIButton) {
-    AlarmHelper.activateAlarm()
-    // TODO: Update the UI to reflect the fact that an alarm is active
+    if AlarmHelper.isActivated() {
+      AlarmHelper.deactivateAlarm()
+    } else {
+      AlarmHelper.activateAlarm()
+    }
+  }
+
+
+  // Update the activation button to reflect current state
+  func updateActivationButton() {
+    if AlarmHelper.isActivated() {
+      activateButton.setTitle("deactivate", forState: UIControlState.Normal)
+    } else {
+      activateButton.setTitle("activate", forState: UIControlState.Normal)
+    }
   }
 
   // The alarm has activated. Create the alarm activation view as a subview

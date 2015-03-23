@@ -10,6 +10,7 @@ import Foundation
 
 struct Notifications {
   static let AlarmActivated            = "AlarmActivated"
+  static let AlarmDeactivated          = "AlarmDeactivated"
   static let AlarmCancelled            = "AlarmCancelled"
   static let AlarmFired                = "AlarmFired"
   static let NextScheduledAlarmChanged = "NextScheduledAlarmChanged"

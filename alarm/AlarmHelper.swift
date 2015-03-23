@@ -47,6 +47,11 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
     singleton.setAlarm(alarm)
   }
 
+  // Return true if the alarm is activated
+  class func isActivated() -> Bool {
+    return singleton.activeTimer != nil
+  }
+
   // Activate the currently set alarm
   // This means starting the timer
   class func activateAlarm() {
@@ -118,6 +123,11 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
         userInfo: nil,
         repeats: false
       )
+      // Send our notification
+      NSNotificationCenter.defaultCenter().postNotificationName(
+        Notifications.AlarmActivated,
+        object: nil
+      )
       return true
     }
 
@@ -144,6 +154,11 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
       activeTimer = nil
       // Activate the SleepQualityMonitor
       sleepQualityMonitor.stopMonitoring()
+      // Send our notification
+      NSNotificationCenter.defaultCenter().postNotificationName(
+        Notifications.AlarmDeactivated,
+        object: nil
+      )
     }
   }
 }
