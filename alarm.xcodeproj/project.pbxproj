@@ -40,6 +40,7 @@
 		2768BD571ABE56A600939690 /* LinearRegression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD561ABE56A600939690 /* LinearRegression.swift */; };
 		2768BD5D1ABF6A1200939690 /* MotionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */; };
 		2769D7C51ABF8F7E00A0FE81 /* alarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */; };
+		2769D7C71ABF9F4D00A0FE81 /* old-watches.png in Resources */ = {isa = PBXBuildFile; fileRef = 2769D7C61ABF9F4D00A0FE81 /* old-watches.png */; };
 		277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FFD091ABA10890003BE2A /* AlarmManager.swift */; };
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
@@ -102,6 +103,7 @@
 		2768BD561ABE56A600939690 /* LinearRegression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegression.swift; sourceTree = "<group>"; };
 		2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionMonitor.swift; sourceTree = "<group>"; };
 		2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
+		2769D7C61ABF9F4D00A0FE81 /* old-watches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old-watches.png"; sourceTree = "<group>"; };
 		277FFD091ABA10890003BE2A /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		27A71A981AB51551003CABC4 /* SunriseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseHelper.swift; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewPresenter.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */,
 				25FC1DD61AB92E5700D9D67B /* day.jpg */,
+				2769D7C61ABF9F4D00A0FE81 /* old-watches.png */,
 				25FC1DD71AB92E5700D9D67B /* night.jpg */,
 				25FC1DD81AB92E5700D9D67B /* sunrise.png */,
 				25FC1DD91AB92E5700D9D67B /* sunset.png */,
@@ -407,6 +410,7 @@
 				273E0DCF1AAD4074005D73E3 /* TimePickerViewController.xib in Resources */,
 				2769D7C51ABF8F7E00A0FE81 /* alarm.m4a in Resources */,
 				274DA5691AB4E08900891EBF /* HomeViewController.xib in Resources */,
+				2769D7C71ABF9F4D00A0FE81 /* old-watches.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
