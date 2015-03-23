@@ -12,7 +12,9 @@ import UIKit
 class AlarmFiredViewController: UIViewController {
 
   var delegate: AlarmFiredViewDelegate!
-
+  var backgroundView: UIImageView!
+  
+  @IBOutlet weak var stopAlarmButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,7 +22,26 @@ class AlarmFiredViewController: UIViewController {
     // Do any additional setup after loading the view.
     startAlarmSequence()
   }
-
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    let backgroundImage = UIImage(named: "old-watches.png")
+    backgroundView = UIImageView(image: backgroundImage)
+    self.view.insertSubview(backgroundView, atIndex: 0)
+  }
+  
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    
+    backgroundView.alpha = CGFloat(0.6)
+    backgroundView.frame = self.view.frame
+    backgroundView.center = self.view.center
+    
+    stopAlarmButton.backgroundColor = UIColor.lightGrayColor()
+    stopAlarmButton.layer.cornerRadius = 12.0
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.

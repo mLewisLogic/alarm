@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUb-u9-H2m" userLabel="ScheduleView">
-                    <rect key="frame" x="0.0" y="49" width="320" height="505"/>
+                    <rect key="frame" x="0.0" y="49" width="320" height="465"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
@@ -36,7 +36,7 @@
             <constraints>
                 <constraint firstItem="T0F-zo-q7h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="FJQ-M8-s35"/>
                 <constraint firstItem="kUb-u9-H2m" firstAttribute="top" secondItem="T0F-zo-q7h" secondAttribute="bottom" constant="13" id="Jlz-BD-tRp"/>
-                <constraint firstAttribute="bottom" secondItem="kUb-u9-H2m" secondAttribute="bottom" constant="14" id="NdR-th-71k"/>
+                <constraint firstAttribute="bottom" secondItem="kUb-u9-H2m" secondAttribute="bottom" constant="54" id="NdR-th-71k"/>
                 <constraint firstItem="kUb-u9-H2m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="f31-bY-XIq"/>
                 <constraint firstAttribute="trailing" secondItem="kUb-u9-H2m" secondAttribute="trailing" id="f6F-PX-wga"/>
                 <constraint firstItem="T0F-zo-q7h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="o7z-5B-ABp"/>
