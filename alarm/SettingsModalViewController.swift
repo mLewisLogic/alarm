@@ -57,8 +57,6 @@ class SettingsModalViewController: UIViewController {
 
     // Let the settings modal know who controls the time picker
     scheduleVC.timePickerManagerDelegate = self.parentViewController! as HomeViewController
-    println("schedule view height is: \(scheduleView.frame.height)")
-    println("schedule view controller height is: \(scheduleVC.view.frame.height)")
   }
   
 

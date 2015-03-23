@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var sessionError: NSError?
     session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: &sessionError)
     if let e = sessionError {
-      println(e.localizedDescription)
+      NSLog(e.localizedDescription)
     }
   }
 

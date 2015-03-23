@@ -50,7 +50,7 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
     super.init()
 
     if let e = error {
-      println(e.description)
+      NSLog(e.description)
     } else {
       recorder.delegate = self
       recorder.meteringEnabled = true
