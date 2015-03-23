@@ -20,7 +20,6 @@
 		25FC1DDB1AB92E5700D9D67B /* night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD71AB92E5700D9D67B /* night.jpg */; };
 		25FC1DDC1AB92E5700D9D67B /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD81AB92E5700D9D67B /* sunrise.png */; };
 		25FC1DDD1AB92E5700D9D67B /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FC1DD91AB92E5700D9D67B /* sunset.png */; };
-		270F1BA01ABE0EB100C2A85E /* alarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 270F1B9F1ABE0EB100C2A85E /* alarm.m4a */; };
 		272DAC421ABE368B00BB072F /* AlarmSoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */; };
 		273C35A01AAFFCDC00743B33 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */; };
 		273C35A11AAFFCDC00743B33 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */; };
@@ -40,6 +39,7 @@
 		2768BD551ABE4E3700939690 /* SleepQualityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD541ABE4E3700939690 /* SleepQualityMonitor.swift */; };
 		2768BD571ABE56A600939690 /* LinearRegression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD561ABE56A600939690 /* LinearRegression.swift */; };
 		2768BD5D1ABF6A1200939690 /* MotionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */; };
+		2769D7C51ABF8F7E00A0FE81 /* alarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */; };
 		277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FFD091ABA10890003BE2A /* AlarmManager.swift */; };
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
@@ -68,7 +68,7 @@
 		254478791AB63411002FA3CB /* SettingsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModalViewController.swift; sourceTree = "<group>"; };
 		2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsModalViewController.xib; sourceTree = "<group>"; };
 		256C67C21AAEA6320074F260 /* alarm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "alarm-Bridging-Header.h"; sourceTree = "<group>"; };
-		25E7C6881AA8284100431A81 /* alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25E7C6881AA8284100431A81 /* Shuteye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuteye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E7C68C1AA8284100431A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E7C68D1AA8284100431A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25E7C6901AA8284100431A81 /* alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = alarm.xcdatamodel; sourceTree = "<group>"; };
@@ -81,7 +81,6 @@
 		25FC1DD71AB92E5700D9D67B /* night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = night.jpg; sourceTree = "<group>"; };
 		25FC1DD81AB92E5700D9D67B /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
 		25FC1DD91AB92E5700D9D67B /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
-		270F1B9F1ABE0EB100C2A85E /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
 		272DAC411ABE368B00BB072F /* AlarmSoundHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmSoundHelper.swift; sourceTree = "<group>"; };
 		273C359E1AAFFCDC00743B33 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		2768BD541ABE4E3700939690 /* SleepQualityMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepQualityMonitor.swift; sourceTree = "<group>"; };
 		2768BD561ABE56A600939690 /* LinearRegression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegression.swift; sourceTree = "<group>"; };
 		2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionMonitor.swift; sourceTree = "<group>"; };
+		2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
 		277FFD091ABA10890003BE2A /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		27A71A981AB51551003CABC4 /* SunriseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseHelper.swift; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewPresenter.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		25E7C6891AA8284100431A81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25E7C6881AA8284100431A81 /* alarm.app */,
+				25E7C6881AA8284100431A81 /* Shuteye.app */,
 				25E7C6A01AA8284100431A81 /* alarmTests.xctest */,
 			);
 			name = Products;
@@ -224,7 +224,7 @@
 		25FC1DD51AB92DDF00D9D67B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				270F1B9F1ABE0EB100C2A85E /* alarm.m4a */,
+				2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */,
 				25FC1DD61AB92E5700D9D67B /* day.jpg */,
 				25FC1DD71AB92E5700D9D67B /* night.jpg */,
 				25FC1DD81AB92E5700D9D67B /* sunrise.png */,
@@ -325,7 +325,7 @@
 			);
 			name = alarm;
 			productName = alarm;
-			productReference = 25E7C6881AA8284100431A81 /* alarm.app */;
+			productReference = 25E7C6881AA8284100431A81 /* Shuteye.app */;
 			productType = "com.apple.product-type.application";
 		};
 		25E7C69F1AA8284100431A81 /* alarmTests */ = {
@@ -405,7 +405,7 @@
 				27DD02951ABE056A00CE0105 /* AlarmFiredViewController.xib in Resources */,
 				273C35A51AAFFEDC00743B33 /* ScheduleTableViewCell.xib in Resources */,
 				273E0DCF1AAD4074005D73E3 /* TimePickerViewController.xib in Resources */,
-				270F1BA01ABE0EB100C2A85E /* alarm.m4a in Resources */,
+				2769D7C51ABF8F7E00A0FE81 /* alarm.m4a in Resources */,
 				274DA5691AB4E08900891EBF /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +553,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -588,6 +589,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -602,7 +604,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = alarm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Shuteye;
 				SWIFT_OBJC_BRIDGING_HEADER = "alarm/alarm-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -617,7 +619,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = alarm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Shuteye;
 				SWIFT_OBJC_BRIDGING_HEADER = "alarm/alarm-Bridging-Header.h";
 			};
 			name = Release;
