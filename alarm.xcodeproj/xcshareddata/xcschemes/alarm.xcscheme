@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "25E7C6871AA8284100431A81"
-               BuildableName = "alarm.app"
+               BuildableName = "Shuteye.app"
                BlueprintName = "alarm"
                ReferencedContainer = "container:alarm.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25E7C6871AA8284100431A81"
-            BuildableName = "alarm.app"
+            BuildableName = "Shuteye.app"
             BlueprintName = "alarm"
             ReferencedContainer = "container:alarm.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25E7C6871AA8284100431A81"
-            BuildableName = "alarm.app"
+            BuildableName = "Shuteye.app"
             BlueprintName = "alarm"
             ReferencedContainer = "container:alarm.xcodeproj">
          </BuildableReference>
@@ -100,7 +100,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25E7C6871AA8284100431A81"
-            BuildableName = "alarm.app"
+            BuildableName = "Shuteye.app"
             BlueprintName = "alarm"
             ReferencedContainer = "container:alarm.xcodeproj">
          </BuildableReference>

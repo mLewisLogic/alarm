@@ -17,7 +17,7 @@ class AlarmSoundHelper: NSObject {
 
   let VOLUME_INITIAL: Float = 0.20 // start at 20%
   let VOLUME_RAMP_UP_STEP: Float = 0.01 // 1% at a time
-  let VOLUME_RAMP_UP_TIME: Float = 1.0 // seconds
+  let VOLUME_RAMP_UP_TIME: Float = 60.0 // seconds
   let VOLUME_RAMP_DOWN_STEP: Float = 0.05 // 5% at a time
   let VOLUME_RAMP_DOWN_TIME: Float = 3.0 // seconds
 
