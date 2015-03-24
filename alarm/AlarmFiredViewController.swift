@@ -15,6 +15,8 @@ class AlarmFiredViewController: UIViewController {
   var backgroundView: UIImageView!
   
   @IBOutlet weak var stopAlarmButton: UIButton!
+  
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
