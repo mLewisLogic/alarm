@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var alarmFiredViewController: AlarmFiredViewController?
   var alarmTimeBackdropView = UIView()
   var changeTimeTapRecognizer: UITapGestureRecognizer!
-  
+  var tapView = UIView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -88,6 +88,20 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     NSNotificationCenter.defaultCenter().addObserver(
       self,
       selector: "updateActivationButton",
+      name: Notifications.AlarmDeactivated,
+      object: nil
+    )
+    
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "toggleTimePickerButton",
+      name: Notifications.AlarmActivated,
+      object: nil
+    )
+
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "toggleTimePickerButton",
       name: Notifications.AlarmDeactivated,
       object: nil
     )
@@ -156,6 +170,15 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       activateButton.setTitle("Deactivate", forState: UIControlState.Normal)
     } else {
       activateButton.setTitle("Activate", forState: UIControlState.Normal)
+    }
+  }
+
+  // Enable or disable the time picker tap gesture recognizer
+  func toggleTimePickerButton() {
+    if AlarmHelper.isActivated() {
+      tapView.userInteractionEnabled = false
+    } else {
+      tapView.userInteractionEnabled = true
     }
   }
 
@@ -247,7 +270,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     alarmTimeBackdropView.backgroundColor = UIColor.blackColor()
     alarmTimeBackdropView.alpha = 0.3
     
-    let tapView = UIView(frame: alarmTimeBackdropView.frame)
+    tapView.frame = alarmTimeBackdropView.frame
     changeTimeTapRecognizer = UITapGestureRecognizer(target: self, action: "timeChangeSelected:")
     changeTimeTapRecognizer.delegate = self
     tapView.addGestureRecognizer(changeTimeTapRecognizer)
