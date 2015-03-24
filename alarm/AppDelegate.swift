@@ -49,10 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func setupAVAudioSession() {
     let session = AVAudioSession.sharedInstance()
-    var sessionError: NSError?
-    session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: &sessionError)
-    if let e = sessionError {
-      NSLog(e.localizedDescription)
+    var error: NSError?
+    session.setCategory(
+      AVAudioSessionCategoryPlayAndRecord,
+      error: &error
+    )
+    if let e = error {
+      NSLog(e.description)
     }
   }
 

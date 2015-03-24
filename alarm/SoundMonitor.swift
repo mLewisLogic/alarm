@@ -70,6 +70,16 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
     // Clean up any residual timer
     invalidateTimer()
 
+    // Activate the AVAudioSession
+    var error: NSError?
+    AVAudioSession.sharedInstance().setActive(
+      true,
+      error: &error
+    )
+    if let e = error {
+      NSLog(e.description)
+    }
+
     // Start recording
     recorder.record()
 
