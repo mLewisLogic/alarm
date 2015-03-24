@@ -232,13 +232,19 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
     with_mutex(motionDataMutex) {
       // This is inefficient to do every time. The summation should be cached.
       let count = Double(self.motionIntensityData.count)
-      let mean = self.motionIntensityData.reduce(0.0, +) / count
+      // Need to have at least 2 data points
+      if count >= 2 {
+        let mean = self.motionIntensityData.reduce(0.0, +) / count
 
-      let latestIntensity = self.motionIntensityData.last!
-      // If the latest reading is much higer than the mean, save it as an event.
-      if latestIntensity > mean * self.MOTION_SPIKE_SCALAR_THRESHOLD {
-        NSLog("Motion event: intensity=\(latestIntensity), mean=\(mean)")
-        self.motionEvents.append(self.motionTimeData.last!)
+        let latestIntensity = self.motionIntensityData[self.motionIntensityData.count-1]
+        let previousIntensity = self.motionIntensityData[self.motionIntensityData.count-2]
+        // If the latest reading is much higer than the mean and
+        // is very different from the previous, save it as an event.
+        if latestIntensity > (mean * self.MOTION_SPIKE_SCALAR_THRESHOLD) &&
+            (latestIntensity - previousIntensity) > mean {
+          NSLog("Motion event: intensity=\(latestIntensity), mean=\(mean)")
+          self.motionEvents.append(self.motionTimeData.last!)
+        }
       }
     }
   }

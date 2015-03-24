@@ -67,6 +67,7 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
 
   /* Public interface */
   func startRecording() {
+    NSLog("SoundMonitor: startRecording()")
     // Clean up any residual timer
     invalidateTimer()
 
