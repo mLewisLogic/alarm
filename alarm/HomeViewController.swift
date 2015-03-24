@@ -18,22 +18,27 @@ protocol AlarmFiredViewDelegate {
   func dismissAlarmFiredView()
 }
 
+class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManagerDelegate, AlarmFiredViewDelegate, UIGestureRecognizerDelegate {
 
-class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManagerDelegate, AlarmFiredViewDelegate {
-
+  @IBOutlet weak var wakeUpLabel: UILabel!
   @IBOutlet weak var primaryTimeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
-  @IBOutlet weak var overrideLabel: UILabel!
   @IBOutlet weak var activateButton: UIButton!
-
+  
+  let widthRatio = CGFloat(0.92)
+  let heightRatio = CGFloat(0.8)
+  let cornerRadius = CGFloat(12.0)
+  
   var currentTime: TimePresenter!
-
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   var settingsModal: SettingsModalViewController!
   var backgroundImagePresenter: BackgroundImagePresenter!
   var backgroundImageView = UIImageView()
   var alarmFiredViewController: AlarmFiredViewController?
+  var alarmTimeBackdropView = UIView()
+  var changeTimeTapRecognizer: UITapGestureRecognizer!
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,7 +59,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     backgroundImageView.frame = self.view.frame
     backgroundImagePresenter = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!,
       imageView: backgroundImageView)
-      
+    
     updateDisplay()
     addSettingsModal()
 
@@ -87,13 +92,16 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       object: nil
     )
   }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    addAlarmTimeBackdropView()
+    activateButton.backgroundColor = UIColor(hexString: "#411967", alpha: 0.4)
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  }
-
-  @IBAction func timeChangeSelected(sender: UIButton) {
-    showTimePicker(self, time: currentTime)
   }
 
   // Activate the time picker
@@ -145,9 +153,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // Update the activation button to reflect current state
   func updateActivationButton() {
     if AlarmHelper.isActivated() {
-      activateButton.setTitle("deactivate", forState: UIControlState.Normal)
+      activateButton.setTitle("Deactivate", forState: UIControlState.Normal)
     } else {
-      activateButton.setTitle("activate", forState: UIControlState.Normal)
+      activateButton.setTitle("Activate", forState: UIControlState.Normal)
     }
   }
 
@@ -168,6 +176,10 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     alarmFiredViewController?.dismissViewControllerAnimated(true, completion: nil)
     alarmFiredViewController = nil
   }
+  
+  func timeChangeSelected(sender: UITapGestureRecognizer) {
+    showTimePicker(self, time: currentTime)
+  }
 
   // TODO: kill me
   @IBAction func testAlarm(sender: UIButton) {
@@ -185,8 +197,6 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     // Update the display labels
     primaryTimeLabel.text = currentTime.primaryStringForTwoPartDisplay()
     secondaryTimeLabel.text = currentTime.secondaryStringForTwoPartDisplay()
-    // Unhide the overriden label if this alarm is an override
-    overrideLabel.hidden = !AlarmManager.isOverridden()
     // Update the background image
     setBackgroundImage()
   }
@@ -194,19 +204,17 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // Create and size our floating settings modal
   private func addSettingsModal() {
     if settingsModal == nil {
-      let modalWidthRatio = CGFloat(0.92)
-      let modalHeightRatio = CGFloat(0.8)
       settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
       self.addChildViewController(settingsModal)
       settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
       settingsModal.openPosition = self.view.center.y
       settingsModal.view.frame = CGRectMake(
-        (self.view.frame.size.width - (self.view.frame.size.width * modalWidthRatio)) / 2.0,
+        (self.view.frame.size.width - (self.view.frame.size.width * widthRatio)) / 2.0,
         self.view.frame.size.height - settingsModal.scheduleView.frame.minY,
-        self.view.frame.size.width * modalWidthRatio,
-        self.view.frame.size.height * modalHeightRatio
+        self.view.frame.size.width * widthRatio,
+        self.view.frame.size.height * heightRatio
       )
-      settingsModal.view.layer.cornerRadius = 12.0
+      settingsModal.view.layer.cornerRadius = cornerRadius
       settingsModal.view.layer.masksToBounds = true
       settingsModal.view.clipsToBounds = false
       
@@ -233,4 +241,19 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     backgroundImagePresenter.alarmTime = currentTime.calculatedTime()
     backgroundImagePresenter.updateBackground(transition: true)
   }
+  
+  private func addAlarmTimeBackdropView() {
+    alarmTimeBackdropView.frame = CGRectMake((self.view.frame.width - (self.view.frame.width * widthRatio)) / 2, wakeUpLabel.frame.minY - 20, self.view.frame.width * widthRatio, secondaryTimeLabel.frame.maxY - wakeUpLabel.frame.minY + 20)
+    alarmTimeBackdropView.backgroundColor = UIColor.blackColor()
+    alarmTimeBackdropView.alpha = 0.3
+    
+    let tapView = UIView(frame: alarmTimeBackdropView.frame)
+    changeTimeTapRecognizer = UITapGestureRecognizer(target: self, action: "timeChangeSelected:")
+    changeTimeTapRecognizer.delegate = self
+    tapView.addGestureRecognizer(changeTimeTapRecognizer)
+    
+    self.view.insertSubview(alarmTimeBackdropView, aboveSubview: backgroundImageView)
+    self.view.insertSubview(tapView, aboveSubview: primaryTimeLabel)
+  }
+  
 }
