@@ -87,7 +87,14 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
 
     if let activeElement = getTimePickerAtRow(row) {
       let displayString = activeElement.stringForWheelDisplay()
-      let amPmString = activeElement.stringForAmPm()
+
+      var amPmString: String
+      if contains(["noon", "midnight"], displayString) {
+        amPmString = ""
+      } else {
+        amPmString = activeElement.stringForAmPm()
+      }
+
       let transformation = CGAffineTransformMakeScale(
         1.0 / pickerWidthScaleRatio,
         pickerElementHeightScaleRatio / pickerHeightScaleRatio
