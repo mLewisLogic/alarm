@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wake up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw5-vh-hcV">
-                    <rect key="frame" x="55" y="151" width="211" height="67"/>
+                    <rect key="frame" x="55" y="72" width="211" height="67"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="48"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -25,7 +25,7 @@
             <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Sw5-vh-hcV" secondAttribute="centerX" constant="-0.5" id="o6f-V3-qrV"/>
-                <constraint firstItem="Sw5-vh-hcV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="151" id="o8c-c2-Ixc"/>
+                <constraint firstItem="Sw5-vh-hcV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="o8c-c2-Ixc"/>
             </constraints>
             <point key="canvasLocation" x="252" y="453"/>
         </view>
