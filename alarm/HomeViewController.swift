@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   @IBOutlet weak var wakeUpLabel: UILabel!
   @IBOutlet weak var primaryTimeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
+  @IBOutlet weak var doNotCloseLabel: UILabel!
   
   let widthRatio = CGFloat(0.92)
   let heightRatio = CGFloat(0.8)
@@ -40,6 +41,11 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var alarmTimeBackdropView = VerticalGradientView()
   var changeTimeTapRecognizer: UITapGestureRecognizer!
   var tapView = UIView()
+  var wakeUpLabelOriginalY: CGFloat!
+  var primaryTimeLabelOriginalY: CGFloat!
+  var secondaryTimeLabelOriginalY: CGFloat!
+  var separatorView = UIView()
+  var cancelAlarmButton = UIButton()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,6 +57,8 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     currentTime = TimePresenter(alarmEntity: AlarmManager.nextAlarm())
     // Set up our presenters for later use
     blurViewPresenter = BlurViewPresenter(parent: self.view)
+    
+    self.view.addSubview(separatorView)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -61,10 +69,15 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     backgroundImagePresenter = BackgroundImagePresenter(alarmTime: currentTime.calculatedTime()!,
       imageView: backgroundImageView)
     
+    wakeUpLabelOriginalY = wakeUpLabel.center.y
+    primaryTimeLabelOriginalY = primaryTimeLabel.center.y
+    secondaryTimeLabelOriginalY = secondaryTimeLabel.center.y
+    
     updateDisplay()
     addActivationButton()
     addSettingsModal()
     addAlarmTimeBackdropView()
+    addCancelButton()
 
     // If the next scheduled time changes, we want to overwrite our override
     NSNotificationCenter.defaultCenter().addObserver(
@@ -167,39 +180,21 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
   // Update the activation button to reflect current state
   func updateActivationButton() {
-    UIView.animateWithDuration(0.5,
-      delay: 0.0,
-      options: UIViewAnimationOptions.CurveEaseInOut,
-      animations: { () -> Void in
-        self.activationButtonCircleView.label?.alpha = 0.0
-        return
-      }, completion: { finished in
-        if finished {
-          if AlarmHelper.isActivated() {
-            self.activationButtonCircleView.labelText = "DEACTIVATE"
-          } else {
-            self.activationButtonCircleView.labelText = "ACTIVATE"
-          }
-          
-          UIView.animateWithDuration(0.5,
-            delay: 0.0,
-            options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: { () -> Void in
-              self.activationButtonCircleView.label?.alpha = 1.0
-              return
-            },
-            completion: nil
-          )
-        }
-    })
+    if AlarmHelper.isActivated() {
+      transitionToAlarmActivatedView()
+    } else {
+      transitionToAlarmDeactivatedView()
+    }
   }
 
   // Enable or disable the time picker tap gesture recognizer
   func toggleTimePickerButton() {
     if AlarmHelper.isActivated() {
       tapView.userInteractionEnabled = false
+      cancelAlarmButton.userInteractionEnabled = true
     } else {
       tapView.userInteractionEnabled = true
+      cancelAlarmButton.userInteractionEnabled = false
     }
   }
 
@@ -235,12 +230,101 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
 
   /* Private */
+  
+  private func transitionToAlarmActivatedView() {
+    let centerPoint = self.view.frame.height / 3
+    let wakeUpLabelDistance = self.primaryTimeLabel.center.y - self.wakeUpLabel.center.y
+    let secondaryTimeLabelDistance = self.secondaryTimeLabel.center.y - self.primaryTimeLabel.center.y
+    
+    UIView.animateWithDuration(0.5,
+      delay: 0.0,
+      options: UIViewAnimationOptions.CurveEaseInOut,
+      animations: { () -> Void in
+        self.activationButtonCircleView.alpha = 0.0
+        return
+      }, completion: { finished in
+        if finished {
+          UIView.animateWithDuration(0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.wakeUpLabel.center = CGPoint(x: self.wakeUpLabel.center.x, y: centerPoint -  wakeUpLabelDistance)
+              self.primaryTimeLabel.center = CGPoint(x: self.primaryTimeLabel.center.x, y: centerPoint)
+              self.secondaryTimeLabel.center = CGPoint(x: self.secondaryTimeLabel.center.x, y: centerPoint + secondaryTimeLabelDistance)
+              
+              return
+            },
+            completion: { finished in
+              if finished {
+                let distanceY = self.secondaryTimeLabel.hidden ? centerPoint : secondaryTimeLabelDistance + centerPoint
+                
+                self.separatorView.alpha = 0.0
+                self.separatorView.backgroundColor = UIColor.whiteColor()
+                self.separatorView.frame = CGRectMake(self.primaryTimeLabel.frame.minX,
+                  distanceY + 30,
+                  self.primaryTimeLabel.frame.width,
+                  1
+                )
+                
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                  self.separatorView.alpha = 1.0
+                  
+                  self.settingsModal.toggleInView(hide: true)
+                  
+                  self.doNotCloseLabel.sizeToFit()
+                  self.doNotCloseLabel.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.75)
+                  self.doNotCloseLabel.alpha = 1.0
+                  
+                  self.cancelAlarmButton.center = CGPoint(x: self.view.frame.width / 2 , y: self.separatorView.frame.maxY + self.cancelAlarmButton.frame.height + 10)
+                  self.cancelAlarmButton.alpha = 1.0
+                })
+              }
+            }
+          )
+        }
+    })
+  }
+  
+  private func transitionToAlarmDeactivatedView() {
+    UIView.animateWithDuration(0.5,
+      delay: 0.0,
+      options: UIViewAnimationOptions.CurveEaseInOut,
+      animations: { () -> Void in
+        self.settingsModal.toggleInView(hide: false)
+        self.separatorView.alpha = 0.0
+        self.cancelAlarmButton.alpha = 0.0
+        self.doNotCloseLabel.alpha = 0.0
+        
+        self.wakeUpLabel.center = CGPoint(x: self.wakeUpLabel.center.x, y: self.wakeUpLabelOriginalY)
+        self.primaryTimeLabel.center = CGPoint(x: self.primaryTimeLabel.center.x, y: self.primaryTimeLabelOriginalY)
+        self.secondaryTimeLabel.center = CGPoint(x: self.secondaryTimeLabel.center.x, y: self.secondaryTimeLabelOriginalY)
+        
+        self.activationButtonCircleView.alpha = 1.0
+        return
+      }, completion: { finished in
+    })
+  }
+  
+  private func addCancelButton() {
+    cancelAlarmButton.setTitle("Cancel Alarm", forState: UIControlState.Normal)
+    cancelAlarmButton.titleLabel?.font = UIFont(name: "Avenir Medium", size: 32.0)
+    cancelAlarmButton.sizeToFit()
+    cancelAlarmButton.alpha = 0.0
+    cancelAlarmButton.addTarget(self, action: "activateTriggered", forControlEvents: UIControlEvents.TouchUpInside)
+    self.view.addSubview(cancelAlarmButton)
+  }
 
   // Update the displayed time
   private func updateDisplay() {
     // Update the display labels
     primaryTimeLabel.text = currentTime.primaryStringForTwoPartDisplay()
-    secondaryTimeLabel.text = currentTime.secondaryStringForTwoPartDisplay()
+    
+    if currentTime.secondaryStringForTwoPartDisplay().isEmpty {
+      secondaryTimeLabel.hidden = true
+    } else {
+      secondaryTimeLabel.hidden = false
+      secondaryTimeLabel.text = currentTime.secondaryStringForTwoPartDisplay()
+    }
     // Update the background image
     setBackgroundImage()
   }
@@ -268,7 +352,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
   // Create and size our floating settings modal
   private func addSettingsModal() {
-    settingsModal ?? SettingsModalView(parentVC: self)
+    if settingsModal == nil {
+      settingsModal = SettingsModalView(parentVC: self)
+    }
   }
   
   private func setBackgroundImage() {
@@ -281,7 +367,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       0,
       0,
       self.view.frame.width,
-      secondaryTimeLabel.frame.maxY - wakeUpLabel.frame.minY + 60
+      self.view.frame.height * 0.67 - wakeUpLabel.frame.minY + 60
     )
     alarmTimeBackdropView.backgroundColor = UIColor.clearColor()
     self.view.insertSubview(

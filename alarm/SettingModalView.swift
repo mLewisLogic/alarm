@@ -34,6 +34,14 @@ class SettingsModalView {
       settingsModal.didMoveToParentViewController(parentController)
   }
   
+  func toggleInView(hide hidden: Bool) {
+    if hidden {
+      settingsModal.view.center.y = settingsModal.view.center.y + settingsModal.closedPosition
+    } else {
+      settingsModal.view.center.y = settingsModal.closedPosition
+    }
+  }
+  
   private func applyPlainShadow(view: UIView) {
     let layer = view.layer
     
