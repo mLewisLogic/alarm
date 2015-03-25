@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Shuteye" customModuleProvider="target">
             <connections>
+                <outlet property="doNotCloseLabel" destination="DW1-Dl-4Tn" id="lh6-CP-mWB"/>
                 <outlet property="primaryTimeLabel" destination="bK2-3M-BxU" id="Dgw-VJ-FVB"/>
                 <outlet property="secondaryTimeLabel" destination="o74-Zt-b9A" id="xfS-ux-GUj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -56,6 +57,12 @@
                         <action selector="testAlarm:" destination="-1" eventType="touchUpInside" id="RV4-0F-DdN"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do not close the app!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DW1-Dl-4Tn">
+                    <rect key="frame" x="52" y="417" width="216" height="31"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
