@@ -12,8 +12,6 @@ import UIKit
 class AlarmFiredViewController: UIViewController {
 
   let awakeButtonWidth = CGFloat(160)
-  let awakeButtonFontColor = UIColor.whiteColor()
-  let awakeButtonCircleColor = UIColor(white: 0.0, alpha: 0.5)
 
   var delegate: AlarmFiredViewDelegate!
   var backgroundView: UIImageView!
@@ -73,8 +71,6 @@ class AlarmFiredViewController: UIViewController {
         )
       )
       awakeButtonCircleView.labelText = "I'm awake"
-      awakeButtonCircleView.color = awakeButtonFontColor
-      awakeButtonCircleView.circleColor = awakeButtonCircleColor
       let tapRecognizer = UITapGestureRecognizer(target: self, action: "deactivateAlarm")
       awakeButtonCircleView.addGestureRecognizer(tapRecognizer)
       view.addSubview(awakeButtonCircleView)

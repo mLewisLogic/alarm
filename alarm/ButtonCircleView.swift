@@ -10,9 +10,9 @@ import UIKit
 
 class ButtonCircleView: UIView {
 
-  var borderWidth = CGFloat(4.0)
-  var color = UIColor(white: 0.8, alpha: 1.0)
-  var circleColor: UIColor
+  var borderWidth = CGFloat(3.0)
+  var color = UIColor(white: 0.9, alpha: 1.0)
+  var circleColor = UIColor(white: 0.0, alpha: 0.5)
   var fontSize = CGFloat(24.0)
 
   private var _labelText = ""
@@ -26,13 +26,11 @@ class ButtonCircleView: UIView {
   var label: UILabel?
 
   override init(frame: CGRect) {
-    self.circleColor = color.colorWithAlphaComponent(0.2)
     super.init(frame: frame)
     self.backgroundColor = UIColor.clearColor()
   }
 
   required init(coder aDecoder: NSCoder) {
-    self.circleColor = color.colorWithAlphaComponent(0.2)
     super.init(coder: aDecoder)
   }
 
@@ -50,7 +48,7 @@ class ButtonCircleView: UIView {
     CGContextSetLineWidth(context, borderWidth)
 
     // Set the circle outerline-colour
-    color.setStroke()
+    color.colorWithAlphaComponent(0.9).setStroke()
 
     // Create circle
     CGContextAddArc(
