@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
   var activationButtonCircleView: ButtonCircleView!
-  var settingsModal: SettingsModalViewController!
+  var settingsModal: SettingsModalView!
   var backgroundImagePresenter: BackgroundImagePresenter!
   var backgroundImageView = UIImageView()
   var alarmFiredViewController: AlarmFiredViewController?
@@ -248,38 +248,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
   // Create and size our floating settings modal
   private func addSettingsModal() {
-    if settingsModal == nil {
-      settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
-      self.addChildViewController(settingsModal)
-      settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-      settingsModal.openPosition = self.view.center.y
-      settingsModal.view.frame = CGRectMake(
-        (self.view.frame.size.width - (self.view.frame.size.width * widthRatio)) / 2.0,
-        self.view.frame.size.height - settingsModal.scheduleView.frame.minY,
-        self.view.frame.size.width * widthRatio,
-        self.view.frame.size.height * heightRatio
-      )
-      settingsModal.view.layer.cornerRadius = cornerRadius
-      settingsModal.view.layer.masksToBounds = true
-      settingsModal.view.clipsToBounds = false
-      
-      settingsModal.closedPosition = settingsModal.view.center.y
-      
-      applyPlainShadow(settingsModal.view)
-
-      self.view.addSubview(settingsModal.view)
-      settingsModal.didMoveToParentViewController(self)
-    }
-  }
-  
-  private func applyPlainShadow(view: UIView) {
-    var layer = view.layer
-    
-    layer.shadowPath = UIBezierPath(rect: CGRectMake(0, 0, settingsModal.view.frame.width, settingsModal.view.frame.height)).CGPath
-    layer.shadowColor = UIColor.blackColor().CGColor
-    layer.shadowOffset = CGSize(width: 0, height: 10)
-    layer.shadowOpacity = 0.4
-    layer.shadowRadius = 5
+    settingsModal ?? SettingsModalView(parentVC: self)
   }
   
   private func setBackgroundImage() {

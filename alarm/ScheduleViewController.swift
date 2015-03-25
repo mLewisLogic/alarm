@@ -10,7 +10,7 @@ import UIKit
 
 class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TimePickerDelegate, DayOfWeekAlarmDelegate {
   @IBOutlet weak var scheduleTableView: UITableView!
-
+  
   // An array of 7 TimeEntities
   // One for each day of the week (Sun-Sat)
   var alarmEntityArray: Array<AlarmEntity>!
@@ -20,6 +20,8 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
 
   // The home view controls display of the time picker
   var timePickerManagerDelegate: TimePickerManagerDelegate!
+  
+  var containerView: UIView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,23 +34,32 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
       ),
       forCellReuseIdentifier: "ScheduleTableViewCell"
     )
-
+    
     scheduleTableView.delegate = self
     scheduleTableView.dataSource = self
 
     // Load in the alarms for presentation
     alarmEntityArray = AlarmManager.loadAlarmsOrdered()
 
-    scheduleTableView.alwaysBounceVertical = false;
+    scheduleTableView.alwaysBounceVertical = false
     scheduleTableView.separatorColor = UIColor.clearColor()
-    self.view.backgroundColor = UIColor.darkGrayColor()
-    scheduleTableView.backgroundColor = UIColor.darkGrayColor()
+    self.view.backgroundColor = UIColor.whiteColor()
+    scheduleTableView.backgroundColor = UIColor.whiteColor()
 
     scheduleTableView.reloadData()
   }
 
   override func viewWillAppear(animated: Bool) {
     scheduleTableView.reloadData()
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    let cell = scheduleTableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell") as ScheduleTableViewCell
+    let containerHeight = cell.frame.height * 7
+    containerView.backgroundColor = UIColor.grayColor()
+    containerView.frame.size = CGSizeMake(containerView.frame.width, containerHeight)
+    parentViewController?.viewDidLayoutSubviews()
   }
 
   override func didReceiveMemoryWarning() {
