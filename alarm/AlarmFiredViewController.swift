@@ -43,6 +43,8 @@ class AlarmFiredViewController: UIViewController {
     backgroundView.alpha = CGFloat(0.6)
     backgroundView.frame = self.view.frame
     backgroundView.center = self.view.center
+    awakeButtonCircleView.center = CGPoint(x: self.view.center.x,
+      y: self.view.frame.height * 0.75)
   }
   
   override func didReceiveMemoryWarning() {
