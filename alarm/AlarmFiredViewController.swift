@@ -15,6 +15,7 @@ class AlarmFiredViewController: UIViewController {
 
   var delegate: AlarmFiredViewDelegate!
   var backgroundView: UIImageView!
+  var backdropGradientView = VerticalGradientView()
   var awakeButtonCircleView: ButtonCircleView!
   
 
@@ -32,6 +33,7 @@ class AlarmFiredViewController: UIViewController {
     backgroundView = UIImageView(image: backgroundImage)
     self.view.insertSubview(backgroundView, atIndex: 0)
 
+    addBackdropGradient()
     addAwakeButton()
   }
   
@@ -56,6 +58,20 @@ class AlarmFiredViewController: UIViewController {
 
   /* Private */
 
+  private func addBackdropGradient() {
+    backdropGradientView.frame = CGRectMake(
+      0,
+      0,
+      self.view.frame.width,
+      150
+    )
+    backdropGradientView.backgroundColor = UIColor.clearColor()
+    self.view.insertSubview(
+      backdropGradientView,
+      aboveSubview: backgroundView
+    )
+  }
+
   // Add our awake button
   private func addAwakeButton() {
     //activationButtonCircleView
@@ -65,7 +81,7 @@ class AlarmFiredViewController: UIViewController {
       awakeButtonCircleView = ButtonCircleView(
         frame: CGRectMake(
           view.center.x - awakeButtonWidth / 2,
-          view.frame.height * 0.65 - awakeButtonWidth / 2,
+          view.frame.height * 0.5 - awakeButtonWidth / 2,
           awakeButtonWidth,
           awakeButtonWidth
         )
