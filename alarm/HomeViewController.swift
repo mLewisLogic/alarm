@@ -165,7 +165,6 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     }
   }
 
-
   // Update the activation button to reflect current state
   func updateActivationButton() {
     if AlarmHelper.isActivated() {

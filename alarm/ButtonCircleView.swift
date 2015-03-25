@@ -11,8 +11,8 @@ import UIKit
 class ButtonCircleView: UIView {
 
   var borderWidth = CGFloat(4.0)
-  var backgroundAlpha = CGFloat(0.2)
   var color = UIColor(white: 0.8, alpha: 1.0)
+  var circleColor: UIColor
   var fontSize = CGFloat(24.0)
 
   private var _labelText = ""
@@ -26,17 +26,25 @@ class ButtonCircleView: UIView {
   var label: UILabel?
 
   override init(frame: CGRect) {
+    self.circleColor = color.colorWithAlphaComponent(0.2)
     super.init(frame: frame)
     self.backgroundColor = UIColor.clearColor()
   }
 
   required init(coder aDecoder: NSCoder) {
+    self.circleColor = color.colorWithAlphaComponent(0.2)
     super.init(coder: aDecoder)
   }
 
   override func drawRect(rect: CGRect) {
     // Get the Graphics Context
     var context = UIGraphicsGetCurrentContext()
+
+    // Set the fill color
+    circleColor.setFill()
+
+    // Fill in the circle
+    CGContextFillEllipseInRect(context, rect)
 
     // Set the circle outerline-width
     CGContextSetLineWidth(context, borderWidth)
@@ -57,12 +65,6 @@ class ButtonCircleView: UIView {
 
     // Draw the circle stroke
     CGContextStrokePath(context)
-
-    // Set the fill color with an alpha
-    color.colorWithAlphaComponent(backgroundAlpha).setFill()
-
-    // Fill in the circle
-    CGContextFillEllipseInRect(context, rect)
 
     // Set up our label
     setupLabel(rect)

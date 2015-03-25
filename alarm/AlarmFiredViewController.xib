@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlarmFiredViewController" customModule="Shuteye" customModuleProvider="target">
             <connections>
-                <outlet property="stopAlarmButton" destination="lBb-bI-f0T" id="Gug-Fi-6Q3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,36 +14,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBb-bI-f0T">
-                    <rect key="frame" x="100" y="373" width="120" height="55"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="55" id="kk0-4f-bI3"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="28"/>
-                    <state key="normal" title="I'm up!">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="deactivateAlarm:" destination="-1" eventType="touchUpInside" id="MOb-9h-ewl"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wake up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw5-vh-hcV">
                     <rect key="frame" x="55" y="151" width="211" height="67"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="48"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="shadowColor" red="0.62717516613653412" green="0.62449069128183055" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="lBb-bI-f0T" firstAttribute="leading" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="Iw7-jm-C06"/>
-                <constraint firstAttribute="bottom" secondItem="lBb-bI-f0T" secondAttribute="bottom" constant="140" id="Njj-En-1cX"/>
-                <constraint firstAttribute="centerX" secondItem="lBb-bI-f0T" secondAttribute="centerX" id="YFn-1p-Mdf"/>
                 <constraint firstAttribute="centerX" secondItem="Sw5-vh-hcV" secondAttribute="centerX" constant="-0.5" id="o6f-V3-qrV"/>
                 <constraint firstItem="Sw5-vh-hcV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="151" id="o8c-c2-Ixc"/>
-                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="lBb-bI-f0T" secondAttribute="trailing" constant="100" id="vQa-Iv-4YE"/>
             </constraints>
             <point key="canvasLocation" x="252" y="453"/>
         </view>
