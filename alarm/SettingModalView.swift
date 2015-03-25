@@ -14,7 +14,7 @@ class SettingsModalView {
   private var parentController: UIViewController!
   private var widthRatio = CGFloat(0.92)
   private var heightRatio = CGFloat(0.8)
-  private var cornerRadius = CGFloat(12.0)
+  private var cornerRadius = CGFloat(6.0)
   
   required init(parentVC: UIViewController) {
       parentController = parentVC
