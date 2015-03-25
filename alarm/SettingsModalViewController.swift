@@ -21,10 +21,11 @@ class SettingsModalViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.grayColor()
-    self.alarmLabel.textColor = UIColor.whiteColor()
+    self.view.backgroundColor = UIColor.whiteColor()
+    self.alarmLabel.textColor = UIColor.lightGrayColor()
     
     scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
+    scheduleVC.containerView = scheduleView
     self.addChildViewController(scheduleVC)
     scheduleView.addSubview(scheduleVC.view)
     scheduleVC.didMoveToParentViewController(self)
@@ -42,16 +43,11 @@ class SettingsModalViewController: UIViewController {
   
   func addScheduleView() {
     scheduleVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-    
-    let scheduleTableViewCell = scheduleVC.scheduleTableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell") as ScheduleTableViewCell
-    let scheduleTableViewHeight = scheduleTableViewCell.frame.height * 8
-    
+    scheduleView.backgroundColor = UIColor.whiteColor()
     scheduleView.layer.masksToBounds = true
     scheduleView.clipsToBounds = true
-    scheduleView.frame = CGRectMake(0, 0, self.view.frame.width, scheduleTableViewHeight)
-    scheduleVC.view.frame = scheduleView.frame
     scheduleView.center = self.view.center
-    scheduleView.backgroundColor = UIColor.darkGrayColor()
+    
     scheduleVC.view.layer.masksToBounds = true
     scheduleVC.view.clipsToBounds = true
 
