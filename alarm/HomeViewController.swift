@@ -38,7 +38,6 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var backgroundImageView = UIImageView()
   var alarmFiredViewController: AlarmFiredViewController?
   var alarmTimeBackdropView = VerticalGradientView()
-  var alarmTimeBackdropGradient = CAGradientLayer()
   var changeTimeTapRecognizer: UITapGestureRecognizer!
   var tapView = UIView()
   
@@ -301,10 +300,11 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       aboveSubview: backgroundImageView
     )
 
-    tapView.frame = alarmTimeBackdropGradient.frame
+    tapView.frame = alarmTimeBackdropView.frame
     changeTimeTapRecognizer = UITapGestureRecognizer(target: self, action: "timeChangeSelected:")
     changeTimeTapRecognizer.delegate = self
     tapView.addGestureRecognizer(changeTimeTapRecognizer)
+
     self.view.insertSubview(tapView, aboveSubview: primaryTimeLabel)
   }
   
