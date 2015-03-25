@@ -37,7 +37,8 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   var backgroundImagePresenter: BackgroundImagePresenter!
   var backgroundImageView = UIImageView()
   var alarmFiredViewController: AlarmFiredViewController?
-  var alarmTimeBackdropView = UIView()
+  var alarmTimeBackdropView = VerticalGradientView()
+  var alarmTimeBackdropGradient = CAGradientLayer()
   var changeTimeTapRecognizer: UITapGestureRecognizer!
   var tapView = UIView()
   
@@ -64,6 +65,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     updateDisplay()
     addActivationButton()
     addSettingsModal()
+    addAlarmTimeBackdropView()
 
     // If the next scheduled time changes, we want to overwrite our override
     NSNotificationCenter.defaultCenter().addObserver(
@@ -111,7 +113,6 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    addAlarmTimeBackdropView()
   }
   
   override func didReceiveMemoryWarning() {
@@ -234,7 +235,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       activationButtonCircleView = ButtonCircleView(
         frame: CGRectMake(
           view.center.x - activationButtonWidth / 2,
-          view.frame.height * 0.65 - activationButtonWidth / 2,
+          view.frame.height * 0.5 - activationButtonWidth / 2,
           activationButtonWidth,
           activationButtonWidth
         )
@@ -288,16 +289,22 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
   
   private func addAlarmTimeBackdropView() {
-    alarmTimeBackdropView.frame = CGRectMake((self.view.frame.width - (self.view.frame.width * widthRatio)) / 2, wakeUpLabel.frame.minY - 20, self.view.frame.width * widthRatio, secondaryTimeLabel.frame.maxY - wakeUpLabel.frame.minY + 20)
-    alarmTimeBackdropView.backgroundColor = UIColor.blackColor()
-    alarmTimeBackdropView.alpha = 0.3
-    
-    tapView.frame = alarmTimeBackdropView.frame
+    alarmTimeBackdropView.frame = CGRectMake(
+      0,
+      0,
+      self.view.frame.width,
+      secondaryTimeLabel.frame.maxY - wakeUpLabel.frame.minY + 60
+    )
+    alarmTimeBackdropView.backgroundColor = UIColor.clearColor()
+    self.view.insertSubview(
+      alarmTimeBackdropView,
+      aboveSubview: backgroundImageView
+    )
+
+    tapView.frame = alarmTimeBackdropGradient.frame
     changeTimeTapRecognizer = UITapGestureRecognizer(target: self, action: "timeChangeSelected:")
     changeTimeTapRecognizer.delegate = self
     tapView.addGestureRecognizer(changeTimeTapRecognizer)
-    
-    self.view.insertSubview(alarmTimeBackdropView, aboveSubview: backgroundImageView)
     self.view.insertSubview(tapView, aboveSubview: primaryTimeLabel)
   }
   

@@ -132,9 +132,9 @@ class AlarmEntity: NSManagedObject {
       let time = TimePresenter(alarmEntity: self)
       return time.stringForTableDisplay()
     case .Sunrise:
-      return "sunrise"
+      return "Sunrise"
     case .Sunset:
-      return "sunset"
+      return "Sunset"
     default:
       NSLog("Bad alarm type: \(alarmTypeEnum)")
       return ""
