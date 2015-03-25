@@ -23,15 +23,16 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   @IBOutlet weak var wakeUpLabel: UILabel!
   @IBOutlet weak var primaryTimeLabel: UILabel!
   @IBOutlet weak var secondaryTimeLabel: UILabel!
-  @IBOutlet weak var activateButton: UIButton!
   
   let widthRatio = CGFloat(0.92)
   let heightRatio = CGFloat(0.8)
   let cornerRadius = CGFloat(12.0)
+  let activationButtonWidth = CGFloat(160)
   
   var currentTime: TimePresenter!
   var blurViewPresenter: BlurViewPresenter!
   var timePickerViewController: UIViewController?
+  var activationButtonCircleView: ButtonCircleView!
   var settingsModal: SettingsModalViewController!
   var backgroundImagePresenter: BackgroundImagePresenter!
   var backgroundImageView = UIImageView()
@@ -61,6 +62,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
       imageView: backgroundImageView)
     
     updateDisplay()
+    addActivationButton()
     addSettingsModal()
 
     // If the next scheduled time changes, we want to overwrite our override
@@ -110,7 +112,6 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     addAlarmTimeBackdropView()
-    activateButton.backgroundColor = UIColor(hexString: "#411967", alpha: 0.4)
   }
   
   override func didReceiveMemoryWarning() {
@@ -155,7 +156,8 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     updateDisplay()
   }
 
-  @IBAction func activateAlarm(sender: UIButton) {
+  // The "activate" button was triggered
+  func activateTriggered() {
     if AlarmHelper.isActivated() {
       AlarmHelper.deactivateAlarm()
     } else {
@@ -167,9 +169,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // Update the activation button to reflect current state
   func updateActivationButton() {
     if AlarmHelper.isActivated() {
-      activateButton.setTitle("Deactivate", forState: UIControlState.Normal)
+      activationButtonCircleView.labelText = "DEACTIVATE"
     } else {
-      activateButton.setTitle("Activate", forState: UIControlState.Normal)
+      activationButtonCircleView.labelText = "ACTIVATE"
     }
   }
 
@@ -222,6 +224,27 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     secondaryTimeLabel.text = currentTime.secondaryStringForTwoPartDisplay()
     // Update the background image
     setBackgroundImage()
+  }
+
+  // Add our activation button
+  private func addActivationButton() {
+    //activationButtonCircleView
+    // 107 277
+    // 100 100
+    if activationButtonCircleView == nil {
+      activationButtonCircleView = ButtonCircleView(
+        frame: CGRectMake(
+          view.center.x - activationButtonWidth / 2,
+          view.frame.height * 0.65 - activationButtonWidth / 2,
+          activationButtonWidth,
+          activationButtonWidth
+        )
+      )
+      activationButtonCircleView.labelText = "ACTIVATE"
+      let tapRecognizer = UITapGestureRecognizer(target: self, action: "activateTriggered")
+      activationButtonCircleView.addGestureRecognizer(tapRecognizer)
+      view.addSubview(activationButtonCircleView)
+    }
   }
 
   // Create and size our floating settings modal

@@ -41,6 +41,7 @@
 		2768BD5D1ABF6A1200939690 /* MotionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */; };
 		2769D7C51ABF8F7E00A0FE81 /* alarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */; };
 		2769D7C71ABF9F4D00A0FE81 /* old-watches.png in Resources */ = {isa = PBXBuildFile; fileRef = 2769D7C61ABF9F4D00A0FE81 /* old-watches.png */; };
+		276A6D1C1AC25AA0002DB3C7 /* ButtonCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A6D1B1AC25AA0002DB3C7 /* ButtonCircleView.swift */; };
 		277FFD0A1ABA10890003BE2A /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FFD091ABA10890003BE2A /* AlarmManager.swift */; };
 		27A71A991AB51551003CABC4 /* SunriseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A71A981AB51551003CABC4 /* SunriseHelper.swift */; };
 		27C827981AB4FCA20021CCD3 /* BlurViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */; };
@@ -104,6 +105,7 @@
 		2768BD5C1ABF6A1200939690 /* MotionMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionMonitor.swift; sourceTree = "<group>"; };
 		2769D7C41ABF8F7E00A0FE81 /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
 		2769D7C61ABF9F4D00A0FE81 /* old-watches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old-watches.png"; sourceTree = "<group>"; };
+		276A6D1B1AC25AA0002DB3C7 /* ButtonCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCircleView.swift; sourceTree = "<group>"; };
 		277FFD091ABA10890003BE2A /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		27A71A981AB51551003CABC4 /* SunriseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseHelper.swift; sourceTree = "<group>"; };
 		27C827971AB4FCA20021CCD3 /* BlurViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewPresenter.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				273C359F1AAFFCDC00743B33 /* ScheduleViewController.xib */,
 				2544787A1AB63411002FA3CB /* SettingsModalViewController.xib */,
 				273E0DCD1AAD4074005D73E3 /* TimePickerViewController.xib */,
+				276A6D1B1AC25AA0002DB3C7 /* ButtonCircleView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				275120221AB64932007F1219 /* SoundMonitor.swift in Sources */,
 				274DA5681AB4E08900891EBF /* HomeViewController.swift in Sources */,
 				275120261AB8E4F6007F1219 /* AlarmHelper.swift in Sources */,
+				276A6D1C1AC25AA0002DB3C7 /* ButtonCircleView.swift in Sources */,
 				275120201AB60D4C007F1219 /* LocationHelper.swift in Sources */,
 				25E7C68E1AA8284100431A81 /* AppDelegate.swift in Sources */,
 				2768BD5D1ABF6A1200939690 /* MotionMonitor.swift in Sources */,

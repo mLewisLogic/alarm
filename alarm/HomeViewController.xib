@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Shuteye" customModuleProvider="target">
             <connections>
-                <outlet property="activateButton" destination="bO2-qX-e5t" id="v61-a8-16V"/>
                 <outlet property="primaryTimeLabel" destination="bK2-3M-BxU" id="Dgw-VJ-FVB"/>
                 <outlet property="secondaryTimeLabel" destination="o74-Zt-b9A" id="xfS-ux-GUj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-3M-BxU">
-                    <rect key="frame" x="81" y="131" width="158" height="67"/>
+                    <rect key="frame" x="81" y="131" width="157.5" height="67"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="67" id="7fZ-m6-YlD"/>
@@ -57,33 +56,15 @@
                         <action selector="testAlarm:" destination="-1" eventType="touchUpInside" id="RV4-0F-DdN"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bO2-qX-e5t">
-                    <rect key="frame" x="0.0" y="407" width="320" height="55"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="55" id="KXd-iW-c13"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="28"/>
-                    <state key="normal" title="Activate">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="activateAlarm:" destination="-1" eventType="touchUpInside" id="bBX-FE-2iI"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="o74-Zt-b9A" firstAttribute="top" secondItem="bK2-3M-BxU" secondAttribute="bottom" constant="8" id="2rT-BS-rIh"/>
-                <constraint firstItem="bO2-qX-e5t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9ky-ha-qLw"/>
                 <constraint firstItem="ao4-po-tWk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="89" id="Hqc-Dr-Q3g"/>
                 <constraint firstAttribute="centerX" secondItem="ao4-po-tWk" secondAttribute="centerX" constant="2.5" id="JYS-Si-2wA"/>
                 <constraint firstItem="ao4-po-tWk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="96" id="P16-tf-lkO"/>
                 <constraint firstAttribute="centerX" secondItem="bK2-3M-BxU" secondAttribute="centerX" constant="0.25" id="Xy7-fu-0tF"/>
-                <constraint firstAttribute="trailing" secondItem="bO2-qX-e5t" secondAttribute="trailing" id="YIe-Va-K6z"/>
                 <constraint firstAttribute="centerX" secondItem="o74-Zt-b9A" secondAttribute="centerX" constant="3" id="ar4-U4-equ"/>
-                <constraint firstAttribute="bottom" secondItem="bO2-qX-e5t" secondAttribute="bottom" constant="106" id="etl-sV-aD2"/>
                 <constraint firstItem="bK2-3M-BxU" firstAttribute="top" secondItem="ao4-po-tWk" secondAttribute="bottom" constant="8" id="xq2-Wl-NOo"/>
             </constraints>
             <point key="canvasLocation" x="604" y="334"/>
