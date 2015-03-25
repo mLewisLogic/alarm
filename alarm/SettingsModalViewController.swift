@@ -12,6 +12,7 @@ class SettingsModalViewController: UIViewController {
 
   @IBOutlet weak var alarmLabel: UILabel!
   @IBOutlet weak var scheduleView: UIView!
+  @IBOutlet weak var topBorder: UIView!
   
   var openPosition: CGFloat!
   var closedPosition: CGFloat!

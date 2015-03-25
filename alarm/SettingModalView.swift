@@ -47,7 +47,7 @@ class SettingsModalView {
   private func setEdgeDimensionsAndStyling() {
     settingsModal.view.frame = CGRectMake(
       (parentController.view.frame.size.width - (parentController.view.frame.size.width * widthRatio)) / 2.0,
-      parentController.view.frame.size.height - settingsModal.scheduleView.frame.minY,
+      parentController.view.frame.size.height - settingsModal.topBorder.frame.minY,
       parentController.view.frame.size.width * widthRatio,
       parentController.view.frame.size.height * heightRatio
     )
