@@ -70,7 +70,7 @@ class AlarmFiredViewController: UIViewController {
           awakeButtonWidth
         )
       )
-      awakeButtonCircleView.labelText = "I'm awake"
+      awakeButtonCircleView.labelText = "I'm up!"
       let tapRecognizer = UITapGestureRecognizer(target: self, action: "deactivateAlarm")
       awakeButtonCircleView.addGestureRecognizer(tapRecognizer)
       view.addSubview(awakeButtonCircleView)

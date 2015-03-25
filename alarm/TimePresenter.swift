@@ -102,9 +102,9 @@ class TimePresenter: Comparable {
         return String(format: "%2d:%02d %@", time!.hour12, time!.minute, TimePresenter.amPmToString(time!.amOrPm))
       }
     case .Sunrise:
-      return "sunrise"
+      return "Sunrise"
     case .Sunset:
-      return "sunset"
+      return "Sunset"
     }
   }
 
@@ -128,9 +128,9 @@ class TimePresenter: Comparable {
         return String(format: "%2d:%02d %@", time!.hour12, time!.minute, TimePresenter.amPmToString(time!.amOrPm))
       }
     case .Sunrise:
-      return "sunrise"
+      return "Sunrise"
     case .Sunset:
-      return "sunset"
+      return "Sunset"
     }
   }
 
