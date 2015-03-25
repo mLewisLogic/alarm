@@ -261,7 +261,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
                 self.separatorView.alpha = 0.0
                 self.separatorView.backgroundColor = UIColor.whiteColor()
                 self.separatorView.frame = CGRectMake(self.primaryTimeLabel.frame.minX,
-                  distanceY + 30,
+                  distanceY + 40,
                   self.primaryTimeLabel.frame.width,
                   1
                 )
