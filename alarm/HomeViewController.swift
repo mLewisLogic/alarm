@@ -167,11 +167,31 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
   // Update the activation button to reflect current state
   func updateActivationButton() {
-    if AlarmHelper.isActivated() {
-      activationButtonCircleView.labelText = "DEACTIVATE"
-    } else {
-      activationButtonCircleView.labelText = "ACTIVATE"
-    }
+    UIView.animateWithDuration(0.5,
+      delay: 0.0,
+      options: UIViewAnimationOptions.CurveEaseInOut,
+      animations: { () -> Void in
+        self.activationButtonCircleView.label?.alpha = 0.0
+        return
+      }, completion: { finished in
+        if finished {
+          if AlarmHelper.isActivated() {
+            self.activationButtonCircleView.labelText = "DEACTIVATE"
+          } else {
+            self.activationButtonCircleView.labelText = "ACTIVATE"
+          }
+          
+          UIView.animateWithDuration(0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.activationButtonCircleView.label?.alpha = 1.0
+              return
+            },
+            completion: nil
+          )
+        }
+    })
   }
 
   // Enable or disable the time picker tap gesture recognizer
