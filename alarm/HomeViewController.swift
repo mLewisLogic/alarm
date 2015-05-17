@@ -163,7 +163,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
 
   // Allow the currently selected Home screen time to be updated
   func updateCurrentTime(notification: NSNotification) {
-    let alarmEntity = notification.object as AlarmEntity!
+    let alarmEntity = notification.object as! AlarmEntity!
     NSLog("updateCurrentTime: \(alarmEntity)")
     currentTime = TimePresenter(alarmEntity: alarmEntity)
     updateDisplay()

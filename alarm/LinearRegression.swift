@@ -13,8 +13,8 @@ class LinearRegression {
   class func slope(x: Array<Double>, y: Array<Double>) -> Double {
     let n = Double(x.count)
 
-    let meanX: Double = x.reduce(0.0, +) / n
-    let meanY: Double = y.reduce(0.0, +) / n
+    let meanX: Double = x.reduce(0.0, combine: +) / n
+    let meanY: Double = y.reduce(0.0, combine: +) / n
 
     let numerator = reduce(Zip2(x, y), 0.0) {
       (acc, val) in

@@ -135,7 +135,7 @@ class AlarmManager: NSObject {
   // Get the next scheduled alarm time
   class func nextScheduledAlarm() -> AlarmEntity {
     // Get all of the known alarms
-    let alarms = AlarmEntity.MR_findAll() as [AlarmEntity]
+    let alarms = AlarmEntity.MR_findAll() as! [AlarmEntity]
     // Get an array of upcoming alarms, impending first
     let activeAlarms = alarms.filter({
       (alarm: AlarmEntity) -> Bool in
@@ -156,11 +156,11 @@ class AlarmManager: NSObject {
     AlarmEntity.DayOfWeek.allValues.map {
       (dayOfWeekEnum: AlarmEntity.DayOfWeek) -> () in
 
-      let existingAlarmEntity = AlarmEntity.MR_findFirstByAttribute("dayOfWeek", withValue: dayOfWeekEnum.rawValue) as AlarmEntity?
+      let existingAlarmEntity = AlarmEntity.MR_findFirstByAttribute("dayOfWeek", withValue: dayOfWeekEnum.rawValue) as! AlarmEntity?
 
       // If it's nil, we need to create it
       if existingAlarmEntity == nil {
-        var newAlarmEntity = AlarmEntity.MR_createEntity() as AlarmEntity
+        var newAlarmEntity = AlarmEntity.MR_createEntity() as! AlarmEntity
         newAlarmEntity.dayOfWeekEnum = dayOfWeekEnum
         newAlarmEntity.alarmTypeEnum = .Time
         newAlarmEntity.setValue(true, forKey: "enabled")
@@ -174,7 +174,7 @@ class AlarmManager: NSObject {
 
   // Get alarms in Sunday -> Saturday order
   class func loadAlarmsOrdered() -> [AlarmEntity] {
-    var alarms = AlarmEntity.MR_findAll() as [AlarmEntity]
+    var alarms = AlarmEntity.MR_findAll() as! [AlarmEntity]
     // Sort them by day of week
     return alarms.sorted {
       (a: AlarmEntity, b: AlarmEntity) -> Bool in

@@ -161,7 +161,7 @@ class TimePresenter: Comparable {
         minute in
         TimePresenter(hour24: hour, minute: minute)
       }
-    }.reduce([], +)
+    }.reduce([], combine: +)
 
     // Add in sunrise and sunset.
     // Skip them if they can't be calculated

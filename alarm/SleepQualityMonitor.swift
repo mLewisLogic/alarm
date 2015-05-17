@@ -234,7 +234,7 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
       let count = Double(self.motionIntensityData.count)
       // Need to have at least 2 data points
       if count >= 2 {
-        let mean = self.motionIntensityData.reduce(0.0, +) / count
+        let mean = self.motionIntensityData.reduce(0.0, combine: +) / count
 
         let latestIntensity = self.motionIntensityData[self.motionIntensityData.count-1]
         let previousIntensity = self.motionIntensityData[self.motionIntensityData.count-2]

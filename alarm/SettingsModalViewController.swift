@@ -26,7 +26,6 @@ class SettingsModalViewController: UIViewController {
     self.alarmLabel.textColor = UIColor.lightGrayColor()
     
     scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
-    scheduleVC.containerView = scheduleView
     self.addChildViewController(scheduleVC)
     scheduleView.addSubview(scheduleVC.view)
     scheduleVC.didMoveToParentViewController(self)
@@ -53,7 +52,7 @@ class SettingsModalViewController: UIViewController {
     scheduleVC.view.clipsToBounds = true
 
     // Let the settings modal know who controls the time picker
-    scheduleVC.timePickerManagerDelegate = self.parentViewController! as HomeViewController
+    scheduleVC.timePickerManagerDelegate = self.parentViewController! as! HomeViewController
   }
   
 

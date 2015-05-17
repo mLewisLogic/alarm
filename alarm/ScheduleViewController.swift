@@ -21,8 +21,6 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   // The home view controls display of the time picker
   var timePickerManagerDelegate: TimePickerManagerDelegate!
   
-  var containerView: UIView!
-
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -55,10 +53,8 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    let cell = scheduleTableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell") as ScheduleTableViewCell
+    let cell = scheduleTableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell") as! ScheduleTableViewCell
     let containerHeight = cell.frame.height * 7
-    containerView.backgroundColor = UIColor.grayColor()
-    containerView.frame.size = CGSizeMake(containerView.frame.width, containerHeight)
     parentViewController?.viewDidLayoutSubviews()
   }
 
@@ -77,7 +73,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     let cell = tableView.dequeueReusableCellWithIdentifier(
       "ScheduleTableViewCell",
       forIndexPath: indexPath
-      ) as ScheduleTableViewCell
+      ) as! ScheduleTableViewCell
     cell.alarmEntity = alarmEntityArray[indexPath.row]
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     cell.contentView.autoresizingMask = .FlexibleHeight

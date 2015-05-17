@@ -43,7 +43,7 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
     var error: NSError?
     recorder = AVAudioRecorder(
       URL: soundFileURL!,
-      settings: recordSettings,
+      settings: recordSettings as [NSObject : AnyObject],
       error: &error
     )
 
