@@ -15,46 +15,40 @@ import Foundation
 
 
 protocol SoundMonitorDelegate {
-  func receiveSoundMonitorData(intensity: Double)
+  func receiveSoundMonitorData(_ intensity: Double)
 }
 
 class SoundMonitor: NSObject, AVAudioRecorderDelegate {
 
   let recordSettings = [
     AVFormatIDKey: kAudioFormatAppleLossless,
-    AVEncoderAudioQualityKey : AVAudioQuality.Min.rawValue,
+    AVEncoderAudioQualityKey : AVAudioQuality.min.rawValue,
     AVEncoderBitRateKey : 64000,
     AVNumberOfChannelsKey: 1,
     AVSampleRateKey : 44100.0,
-  ]
+  ] as [String : Any]
   // We don't need to save the recorded sound. We just
   // want to monitor it's levels as it's being recorded.
-  let soundFileURL = NSURL(fileURLWithPath: "/dev/null")
+  let soundFileURL = URL(fileURLWithPath: "/dev/null")
   let recorder: AVAudioRecorder
 
   // A periodic time checks levels
-  var timerPeriod = NSTimeInterval(5.0) // seconds
-  var meterTimer: NSTimer?
+  var timerPeriod = TimeInterval(5.0) // seconds
+  var meterTimer: Timer?
 
   // Feed the delegate our raw data
   var delegate: SoundMonitorDelegate!
 
   override init() {
-    var error: NSError?
-    recorder = AVAudioRecorder(
-      URL: soundFileURL!,
-      settings: recordSettings as [NSObject : AnyObject],
-      error: &error
+    recorder = try! AVAudioRecorder(
+        url: soundFileURL,
+        settings: recordSettings as [String : Any]
     )
-
+    
     super.init()
-
-    if let e = error {
-      NSLog(e.description)
-    } else {
-      recorder.delegate = self
-      recorder.meteringEnabled = true
-    }
+    
+    recorder.delegate = self
+    recorder.isMeteringEnabled = true
   }
 
   class func requestPermissionIfNeeded() {
@@ -72,23 +66,20 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
     invalidateTimer()
 
     // Activate the AVAudioSession
-    var error: NSError?
-    AVAudioSession.sharedInstance().setActive(
-      true,
-      error: &error
-    )
-    if let e = error {
-      NSLog(e.description)
+    do {
+        try AVAudioSession.sharedInstance().setActive(true)
+    } catch let error {
+        NSLog(error.localizedDescription)
     }
 
     // Start recording
     recorder.record()
 
     // Set up periodic
-    meterTimer = NSTimer.scheduledTimerWithTimeInterval(
-      timerPeriod, // seconds
+    meterTimer = Timer.scheduledTimer(
+        timeInterval: timerPeriod, // seconds
       target: self,
-      selector: "updateAudioMeter:",
+      selector: #selector(updateAudioMeter),
       userInfo: nil,
       repeats: true
     )
@@ -101,24 +92,24 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
 
 
   /* Delegate and event handling */
-  func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
     NSLog("finished recording \(flag)")
   }
 
-  func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder!, error: NSError!) {
-    NSLog("\(error.localizedDescription)")
+  func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+    NSLog("\(String(describing: error?.localizedDescription))")
   }
 
-  func updateAudioMeter(timer: NSTimer) {
-    if recorder.recording {
+  func updateAudioMeter(_ timer: Timer) {
+    if (recorder.isRecording) {
       recorder.updateMeters()
-      delegate.receiveSoundMonitorData(Double(recorder.peakPowerForChannel(0)))
+      delegate.receiveSoundMonitorData(Double(recorder.peakPower(forChannel: 0)))
     }
   }
 
 
   /* Private functions */
-  private func invalidateTimer() {
+  fileprivate func invalidateTimer() {
     if let timer = meterTimer {
       timer.invalidate()
       meterTimer = nil
@@ -126,7 +117,7 @@ class SoundMonitor: NSObject, AVAudioRecorderDelegate {
   }
 
   // Returns true if we need to ask for microphone permission
-  private func needsPermission() -> Bool {
-    return AVAudioSessionRecordPermission.Undetermined == AVAudioSession.sharedInstance().recordPermission()
+  fileprivate func needsPermission() -> Bool {
+    return AVAudioSessionRecordPermission.undetermined == AVAudioSession.sharedInstance().recordPermission()
   }
 }

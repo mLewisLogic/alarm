@@ -1,15 +1,17 @@
 PODS:
   - EDSunriseSet (1.0)
-  - MagicalRecord (2.2):
-    - MagicalRecord/Core (= 2.2)
-  - MagicalRecord/Core (2.2)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
 
 DEPENDENCIES:
   - EDSunriseSet (~> 1.0)
   - MagicalRecord (~> 2.2)
 
 SPEC CHECKSUMS:
-  EDSunriseSet: de06bfe7268534a07a19df7c3ce25625fea4edad
-  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  EDSunriseSet: bdc4760f496c8e6f9b9a727ffa645b6048aa2a09
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
-COCOAPODS: 0.36.0
+PODFILE CHECKSUM: b510c6d8a35e37fb1030fed87e5fcdb359af660c
+
+COCOAPODS: 1.2.1

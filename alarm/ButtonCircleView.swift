@@ -15,7 +15,7 @@ class ButtonCircleView: UIView {
   var circleColor = UIColor(white: 0.0, alpha: 0.5)
   var fontSize = CGFloat(24.0)
 
-  private var _labelText = ""
+  fileprivate var _labelText = ""
   var labelText: String {
     get { return _labelText }
     set {
@@ -27,52 +27,44 @@ class ButtonCircleView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = UIColor.clearColor()
+    self.backgroundColor = UIColor.clear
   }
 
   required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+    super.init(coder: aDecoder)!
   }
 
-  override func drawRect(rect: CGRect) {
+  override func draw(_ rect: CGRect) {
     // Get the Graphics Context
-    var context = UIGraphicsGetCurrentContext()
+    let context = UIGraphicsGetCurrentContext()
 
     // Set the fill color
     circleColor.setFill()
 
     // Fill in the circle
-    CGContextFillEllipseInRect(context, rect)
+    context!.fillEllipse(in: rect)
 
     // Set the circle outerline-width
-    CGContextSetLineWidth(context, borderWidth)
+    context!.setLineWidth(borderWidth)
 
     // Set the circle outerline-colour
-    color.colorWithAlphaComponent(0.9).setStroke()
+    color.withAlphaComponent(0.9).setStroke()
 
     // Create circle
-    CGContextAddArc(
-      context,
-      frame.size.width / 2,
-      frame.size.height / 2,
-      (frame.size.width - borderWidth) / 2,
-      0.0,
-      CGFloat(M_PI * 2.0),
-      1
-    )
-
+    context?.addArc(center: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2), radius: frame.size.height / 2, startAngle: 0.0, endAngle: CGFloat(Double.pi * 2.0), clockwise: true)
+    
     // Draw the circle stroke
-    CGContextStrokePath(context)
+    context!.strokePath()
 
     // Set up our label
     setupLabel(rect)
   }
 
   // Set up our sublabel
-  private func setupLabel(rect: CGRect) {
+  fileprivate func setupLabel(_ rect: CGRect) {
     if label == nil {
       label = UILabel(frame: rect)
-      label?.textAlignment = NSTextAlignment.Center
+      label?.textAlignment = NSTextAlignment.center
       self.addSubview(label!)
     }
 
@@ -80,7 +72,7 @@ class ButtonCircleView: UIView {
   }
 
   // Refresh the label's title
-  private func refreshLabel() {
+  fileprivate func refreshLabel() {
     if label != nil {
       //label!.text = self.labelText
       label!.attributedText = NSAttributedString(

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DayOfWeekAlarmDelegate {
-  func updateTimeSelected(cell: ScheduleTableViewCell)
+  func updateTimeSelected(_ cell: ScheduleTableViewCell)
 }
 
 class ScheduleTableViewCell: UITableViewCell {
@@ -28,24 +28,24 @@ class ScheduleTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-    self.backgroundColor = UIColor.whiteColor()
-    self.dayLabel.textColor = UIColor.blackColor()
-    self.timeButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+    self.backgroundColor = UIColor.white
+    self.dayLabel.textColor = UIColor.black
+    self.timeButton.setTitleColor(UIColor.black, for: UIControlState.normal)
   }
 
-  override func setSelected(selected: Bool, animated: Bool) {
+  override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
   }
 
   // Triggered when the user taps the time
-  @IBAction func timeChangeSelected(sender: UIButton) {
+  @IBAction func timeChangeSelected(_ sender: UIButton) {
     delegate.updateTimeSelected(self)
   }
 
   // Given details of our alarm entity, update the display
   func updateDisplay() {
     dayLabel.text = alarmEntity.dayOfWeekForDisplay()
-    timeButton.setTitle(alarmEntity.stringForTableDisplay(), forState: UIControlState.Normal)
+    timeButton.setTitle(alarmEntity.stringForTableDisplay(), for: UIControlState.normal)
   }
 }

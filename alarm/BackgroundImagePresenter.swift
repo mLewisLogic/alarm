@@ -37,9 +37,9 @@ class BackgroundImagePresenter {
     let toImage = getImage()
     
     if withTransition {
-      UIView.transitionWithView(self.imageView,
+      UIView.transition(with: self.imageView,
         duration: 5,
-        options: UIViewAnimationOptions.TransitionCrossDissolve,
+        options: UIViewAnimationOptions.transitionCrossDissolve,
         animations: { self.imageView.image = toImage },
         completion: nil)
     } else {
@@ -47,13 +47,13 @@ class BackgroundImagePresenter {
     }
   }
   
-  private func getImage() -> UIImage! {
+  fileprivate func getImage() -> UIImage! {
     // Create and return the background image view
     let imageName = self.getImageName()
-    return UIImage(named: imageName)
+    return UIImage(named: imageName!)
   }
   
-  private func getImageName() -> String! {
+  fileprivate func getImageName() -> String! {
     if alarmTime.hour24 >= sunrise.hour24 - 2 && alarmTime.hour24 <= sunrise.hour24 + 2 {
       // Sunrise
       return "sunrise.png"

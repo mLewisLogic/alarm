@@ -9,11 +9,15 @@
 import UIKit
 
 protocol TimePickerDelegate {
-  func timeSelected(time: TimePresenter)
+  func timeSelected(_ time: TimePresenter)
 }
 
 
 class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    @available(iOS 2.0, *)
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 3
+    }
 
   @IBOutlet weak var timePicker: UIPickerView!
 
@@ -39,8 +43,8 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
     super.viewDidLoad()
 
     // Set up our visual elements
-    self.view.backgroundColor = UIColor.clearColor()
-    timePicker.backgroundColor = UIColor.clearColor()
+    self.view.backgroundColor = UIColor.clear
+    timePicker.backgroundColor = UIColor.clear
     timePicker.alpha = 1.0
 
     // Do any additional setup after loading the view.
@@ -57,7 +61,7 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     fixTimePickerDimensions()
   }
 
@@ -66,11 +70,7 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
     // Dispose of any resources that can be recreated.
   }
 
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-    return 1
-  }
-
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     // Run up the number by a factor of 100 in order to provide fake
     // circular selection. This has been profiled and does not materially
     // hurt memory usage.
@@ -78,27 +78,33 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
   }
 
   // For each picker element, set up the view
-  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-    var timeView = UIView()
-    timeView.frame = CGRectMake(0, 0, pickerView.rowSizeForComponent(component).width, pickerView.rowSizeForComponent(component).height)
+  func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    let timeView = UIView()
+    timeView.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: pickerView.rowSize(forComponent: component).width,
+        height: pickerView.rowSize(forComponent: component).height
+    )
     
-    var timeLabel = UILabel()
-    var amPmLabel = UILabel()
+    let timeLabel = UILabel()
+    let amPmLabel = UILabel()
 
     if let activeElement = getTimePickerAtRow(row) {
-      let displayString = activeElement.stringForWheelDisplay()
-
-      var amPmString: String
-      if contains(["noon", "midnight"], displayString) {
-        amPmString = ""
-      } else {
-        amPmString = activeElement.stringForAmPm()
-      }
-
-      let transformation = CGAffineTransformMakeScale(
-        1.0 / pickerWidthScaleRatio,
-        pickerElementHeightScaleRatio / pickerHeightScaleRatio
-      )
+        let displayString = activeElement.stringForWheelDisplay()
+        
+        var amPmString: String
+        
+        if displayString.contains("noon") || displayString.contains("midnight") {
+            amPmString = ""
+        } else {
+            amPmString = activeElement.stringForAmPm()
+        }
+        
+        let transformation = CGAffineTransform(
+            scaleX: 1.0 / pickerWidthScaleRatio,
+            y: pickerElementHeightScaleRatio / pickerHeightScaleRatio
+        )
 
       // Create the labels with our attributed text
       timeLabel.attributedText = NSAttributedString(
@@ -108,7 +114,7 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
           NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 1.0),
         ]
       )
-      timeLabel.textAlignment = .Center
+      timeLabel.textAlignment = .center
       
       amPmLabel.attributedText = NSAttributedString(
         string: amPmString,
@@ -117,7 +123,7 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
           NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 1.0),
         ]
       )
-      amPmLabel.textAlignment = .Center
+      amPmLabel.textAlignment = .center
       // Finally, transform the text. This essentially performs two transforms.
       // The first one is an inverse of the transform run on the picker
       // as a whole. This makes sure that while the picker itself is
@@ -140,17 +146,17 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
     return timeView
   }
 
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     // pickerData[row]
   }
 
-  func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+  func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
     return 20.0
   }
 
   // The accept button was selected
-  @IBAction func acceptTapped(sender: UITapGestureRecognizer) {
-    let selectedRow = timePicker.selectedRowInComponent(0)
+  @IBAction func acceptTapped(_ sender: UITapGestureRecognizer) {
+    let selectedRow = timePicker.selectedRow(inComponent: 0)
     if let activeElement = getTimePickerAtRow(selectedRow) {
       delegate?.timeSelected(activeElement)
     }
@@ -160,9 +166,9 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
 
   // Given a time presenter, select the row in the picker view
   // that is equal.
-  private func selectTimePresenterRow(timePresenter: TimePresenter, animated: Bool = false) {
+  fileprivate func selectTimePresenterRow(_ timePresenter: TimePresenter, animated: Bool = false) {
     if let data = pickerData {
-      if let index = find(data, timePresenter) {
+      if let index = data.index(of: timePresenter) {
         let newRowIndex = data.count * circularPickerExplosionFactor + index
         timePicker.selectRow(newRowIndex, inComponent: 0, animated: animated)
       }
@@ -171,7 +177,7 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
 
   // Get the element at a given row
   // This is helpful because of our circular data
-  private func getTimePickerAtRow(row: Int) -> TimePresenter? {
+  fileprivate func getTimePickerAtRow(_ row: Int) -> TimePresenter? {
     if let data = pickerData {
       // Because we're duplicating elements in order to simulate
       // a circular effect, we need to use modulus when accessing
@@ -188,9 +194,9 @@ class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPick
   // surrounding view. This introduces some weird stretching effects that
   // need to be dealt with, but it's the only way to get a picker to display
   // with a height greater than 216.
-  private func fixTimePickerDimensions() {
+  fileprivate func fixTimePickerDimensions() {
     pickerWidthScaleRatio = (self.view.frame.width / 2.0) / pickerNaturalWidth
     pickerHeightScaleRatio = self.view.frame.height / pickerNaturalHeight
-    timePicker.transform = CGAffineTransformMakeScale(pickerWidthScaleRatio, pickerHeightScaleRatio)
+    timePicker.transform = CGAffineTransform(scaleX: pickerWidthScaleRatio, y: pickerHeightScaleRatio)
   }
 }

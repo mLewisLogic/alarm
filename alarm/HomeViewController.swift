@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol TimePickerManagerDelegate {
-  func showTimePicker(pickerDelegate: TimePickerDelegate, time: TimePresenter)
+  func showTimePicker(_ pickerDelegate: TimePickerDelegate, time: TimePresenter)
   func dismissTimePicker()
 }
 
@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     super.viewDidLoad()
 
     // Insert the background image in our view structure
-    self.view.insertSubview(backgroundImageView, atIndex: 0)
+    self.view.insertSubview(backgroundImageView, at: 0)
 
     // Set up a default TimePresenter
     currentTime = TimePresenter(alarmEntity: AlarmManager.nextAlarm())
@@ -61,7 +61,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     self.view.addSubview(separatorView)
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
 
     // Set the sizing for the background view
@@ -80,45 +80,45 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     addCancelButton()
 
     // If the next scheduled time changes, we want to overwrite our override
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self,
-      selector: "updateCurrentTime:",
-      name: Notifications.NextScheduledAlarmChanged,
+      selector: Selector(("updateCurrentTime:")),
+      name: NSNotification.Name(rawValue: Notifications.NextScheduledAlarmChanged),
       object: nil
     )
 
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self,
-      selector: "activateAlarmFiredView:",
-      name: Notifications.AlarmFired,
+      selector: #selector(activateAlarmFiredView),
+      name: NSNotification.Name(rawValue: Notifications.AlarmFired),
       object: nil
     )
 
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self,
-      selector: "updateActivationButton",
-      name: Notifications.AlarmActivated,
+      selector: #selector(HomeViewController.updateActivationButton),
+      name: NSNotification.Name(rawValue: Notifications.AlarmActivated),
       object: nil
     )
 
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self,
-      selector: "updateActivationButton",
-      name: Notifications.AlarmDeactivated,
+      selector: #selector(HomeViewController.updateActivationButton),
+      name: NSNotification.Name(rawValue: Notifications.AlarmDeactivated),
       object: nil
     )
     
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self,
-      selector: "toggleTimePickerButton",
-      name: Notifications.AlarmActivated,
+      selector: #selector(HomeViewController.toggleTimePickerButton),
+      name: NSNotification.Name(rawValue: Notifications.AlarmActivated),
       object: nil
     )
 
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self,
-      selector: "toggleTimePickerButton",
-      name: Notifications.AlarmDeactivated,
+      selector: #selector(HomeViewController.toggleTimePickerButton),
+      name: NSNotification.Name(rawValue: Notifications.AlarmDeactivated),
       object: nil
     )
   }
@@ -133,12 +133,12 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
 
   // Activate the time picker
-  func showTimePicker(pickerDelegate: TimePickerDelegate, time: TimePresenter) {
+  func showTimePicker(_ pickerDelegate: TimePickerDelegate, time: TimePresenter) {
     blurViewPresenter.showBlur()
 
     // Prepare and present the alarm picker controller
     timePickerViewController = TimePickerPresenter.preparePicker(pickerDelegate, time: time)
-    presentViewController(
+    present(
       timePickerViewController!,
       animated: true,
       completion: nil
@@ -146,16 +146,16 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
 
   // Delegate callback from the time picker
-  func timeSelected(time: TimePresenter) {
+  func timeSelected(_ time: TimePresenter) {
     currentTime = time
-    AlarmManager.setOverrideAlarm(time)
+    AlarmManager.setOverrideAlarm(timePresenter: time)
     dismissTimePicker()
   }
 
   // Dismiss the previously created timePicker
   func dismissTimePicker() {
     // dismiss and kill the timePickerViewController
-    timePickerViewController?.dismissViewControllerAnimated(true, completion: nil)
+    timePickerViewController?.dismiss(animated: true, completion: nil)
     timePickerViewController = nil
     blurViewPresenter.hideBlur()
     updateDisplay()
@@ -164,8 +164,8 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // Allow the currently selected Home screen time to be updated
   func updateCurrentTime(notification: NSNotification) {
     let alarmEntity = notification.object as! AlarmEntity!
-    NSLog("updateCurrentTime: \(alarmEntity)")
-    currentTime = TimePresenter(alarmEntity: alarmEntity)
+    NSLog("updateCurrentTime: \(String(describing: alarmEntity))")
+    currentTime = TimePresenter(alarmEntity: alarmEntity!)
     updateDisplay()
   }
 
@@ -190,11 +190,11 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // Enable or disable the time picker tap gesture recognizer
   func toggleTimePickerButton() {
     if AlarmHelper.isActivated() {
-      tapView.userInteractionEnabled = false
-      cancelAlarmButton.userInteractionEnabled = true
+      tapView.isUserInteractionEnabled = false
+      cancelAlarmButton.isUserInteractionEnabled = true
     } else {
-      tapView.userInteractionEnabled = true
-      cancelAlarmButton.userInteractionEnabled = false
+      tapView.isUserInteractionEnabled = true
+      cancelAlarmButton.isUserInteractionEnabled = false
     }
   }
 
@@ -202,7 +202,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // and present it over the app.
   func activateAlarmFiredView(notification: NSNotification) {
     alarmFiredViewController = AlarmFiredPresenter.prepare(self)
-    presentViewController(
+    present(
       alarmFiredViewController!,
       animated: true,
       completion: nil
@@ -212,7 +212,7 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   // The user has dismissed the alarm. Kill the alarmFired view
   func dismissAlarmFiredView() {
     // dismiss and kill the alarmFiredViewController
-    alarmFiredViewController?.dismissViewControllerAnimated(true, completion: nil)
+    alarmFiredViewController?.dismiss(animated: true, completion: nil)
     alarmFiredViewController = nil
   }
   
@@ -221,9 +221,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
 
   // TODO: kill me
-  @IBAction func testAlarm(sender: UIButton) {
-    NSNotificationCenter.defaultCenter().postNotificationName(
-      Notifications.AlarmFired,
+  @IBAction func testAlarm(_ sender: UIButton) {
+    NotificationCenter.default.post(
+        name: NSNotification.Name(rawValue: Notifications.AlarmFired),
       object: nil
     )
     AlarmHelper.deactivateAlarm()
@@ -236,17 +236,17 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     let wakeUpLabelDistance = self.primaryTimeLabel.center.y - self.wakeUpLabel.center.y
     let secondaryTimeLabelDistance = self.secondaryTimeLabel.center.y - self.primaryTimeLabel.center.y
     
-    UIView.animateWithDuration(0.5,
+    UIView.animate(withDuration: 0.5,
       delay: 0.0,
-      options: UIViewAnimationOptions.CurveEaseInOut,
+      options: UIViewAnimationOptions.curveEaseInOut,
       animations: { () -> Void in
         self.activationButtonCircleView.alpha = 0.0
         return
       }, completion: { finished in
         if finished {
-          UIView.animateWithDuration(0.5,
+          UIView.animate(withDuration: 0.5,
             delay: 0.0,
-            options: UIViewAnimationOptions.CurveEaseInOut,
+            options: UIViewAnimationOptions.curveEaseInOut,
             animations: { () -> Void in
               self.wakeUpLabel.center = CGPoint(x: self.wakeUpLabel.center.x, y: centerPoint -  wakeUpLabelDistance)
               self.primaryTimeLabel.center = CGPoint(x: self.primaryTimeLabel.center.x, y: centerPoint)
@@ -256,17 +256,18 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
             },
             completion: { finished in
               if finished {
-                let distanceY = self.secondaryTimeLabel.hidden ? centerPoint : secondaryTimeLabelDistance + centerPoint
+                let distanceY = self.secondaryTimeLabel.isHidden ? centerPoint : secondaryTimeLabelDistance + centerPoint
                 
                 self.separatorView.alpha = 0.0
-                self.separatorView.backgroundColor = UIColor.whiteColor()
-                self.separatorView.frame = CGRectMake(self.primaryTimeLabel.frame.minX,
-                  distanceY + 40,
-                  self.primaryTimeLabel.frame.width,
-                  1
+                self.separatorView.backgroundColor = UIColor.white
+                self.separatorView.frame = CGRect(
+                    x: self.primaryTimeLabel.frame.minX,
+                    y: distanceY + 40,
+                    width: self.primaryTimeLabel.frame.width,
+                    height: 1
                 )
                 
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                UIView.animate(withDuration: 0.5, animations: { () -> Void in
                   self.separatorView.alpha = 1.0
                   
                   self.settingsModal.toggleInView(hide: true)
@@ -286,9 +287,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
   
   private func transitionToAlarmDeactivatedView() {
-    UIView.animateWithDuration(0.5,
+    UIView.animate(withDuration: 0.5,
       delay: 0.0,
-      options: UIViewAnimationOptions.CurveEaseInOut,
+      options: UIViewAnimationOptions.curveEaseInOut,
       animations: { () -> Void in
         self.settingsModal.toggleInView(hide: false)
         self.separatorView.alpha = 0.0
@@ -306,11 +307,11 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
   
   private func addCancelButton() {
-    cancelAlarmButton.setTitle("Cancel Alarm", forState: UIControlState.Normal)
+    cancelAlarmButton.setTitle("Cancel Alarm", for: UIControlState.normal)
     cancelAlarmButton.titleLabel?.font = UIFont(name: "Avenir Medium", size: 32.0)
     cancelAlarmButton.sizeToFit()
     cancelAlarmButton.alpha = 0.0
-    cancelAlarmButton.addTarget(self, action: "activateTriggered", forControlEvents: UIControlEvents.TouchUpInside)
+    cancelAlarmButton.addTarget(self, action: #selector(HomeViewController.activateTriggered), for: UIControlEvents.touchUpInside)
     self.view.addSubview(cancelAlarmButton)
   }
 
@@ -320,9 +321,9 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     primaryTimeLabel.text = currentTime.primaryStringForTwoPartDisplay()
     
     if currentTime.secondaryStringForTwoPartDisplay().isEmpty {
-      secondaryTimeLabel.hidden = true
+      secondaryTimeLabel.isHidden = true
     } else {
-      secondaryTimeLabel.hidden = false
+      secondaryTimeLabel.isHidden = false
       secondaryTimeLabel.text = currentTime.secondaryStringForTwoPartDisplay()
     }
     // Update the background image
@@ -336,15 +337,15 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
     // 100 100
     if activationButtonCircleView == nil {
       activationButtonCircleView = ButtonCircleView(
-        frame: CGRectMake(
-          view.center.x - activationButtonWidth / 2,
-          view.frame.height * 0.5 - activationButtonWidth / 2,
-          activationButtonWidth,
-          activationButtonWidth
+        frame: CGRect(
+            x: view.center.x - activationButtonWidth / 2,
+            y: view.frame.height * 0.5 - activationButtonWidth / 2,
+            width: activationButtonWidth,
+            height: activationButtonWidth
         )
       )
       activationButtonCircleView.labelText = "ACTIVATE"
-      let tapRecognizer = UITapGestureRecognizer(target: self, action: "activateTriggered")
+      let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.activateTriggered))
       activationButtonCircleView.addGestureRecognizer(tapRecognizer)
       view.addSubview(activationButtonCircleView)
     }
@@ -363,20 +364,20 @@ class HomeViewController: UIViewController, TimePickerDelegate, TimePickerManage
   }
   
   private func addAlarmTimeBackdropView() {
-    alarmTimeBackdropView.frame = CGRectMake(
-      0,
-      0,
-      self.view.frame.width,
-      self.view.frame.height * 0.67 - wakeUpLabel.frame.minY + 60
+    alarmTimeBackdropView.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: self.view.frame.width,
+        height: self.view.frame.height * 0.67 - wakeUpLabel.frame.minY + 60
     )
-    alarmTimeBackdropView.backgroundColor = UIColor.clearColor()
+    alarmTimeBackdropView.backgroundColor = UIColor.clear
     self.view.insertSubview(
       alarmTimeBackdropView,
       aboveSubview: backgroundImageView
     )
 
     tapView.frame = alarmTimeBackdropView.frame
-    changeTimeTapRecognizer = UITapGestureRecognizer(target: self, action: "timeChangeSelected:")
+    changeTimeTapRecognizer = UITapGestureRecognizer(target: self, action: Selector(("timeChangeSelected:")))
     changeTimeTapRecognizer.delegate = self
     tapView.addGestureRecognizer(changeTimeTapRecognizer)
 

@@ -52,7 +52,8 @@
 		27DD02941ABE056A00CE0105 /* AlarmFiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DD02921ABE056A00CE0105 /* AlarmFiredViewController.swift */; };
 		27DD02951ABE056A00CE0105 /* AlarmFiredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27DD02931ABE056A00CE0105 /* AlarmFiredViewController.xib */; };
 		27FE93831AB00FE600059E18 /* AlarmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FE93821AB00FE600059E18 /* AlarmEntity.swift */; };
-		76C06047841EFB0C443D54BB /* libPods-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 225B0BBD7F243D40B3608C0A /* libPods-alarm.a */; };
+		68ADD3630C0854C4E27707CC /* Pods_alarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B4E33E4348497F64AA6AAB /* Pods_alarm.framework */; };
+		AD5CF044CA901EE711E17842 /* Pods_alarmTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F716AFF78CFE151C82B0E6 /* Pods_alarmTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +67,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		12B39A0D2F7E331BB496FA50 /* Pods-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.debug.xcconfig"; sourceTree = "<group>"; };
-		225B0BBD7F243D40B3608C0A /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2508E83E1ABA83B900DFB9D5 /* BackgroundImagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImagePresenter.swift; sourceTree = "<group>"; };
 		2508E8401ABB27CB00DFB9D5 /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftColors.swift; sourceTree = "<group>"; };
 		254478791AB63411002FA3CB /* SettingsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModalViewController.swift; sourceTree = "<group>"; };
@@ -119,7 +118,12 @@
 		27DD02921ABE056A00CE0105 /* AlarmFiredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmFiredViewController.swift; sourceTree = "<group>"; };
 		27DD02931ABE056A00CE0105 /* AlarmFiredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmFiredViewController.xib; sourceTree = "<group>"; };
 		27FE93821AB00FE600059E18 /* AlarmEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmEntity.swift; sourceTree = "<group>"; };
-		B44D3343037B9278CEFF019A /* Pods-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.release.xcconfig"; sourceTree = "<group>"; };
+		2A7DEA86C4D84C04F11867FF /* Pods-alarmTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests.release.xcconfig"; sourceTree = "<group>"; };
+		63B4E33E4348497F64AA6AAB /* Pods_alarm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_alarm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CB806A6BF06FBC447BC5D1F /* Pods-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.debug.xcconfig"; sourceTree = "<group>"; };
+		A9E4109A8B39887D29BB0A09 /* Pods-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.release.xcconfig"; sourceTree = "<group>"; };
+		C6F716AFF78CFE151C82B0E6 /* Pods_alarmTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_alarmTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF190B2F529EBA5AF3BAAAC /* Pods-alarmTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76C06047841EFB0C443D54BB /* libPods-alarm.a in Frameworks */,
+				68ADD3630C0854C4E27707CC /* Pods_alarm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,12 +139,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5CF044CA901EE711E17842 /* Pods_alarmTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23CA960040E3C8FEA1FAE8F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6CB806A6BF06FBC447BC5D1F /* Pods-alarm.debug.xcconfig */,
+				A9E4109A8B39887D29BB0A09 /* Pods-alarm.release.xcconfig */,
+				DAF190B2F529EBA5AF3BAAAC /* Pods-alarmTests.debug.xcconfig */,
+				2A7DEA86C4D84C04F11867FF /* Pods-alarmTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		253F9DFC1AA95162007A1457 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,8 +194,8 @@
 				25E7C68A1AA8284100431A81 /* alarm */,
 				25E7C6A31AA8284100431A81 /* alarmTests */,
 				25E7C6891AA8284100431A81 /* Products */,
-				39C66CE13E8DFFD97A0650FC /* Pods */,
-				A1FFBE7D1FB3B8E248EE8966 /* Frameworks */,
+				DF69969A507678A2AE0FA1A2 /* Frameworks */,
+				23CA960040E3C8FEA1FAE8F6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,19 +320,11 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		39C66CE13E8DFFD97A0650FC /* Pods */ = {
+		DF69969A507678A2AE0FA1A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				12B39A0D2F7E331BB496FA50 /* Pods-alarm.debug.xcconfig */,
-				B44D3343037B9278CEFF019A /* Pods-alarm.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A1FFBE7D1FB3B8E248EE8966 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				225B0BBD7F243D40B3608C0A /* libPods-alarm.a */,
+				63B4E33E4348497F64AA6AAB /* Pods_alarm.framework */,
+				C6F716AFF78CFE151C82B0E6 /* Pods_alarmTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,11 +336,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25E7C6AA1AA8284100431A81 /* Build configuration list for PBXNativeTarget "alarm" */;
 			buildPhases = (
-				F784DBC39E994C5728B8A394 /* Check Pods Manifest.lock */,
+				D5114A9428AB86C751E79D9A /* [CP] Check Pods Manifest.lock */,
 				25E7C6841AA8284100431A81 /* Sources */,
 				25E7C6851AA8284100431A81 /* Frameworks */,
 				25E7C6861AA8284100431A81 /* Resources */,
-				92ADDD6802CBBE3F7F976711 /* Copy Pods Resources */,
+				ADB7941ACAC0B57B64F1AD20 /* [CP] Embed Pods Frameworks */,
+				A64471207BD729D19BE64662 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,9 +356,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25E7C6AD1AA8284100431A81 /* Build configuration list for PBXNativeTarget "alarmTests" */;
 			buildPhases = (
+				FCCCF57AFBE2EC809555CBFB /* [CP] Check Pods Manifest.lock */,
 				25E7C69C1AA8284100431A81 /* Sources */,
 				25E7C69D1AA8284100431A81 /* Frameworks */,
 				25E7C69E1AA8284100431A81 /* Resources */,
+				DDB41246E17720BA7FEA34D0 /* [CP] Embed Pods Frameworks */,
+				531DA62C1DE9B7119C19F120 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,12 +379,13 @@
 		25E7C6801AA8284100431A81 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Kevin Farst";
 				TargetAttributes = {
 					25E7C6871AA8284100431A81 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = R4BDQ3WQN7;
+						DevelopmentTeam = V5X2UCZH4N;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -381,6 +394,8 @@
 					};
 					25E7C69F1AA8284100431A81 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = V5X2UCZH4N;
+						LastSwiftMigration = 0830;
 						TestTargetID = 25E7C6871AA8284100431A81;
 					};
 				};
@@ -437,14 +452,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		92ADDD6802CBBE3F7F976711 /* Copy Pods Resources */ = {
+		531DA62C1DE9B7119C19F120 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A64471207BD729D19BE64662 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,19 +482,64 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarm/Pods-alarm-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F784DBC39E994C5728B8A394 /* Check Pods Manifest.lock */ = {
+		ADB7941ACAC0B57B64F1AD20 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarm/Pods-alarm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5114A9428AB86C751E79D9A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DDB41246E17720BA7FEA34D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCCCF57AFBE2EC809555CBFB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -549,15 +624,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -576,6 +655,7 @@
 				PRODUCT_NAME = Shuteye;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -592,8 +672,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -601,6 +683,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -611,70 +694,105 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Shuteye;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		25E7C6AB1AA8284100431A81 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12B39A0D2F7E331BB496FA50 /* Pods-alarm.debug.xcconfig */;
+			baseConfigurationReference = 6CB806A6BF06FBC447BC5D1F /* Pods-alarm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = V5X2UCZH4N;
 				INFOPLIST_FILE = alarm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Shuteye;
 				SWIFT_OBJC_BRIDGING_HEADER = "alarm/alarm-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		25E7C6AC1AA8284100431A81 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B44D3343037B9278CEFF019A /* Pods-alarm.release.xcconfig */;
+			baseConfigurationReference = A9E4109A8B39887D29BB0A09 /* Pods-alarm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = V5X2UCZH4N;
 				INFOPLIST_FILE = alarm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Shuteye;
 				SWIFT_OBJC_BRIDGING_HEADER = "alarm/alarm-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		25E7C6AE1AA8284100431A81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAF190B2F529EBA5AF3BAAAC /* Pods-alarmTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = V5X2UCZH4N;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = alarmTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_bundle;
+				OTHER_LDFLAGS = (
+					"-v",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/alarm.app/alarm";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shuteye.app/Shuteye";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		25E7C6AF1AA8284100431A81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A7DEA86C4D84C04F11867FF /* Pods-alarmTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = V5X2UCZH4N;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = alarmTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_bundle;
+				OTHER_LDFLAGS = (
+					"-v",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/alarm.app/alarm";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shuteye.app/Shuteye";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

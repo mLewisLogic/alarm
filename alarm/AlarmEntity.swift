@@ -34,9 +34,9 @@ class AlarmEntity: NSManagedObject {
 
   // Valid values:
   //  sunday, monday, tuesday, wednesday, thursday, friday, saturday
-  @NSManaged private var dayOfWeek: String
+  @NSManaged fileprivate var dayOfWeek: String
   // Valid values: time, sunrise, sunset
-  @NSManaged private var alarmType: String
+  @NSManaged fileprivate var alarmType: String
   // Valid values: true, false
   @NSManaged var enabled: Bool
   // Valid values: 0-23
@@ -99,7 +99,7 @@ class AlarmEntity: NSManagedObject {
   // NOTE: This is intended to be called exclusively by
   //  AlarmManager.updateAlarmEntity() so that it can notify
   //  the app when this change has global schedule impacts.
-  func applyTimePresenter(timePresenter: TimePresenter) {
+  func applyTimePresenter(_ timePresenter: TimePresenter) {
     // Keep whatever type it was
     self.alarmTypeEnum = timePresenter.type
 
@@ -122,7 +122,7 @@ class AlarmEntity: NSManagedObject {
 
   // Get a displayable form of the `dayOfWeek` variable.
   func dayOfWeekForDisplay() -> String {
-    return dayOfWeek.capitalizedString
+    return dayOfWeek.capitalized
   }
 
   // Generate a displayable version of this time
@@ -135,29 +135,27 @@ class AlarmEntity: NSManagedObject {
       return "Sunrise"
     case .Sunset:
       return "Sunset"
-    default:
-      NSLog("Bad alarm type: \(alarmTypeEnum)")
-      return ""
     }
   }
 
   // When is the next NSDate for this alarm?
-  func nextAlarmTime() -> NSDate? {
+  func nextAlarmTime() -> Date? {
     if let time = TimePresenter(alarmEntity: self).calculatedTime() {
       // Match on day of week and time
-      var matchingComponents = NSDateComponents()
+      var matchingComponents = DateComponents()
       matchingComponents.weekday = weekday
       matchingComponents.hour = time.hour24
       matchingComponents.minute = time.minute
 
       // Find the next local time that matches what we're looking for
       // NSCalendar handles timezones for us
-      let calendar = NSCalendar.currentCalendar()
-      return calendar.nextDateAfterDate(
-        NSDate(),
-        matchingComponents: matchingComponents,
-        options: NSCalendarOptions.MatchNextTime
+      let calendar = Calendar.current
+      return calendar.nextDate(
+        after: Date(),
+        matching: matchingComponents as DateComponents,
+        matchingPolicy: Calendar.MatchingPolicy.nextTime
       )
+        
     } else {
       return nil
     }
@@ -169,7 +167,7 @@ class AlarmEntity: NSManagedObject {
   // Persist the context, and therefore this object
   func persistSelf() {
     NSManagedObjectContext
-      .MR_defaultContext()
-      .MR_saveToPersistentStoreAndWait()
+      .mr_default()
+      .mr_saveToPersistentStoreAndWait()
   }
 }

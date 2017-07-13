@@ -6,22 +6,22 @@
 //  Copyright (c) 2015 Kevin Farst. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class SettingsModalView {
   
-  private var settingsModal: SettingsModalViewController!
-  private var parentController: UIViewController!
-  private var widthRatio = CGFloat(0.92)
-  private var heightRatio = CGFloat(0.8)
-  private var cornerRadius = CGFloat(6.0)
+  fileprivate var settingsModal: SettingsModalViewController!
+  fileprivate var parentController: UIViewController!
+  fileprivate var widthRatio = CFloat(0.92)
+  fileprivate var heightRatio = CFloat(0.8)
+  fileprivate var cornerRadius = CFloat(6.0)
   
   required init(parentVC: UIViewController) {
       parentController = parentVC
     
       settingsModal = SettingsModalViewController(nibName: "SettingsModalViewController", bundle: nil)
       self.parentController.addChildViewController(settingsModal)
-      settingsModal.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+      settingsModal.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
       settingsModal.openPosition = parentController.view.center.y
     
       setEdgeDimensionsAndStyling()
@@ -31,7 +31,7 @@ class SettingsModalView {
       applyPlainShadow(settingsModal.view)
 
       parentController.view.addSubview(settingsModal.view)
-      settingsModal.didMoveToParentViewController(parentController)
+      settingsModal.didMove(toParentViewController: parentController)
   }
   
   func toggleInView(hide hidden: Bool) {
@@ -42,24 +42,24 @@ class SettingsModalView {
     }
   }
   
-  private func applyPlainShadow(view: UIView) {
+  fileprivate func applyPlainShadow(_ view: UIView) {
     let layer = view.layer
     
-    layer.shadowPath = UIBezierPath(rect: CGRectMake(0, 0, settingsModal.view.frame.width, settingsModal.view.frame.height)).CGPath
-    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: settingsModal.view.frame.width, height: settingsModal.view.frame.height)).cgPath
+    layer.shadowColor = SWColor.black.cgColor
     layer.shadowOffset = CGSize(width: 0, height: 10)
     layer.shadowOpacity = 0.4
     layer.shadowRadius = 5
   }
   
-  private func setEdgeDimensionsAndStyling() {
-    settingsModal.view.frame = CGRectMake(
-      (parentController.view.frame.size.width - (parentController.view.frame.size.width * widthRatio)) / 2.0,
-      parentController.view.frame.size.height - settingsModal.topBorder.frame.minY,
-      parentController.view.frame.size.width * widthRatio,
-      parentController.view.frame.size.height * heightRatio
+  fileprivate func setEdgeDimensionsAndStyling() {
+    settingsModal.view.frame = CGRect(
+        x: (parentController.view.frame.size.width - parentController.view.frame.size.width.multiplied(by: CGFloat(widthRatio))) / 2.0,
+        y: parentController.view.frame.size.height - settingsModal.topBorder.frame.minY,
+        width: parentController.view.frame.size.width.multiplied(by: CGFloat(widthRatio)),
+        height: parentController.view.frame.size.height.multiplied(by: CGFloat(heightRatio))
     )
-    settingsModal.view.layer.cornerRadius = cornerRadius
+    settingsModal.view.layer.cornerRadius = CGFloat(cornerRadius)
     settingsModal.view.layer.masksToBounds = true
     settingsModal.view.clipsToBounds = true
   }

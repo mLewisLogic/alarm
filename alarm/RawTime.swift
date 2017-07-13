@@ -13,8 +13,8 @@ import Foundation
 // 24-hour and 12-hour time. It stores in 24-hour time.
 struct RawTime: Comparable, Hashable {
   enum AmPm {
-    case AM
-    case PM
+    case am
+    case pm
   }
 
   // Only `hour24` and `minute` are required
@@ -38,9 +38,9 @@ struct RawTime: Comparable, Hashable {
 
   var amOrPm: AmPm {
     if hour24 < 12 {
-      return .AM
+      return .am
     } else {
-      return .PM
+      return .pm
     }
   }
 

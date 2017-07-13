@@ -39,7 +39,7 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
 
   // Do we need to ask the user for authorization?
   class func isAccessNeeded() -> Bool {
-    return .NotDetermined == singleton.authorizationStatus()
+    return .notDetermined == singleton.authorizationStatus()
   }
 
   // Set up monitoring if the user has already approved the app
@@ -58,20 +58,20 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
 
 
   /* Location update handler functions */
-  func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+  @nonobjc func locationManager(_ manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
     latestLocation = locations.last as? CLLocation
-    NSLog("locationManager: didUpdateLocations: \(latestLocation?.description)")
+    NSLog("locationManager: didUpdateLocations: \(String(describing: latestLocation?.description))")
   }
 
-  func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-    NSLog("locationManager: didFailWithError: \(error.description)")
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    NSLog("locationManager: didFailWithError: \(error.localizedDescription)")
   }
 
-  func locationManager(manager: CLLocationManager!, didFinishDeferredUpdatesWithError error: NSError!) {
-    NSLog("locationManager: didFinishDeferredUpdatesWithError: \(error.description)")
+  func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
+    NSLog("locationManager: didFinishDeferredUpdatesWithError: \(String(describing: error?.localizedDescription))")
   }
 
-  func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+  fileprivate func locationManager(_ manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     NSLog("locationManager: auth status changed to: \(status.rawValue)")
     setupLocationMonitoring()
   }
@@ -82,7 +82,7 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
 
   // Set up location monitoring. Try to use the lightest power methods first
   // and fall back to more energy intensive methods if needed.
-  private func setupLocationMonitoring() {
+  fileprivate func setupLocationMonitoring() {
     // Early return if we already have monitoring setup
     if (isMonitoringLocation) {
       return
@@ -94,7 +94,7 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
       // Stash the current location
       latestLocation = locationManager.location
       // Cascade down our location provider hierarchy
-      if (CLLocationManager.significantLocationChangeMonitoringAvailable() && .AuthorizedAlways == authorizationStatus()) {
+      if (CLLocationManager.significantLocationChangeMonitoringAvailable() && .authorizedAlways == authorizationStatus()) {
         NSLog("Setting up significant location change monitoring")
         locationManager.startMonitoringSignificantLocationChanges()
         isMonitoringLocation = true
@@ -103,7 +103,7 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
           NSLog("Setting up deferred location updating")
           // If allowed, defer updates unless the location has changed 
           // by more than 5km, or is more than 24 hours stale.
-          locationManager.allowDeferredLocationUpdatesUntilTraveled(5000.0, timeout: 24.0 * 60.0 * 60.0)
+          locationManager.allowDeferredLocationUpdates(untilTraveled: 5000.0, timeout: 24.0 * 60.0 * 60.0)
         }
         NSLog("Enabling location monitoring")
         locationManager.startUpdatingLocation()
@@ -117,17 +117,17 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
   }
 
   // Disable location monitoring
-  private func teardownLocationMonitoring() {
+  fileprivate func teardownLocationMonitoring() {
     locationManager.stopMonitoringSignificantLocationChanges()
     locationManager.stopUpdatingLocation()
     isMonitoringLocation = false
   }
 
   // Has access specifically been granted?
-  private func accessIsAuthorized() -> Bool {
+  fileprivate func accessIsAuthorized() -> Bool {
     let status = authorizationStatus()
     switch status {
-    case .AuthorizedAlways:
+    case .authorizedAlways:
       return true
     default:
       return false
@@ -135,17 +135,17 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
   }
 
   // Has access specifically been restricted?
-  private func accessIsRestricted() -> Bool {
+  fileprivate func accessIsRestricted() -> Bool {
     let status = authorizationStatus()
     switch status {
-    case .Denied, .Restricted:
+    case .denied, .restricted:
       return true
     default:
       return false
     }
   }
 
-  private func authorizationStatus() -> CLAuthorizationStatus {
+  fileprivate func authorizationStatus() -> CLAuthorizationStatus {
     return CLLocationManager.authorizationStatus()
   }
 }

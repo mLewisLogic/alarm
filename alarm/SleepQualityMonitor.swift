@@ -31,31 +31,31 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   /* Sound config */
   let soundMonitor: SoundMonitor
   // Keep track of time and intensity of sound
-  var soundTimeData: [NSTimeInterval] = []
+  var soundTimeData: [TimeInterval] = []
   var soundIntensityData: [Double] = []
   let soundDataMutex = NSObject()
   // Time-stamps where we think we heard motion
-  var soundEvents: [NSTimeInterval] = []
+  var soundEvents: [TimeInterval] = []
 
-  let SOUND_CALCULATION_TIME_WINDOW: NSTimeInterval = 10.0 * 60.0 // 10 minutes (in seconds)
-  let SOUND_CALCULATION_PERIOD: NSTimeInterval = 1.0 // seconds
+  let SOUND_CALCULATION_TIME_WINDOW: TimeInterval = 10.0 * 60.0 // 10 minutes (in seconds)
+  let SOUND_CALCULATION_PERIOD: TimeInterval = 1.0 // seconds
   let SOUND_CALCULATION_INDEX_WINDOW: Int
 
 
   /* Motion config */
   let motionMonitor: MotionMonitor
   // Keep track of time and intensity of movement
-  var motionTimeData: [NSTimeInterval] = []
+  var motionTimeData: [TimeInterval] = []
   var motionIntensityData: [Double] = []
   let motionDataMutex = NSObject()
   // Time-stamps where we think we saw motion
-  var motionEvents: [NSTimeInterval] = []
+  var motionEvents: [TimeInterval] = []
 
-  let MOTION_CALCULATION_TIME_WINDOW: NSTimeInterval = 10.0 * 60.0 // 10 minutes (in seconds)
+  let MOTION_CALCULATION_TIME_WINDOW: TimeInterval = 10.0 * 60.0 // 10 minutes (in seconds)
   let MOTION_SPIKE_SCALAR_THRESHOLD = 5.0 // 5x mean acceleration
 
   /* Data pruning job */
-  var dataPruningTimer: NSTimer?
+  var dataPruningTimer: Timer?
   let DATA_PRUNING_PERIOD = 60.0 // seconds
 
 
@@ -109,7 +109,7 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   /* Delegate handling */
 
   // Handle receiving sound monitor data
-  func receiveSoundMonitorData(intensity: Double) {
+  func receiveSoundMonitorData(_ intensity: Double) {
     // Perform this under a mutex to avoid data corruption
     with_mutex(soundDataMutex) {
       // Stash the timestamp and data
@@ -122,7 +122,7 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   }
 
   // Handle receiving motion monitor data
-  func receiveMotionMonitorData(intensity: Double) {
+  func receiveMotionMonitorData(_ intensity: Double) {
     // Perform this under a mutex to avoid data corruption
     with_mutex(motionDataMutex) {
       // Stash the timestamp and data
@@ -141,7 +141,7 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   /* Event handling */
   // Prune old data in a safe way
   // This should be called periodically to make sure we don't blow up memory.
-  func pruneData(timer: NSTimer) {
+  @objc func pruneData(_ timer: Timer) {
     // Perform this under a mutex to avoid data corruption
     with_mutex(soundDataMutex) {
       let thresholdTime = NSDate().timeIntervalSince1970 - self.SOUND_CALCULATION_TIME_WINDOW
@@ -168,7 +168,7 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   /* Private functions */
 
   // Basic locking functionality for the arrays
-  func with_mutex(mutex: AnyObject, closure: () -> ()) {
+  func with_mutex(_ mutex: AnyObject, closure: () -> ()) {
     objc_sync_enter(mutex)
     closure()
     objc_sync_exit(mutex)
@@ -180,19 +180,19 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   // naturally waking up, we should let them. We only want to activate
   // the alarm early if the user is in danger of falling back into deep
   // sleep before their alarm goes off.
-  private func checkAndNotify() {
+  fileprivate func checkAndNotify() {
     if isUserFallingBackAsleep() {
       delegate.userShouldWakeUp()
     }
   }
 
   // Determine if the user is waking up right now
-  private func isUserFallingBackAsleep() -> Bool {
+  fileprivate func isUserFallingBackAsleep() -> Bool {
     //let soundSlope = soundMonitorSlope()
     //NSLog("Sound monitor slope: \(soundSlope)")
 
-    let tenMinutesAgo: NSTimeInterval = NSDate().timeIntervalSince1970 - 10.0 * 60.0
-    let twentyMinutesAgo: NSTimeInterval = tenMinutesAgo - 10.0 * 60.0
+    let tenMinutesAgo: TimeInterval = NSDate().timeIntervalSince1970 - 10.0 * 60.0
+    let twentyMinutesAgo: TimeInterval = tenMinutesAgo - 10.0 * 60.0
 
     var isMovingLess = false
     // Perform this under a mutex to avoid bad reads
@@ -212,7 +212,7 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   }
 
   // Calculate a slope for the sound data
-  private func soundMonitorSlope() -> Double {
+  fileprivate func soundMonitorSlope() -> Double {
     // Don't even bother
     if soundIntensityData.count > SOUND_CALCULATION_INDEX_WINDOW {
       // Get a slice of the `SOUND_CALCULATION_INDEX_WINDOW` most recent rows
@@ -227,14 +227,14 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   }
 
   // Did the last event exceed our mean by a scalar threshold?
-  private func checkLatestMotionDataPoint() {
+  fileprivate func checkLatestMotionDataPoint() {
     // Perform this under a mutex to avoid bad reads
     with_mutex(motionDataMutex) {
       // This is inefficient to do every time. The summation should be cached.
       let count = Double(self.motionIntensityData.count)
       // Need to have at least 2 data points
       if count >= 2 {
-        let mean = self.motionIntensityData.reduce(0.0, combine: +) / count
+        let mean = self.motionIntensityData.reduce(0.0, +) / count
 
         let latestIntensity = self.motionIntensityData[self.motionIntensityData.count-1]
         let previousIntensity = self.motionIntensityData[self.motionIntensityData.count-2]
@@ -250,19 +250,19 @@ class SleepQualityMonitor: SoundMonitorDelegate, MotionMonitorDelegate {
   }
 
   // Kicks off a periodic timer to prune data that's outside of our window
-  private func startDataPruningTimer() {
+  fileprivate func startDataPruningTimer() {
     invalidateDataPruningTimer()
-    dataPruningTimer = NSTimer.scheduledTimerWithTimeInterval(
-      DATA_PRUNING_PERIOD,
+    dataPruningTimer = Timer.scheduledTimer(
+        timeInterval: DATA_PRUNING_PERIOD,
       target: self,
-      selector: "pruneData:",
+      selector: #selector(pruneData),
       userInfo: nil,
       repeats: true
     )
   }
 
   // Kill existing timer if it exists
-  private func invalidateDataPruningTimer() {
+  fileprivate func invalidateDataPruningTimer() {
     if let timer = dataPruningTimer {
       timer.invalidate()
       dataPruningTimer = nil

@@ -10,28 +10,28 @@ import UIKit
 
 class VerticalGradientView: UIView {
 
-  override func drawRect(rect: CGRect) {
+  override func draw(_ rect: CGRect) {
     let context = UIGraphicsGetCurrentContext()
 
-    CGContextSaveGState(context);
+    context!.saveGState();
 
     let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-    let colors: CFArray = [
-      UIColor(white: 0.0, alpha: 0.7).CGColor,
-      UIColor.clearColor().CGColor,
+    let colors = [
+      UIColor(white: 0.0, alpha: 0.7).cgColor,
+      UIColor.clear.cgColor
     ]
 
     var locations: [CGFloat] = [0.0, 1.0]
 
-    var gradient = CGGradientCreateWithColors(colorSpace, colors, &locations)
+    let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: &locations)
 
-    let startPoint = CGPointMake(0, 0)
-    let endPoint = CGPointMake(0, self.bounds.height)
+    let startPoint = CGPoint(x: 0, y: 0)
+    let endPoint = CGPoint(x: 0, y: self.bounds.height)
 
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0)
+    context!.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: 0))
 
-    CGContextRestoreGState(context)
+    context!.restoreGState()
   }
 
 }

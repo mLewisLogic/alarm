@@ -161,7 +161,7 @@ class TimePresenter: Comparable {
         minute in
         TimePresenter(hour24: hour, minute: minute)
       }
-    }.reduce([], combine: +)
+    }.reduce([], +)
 
     // Add in sunrise and sunset.
     // Skip them if they can't be calculated
@@ -178,11 +178,11 @@ class TimePresenter: Comparable {
     return times.sorted { $0 < $1 }
   }
 
-  class func amPmToString(amPm: RawTime.AmPm) -> String {
+  class func amPmToString(_ amPm: RawTime.AmPm) -> String {
     switch amPm {
-    case .AM:
+    case .am:
       return "am"
-    case .PM:
+    case .pm:
       return "pm"
     }
   }
@@ -192,7 +192,7 @@ class TimePresenter: Comparable {
 
 // Comparison operators for TimePresenter
 func <(left: TimePresenter, right: TimePresenter) -> Bool {
-  return left.calculatedTime() < right.calculatedTime()
+  return left.calculatedTime()! < right.calculatedTime()!
 }
 
 func ==(left: TimePresenter, right: TimePresenter) -> Bool {

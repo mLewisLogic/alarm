@@ -13,7 +13,7 @@ import Foundation
 // data.
 
 protocol MotionMonitorDelegate {
-  func receiveMotionMonitorData(intensity: Double)
+  func receiveMotionMonitorData(_ intensity: Double)
 }
 
 class MotionMonitor: NSObject {
@@ -31,10 +31,10 @@ class MotionMonitor: NSObject {
 
   // Start monitoring for motion changes
   func startMonitoring() {
-    if motionManager.deviceMotionAvailable {
+    if motionManager.isDeviceMotionAvailable {
       motionManager.deviceMotionUpdateInterval = 0.01
-      motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) {
-        (current: CMDeviceMotion!, error: NSError!) in
+      motionManager.startDeviceMotionUpdates(to: OperationQueue.main) {
+        (current: CMDeviceMotion!, error: Error!) in
 
         if let last = self.lastMotionData {
           // Calculate the 3D distance between two CMAcceleration's

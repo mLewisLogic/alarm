@@ -20,7 +20,7 @@ private let _alarmHelper = AlarmHelper()
 class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
 
   var activeAlarm: AlarmEntity?
-  var activeTimer: NSTimer?
+  var activeTimer: Timer?
 
   let sleepQualityMonitor: SleepQualityMonitor
 
@@ -43,8 +43,8 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
   /* Public interface */
 
   // Set the active alarm
-  class func setAlarm(alarm: AlarmEntity?) {
-    singleton.setAlarm(alarm)
+  class func setAlarm(_ alarm: AlarmEntity?) {
+    singleton.setAlarm(alarm: alarm)
   }
 
   // Return true if the alarm is activated
@@ -67,10 +67,10 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
   /* Event handlers */
 
   // Alarm activation handler
-  func alarmFired(timer: NSTimer?) {
+  func alarmFired(_ timer: Timer?) {
     NSLog("Triggering alarmFired notification")
-    NSNotificationCenter.defaultCenter().postNotificationName(
-      Notifications.AlarmFired,
+    NotificationCenter.default.post(
+        name: NSNotification.Name(rawValue: Notifications.AlarmFired),
       object: nil
     )
     deactivateAlarm()
@@ -116,16 +116,16 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
 
       // Create a new timer using the new alarm
       NSLog(String(format: "Setting an alarm for %.0f seconds in the future.", secondsUntilAlarm))
-      activeTimer = NSTimer.scheduledTimerWithTimeInterval(
-        secondsUntilAlarm,
+        activeTimer = Timer.scheduledTimer(
+            timeInterval: secondsUntilAlarm,
         target: self,
-        selector: "alarmFired:",
+        selector: #selector(AlarmHelper.alarmFired(_:)),
         userInfo: nil,
         repeats: false
       )
       // Send our notification
-      NSNotificationCenter.defaultCenter().postNotificationName(
-        Notifications.AlarmActivated,
+        NotificationCenter.default.post(
+            name: NSNotification.Name(rawValue: Notifications.AlarmActivated),
         object: nil
       )
       return true
@@ -135,11 +135,11 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
   }
 
   // Calculate the number of seconds until the alarm time.
-  private func secondsUntilAlarm() -> NSTimeInterval? {
+  private func secondsUntilAlarm() -> TimeInterval? {
     // If we have a current alarm, activate it
     if let unwrappedAlarm = activeAlarm {
       if let alarmTime = unwrappedAlarm.nextAlarmTime() {
-        return alarmTime.timeIntervalSinceDate(NSDate())
+        return alarmTime.timeIntervalSince(NSDate() as Date)
       }
     }
 
@@ -155,8 +155,8 @@ class AlarmHelper: NSObject, SleepQualityMonitorDelegate {
       // Activate the SleepQualityMonitor
       sleepQualityMonitor.stopMonitoring()
       // Send our notification
-      NSNotificationCenter.defaultCenter().postNotificationName(
-        Notifications.AlarmDeactivated,
+        NotificationCenter.default.post(
+            name: NSNotification.Name(rawValue: Notifications.AlarmDeactivated),
         object: nil
       )
     }

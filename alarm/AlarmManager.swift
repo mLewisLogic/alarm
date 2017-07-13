@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Kevin Farst. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 // This is responsible for ensuring that the AlarmHelper is always
 // loaded with the most impending alarm.
@@ -27,7 +28,7 @@ class AlarmManager: NSObject {
   override init() {
     // Use a new context that will never be persisted
     dummyContext = NSManagedObjectContext()
-    let existingContext = NSManagedObjectContext.MR_context()
+    let existingContext = NSManagedObjectContext.mr_()
     // Borrow the existing store coordinator, just never persist
     dummyContext.persistentStoreCoordinator = existingContext.persistentStoreCoordinator
     super.init()
@@ -53,7 +54,7 @@ class AlarmManager: NSObject {
   // Allow for the update of an AlarmEntity
   // This provides support for sending out a notification if the update
   // also changed the impending alarm.
-  class func updateAlarmEntity(alarm: AlarmEntity, timePresenter: TimePresenter) {
+  class func updateAlarmEntity(_ alarm: AlarmEntity, timePresenter: TimePresenter) {
     let nextAlarm = nextScheduledAlarm()
     let originalNextScheduledAlarmTime = nextAlarm.nextAlarmTime()
     alarm.applyTimePresenter(timePresenter)
@@ -62,8 +63,8 @@ class AlarmManager: NSObject {
     if originalNextScheduledAlarmTime != newNextScheduledAlarmTime {
       NSLog("Next scheduled time has changed")
       clearOverrideAlarm()
-      NSNotificationCenter.defaultCenter().postNotificationName(
-        Notifications.NextScheduledAlarmChanged,
+        NotificationCenter.default.post(
+            name: NSNotification.Name(rawValue: Notifications.NextScheduledAlarmChanged),
         object: nextAlarm
       )
     }
@@ -83,23 +84,23 @@ class AlarmManager: NSObject {
 
     // Use our shil context to create an override alarm object
     singleton.dummyContext.reset()
-    singleton.overrideAlarm = AlarmEntity.MR_createInContext(singleton.dummyContext) as? AlarmEntity
+    singleton.overrideAlarm = AlarmEntity.mr_create(in: singleton.dummyContext)
     singleton.overrideAlarm!.applyTimePresenter(timePresenter)
 
     // Now we have to figure out what the next time that this
     // alarm would go off at.
     // Match on time
     let rawTime = timePresenter.calculatedTime()!
-    var matchingComponents = NSDateComponents()
+    let matchingComponents = NSDateComponents()
     matchingComponents.hour = rawTime.hour24
     matchingComponents.minute = rawTime.minute
-    let calendar = NSCalendar.currentCalendar()
-    let nextTime = calendar.nextDateAfterDate(
-      NSDate(),
-      matchingComponents: matchingComponents,
-      options: NSCalendarOptions.MatchNextTime
-    )!
-    let weekday = calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: nextTime)
+    let calendar = Calendar.current
+    let nextTime = calendar.nextDate(
+        after: Date(),
+        matching: matchingComponents as DateComponents,
+        matchingPolicy: .nextTime)
+    
+    let weekday = calendar.component(.weekday, from: nextTime!)
     singleton.overrideAlarm!.weekday = weekday
 
     updateAlarmHelper()
@@ -135,16 +136,16 @@ class AlarmManager: NSObject {
   // Get the next scheduled alarm time
   class func nextScheduledAlarm() -> AlarmEntity {
     // Get all of the known alarms
-    let alarms = AlarmEntity.MR_findAll() as! [AlarmEntity]
+    let alarms = AlarmEntity.mr_findAll() as! [AlarmEntity]
     // Get an array of upcoming alarms, impending first
     let activeAlarms = alarms.filter({
       (alarm: AlarmEntity) -> Bool in
       // Filter out alarms without upcoming times
       alarm.nextAlarmTime() != nil
-    }).sorted({
+    }).sorted(by: {
       (a: AlarmEntity, b: AlarmEntity) -> Bool in
       // Sort them by who has the most impending time
-      a.nextAlarmTime()!.compare(b.nextAlarmTime()!) == NSComparisonResult.OrderedAscending
+      a.nextAlarmTime()!.compare(b.nextAlarmTime()! as Date) == ComparisonResult.orderedAscending
     })
 
     return activeAlarms.first!
@@ -156,11 +157,11 @@ class AlarmManager: NSObject {
     AlarmEntity.DayOfWeek.allValues.map {
       (dayOfWeekEnum: AlarmEntity.DayOfWeek) -> () in
 
-      let existingAlarmEntity = AlarmEntity.MR_findFirstByAttribute("dayOfWeek", withValue: dayOfWeekEnum.rawValue) as! AlarmEntity?
+      let existingAlarmEntity = AlarmEntity.mr_findFirst(byAttribute: "dayOfWeek", withValue: dayOfWeekEnum.rawValue) 
 
       // If it's nil, we need to create it
       if existingAlarmEntity == nil {
-        var newAlarmEntity = AlarmEntity.MR_createEntity() as! AlarmEntity
+        let newAlarmEntity = AlarmEntity.mr_createEntity()!
         newAlarmEntity.dayOfWeekEnum = dayOfWeekEnum
         newAlarmEntity.alarmTypeEnum = .Time
         newAlarmEntity.setValue(true, forKey: "enabled")
@@ -169,12 +170,12 @@ class AlarmManager: NSObject {
       }
     }
     // Save newly created records
-    NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+    NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
   }
 
   // Get alarms in Sunday -> Saturday order
   class func loadAlarmsOrdered() -> [AlarmEntity] {
-    var alarms = AlarmEntity.MR_findAll() as! [AlarmEntity]
+    let alarms = AlarmEntity.mr_findAll() as! [AlarmEntity]
     // Sort them by day of week
     return alarms.sorted {
       (a: AlarmEntity, b: AlarmEntity) -> Bool in

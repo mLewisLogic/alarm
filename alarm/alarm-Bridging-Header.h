@@ -1,11 +1,15 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  alarm-Bridging-Header.h
+//  alarm
+//
+//  Created by Kevin Farst on 12/17/16.
+//  Copyright © 2016 Kevin Farst. All rights reserved.
 //
 
-#ifndef ALARM_BRIDGING_HEADER_H
-#define ALARM_BRIDGING_HEADER_H
+#ifndef alarm_Bridging_Header_h
+#define alarm_Bridging_Header_h
 
-#import <EDSunriseSet.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import "EDSunriseSet/EDSunriseSet.h"
+#import "MagicalRecord/MagicalRecord.h"
 
-#endif
+#endif /* alarm_Bridging_Header_h */

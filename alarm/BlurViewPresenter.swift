@@ -25,8 +25,8 @@ class BlurViewPresenter {
     self.parentView = parent
 
     // Initialize the effects
-    blurEffect = UIBlurEffect(style: .Dark)
-    vibrancyEffect = UIVibrancyEffect(forBlurEffect: self.blurEffect)
+    blurEffect = UIBlurEffect(style: .dark)
+    vibrancyEffect = UIVibrancyEffect(blurEffect: self.blurEffect)
 
     // Create views on top of this controller's view
     blurEffectView = UIVisualEffectView(effect: blurEffect) as UIVisualEffectView
@@ -45,12 +45,12 @@ class BlurViewPresenter {
   func showBlur() {
     resetBounds()
     parentView.addSubview(blurEffectView)
-    blurEffectView.hidden = false
+    blurEffectView.isHidden = false
   }
 
   func hideBlur() {
     blurEffectView.removeFromSuperview()
-    blurEffectView.hidden = true
+    blurEffectView.isHidden = true
   }
 
 
@@ -58,7 +58,7 @@ class BlurViewPresenter {
 
   // When we show the view, frames could have changed so we want
   // to reset them easily.
-  private func resetBounds() {
+  fileprivate func resetBounds() {
     blurEffectView.frame = self.parentView.bounds
     vibrancyEffectView.frame = self.parentView.bounds
   }

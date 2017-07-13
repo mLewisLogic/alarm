@@ -18,20 +18,20 @@ class SettingsModalViewController: UIViewController {
   var closedPosition: CGFloat!
   var scheduleVC: ScheduleViewController!
   
-  private var open = false
+  fileprivate var open = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.whiteColor()
-    self.alarmLabel.textColor = UIColor.lightGrayColor()
+    self.view.backgroundColor = UIColor.white
+    self.alarmLabel.textColor = UIColor.lightGray
     
     scheduleVC = ScheduleViewController(nibName: "ScheduleViewController", bundle: nil)
     self.addChildViewController(scheduleVC)
     scheduleView.addSubview(scheduleVC.view)
-    scheduleVC.didMoveToParentViewController(self)
+    scheduleVC.didMove(toParentViewController: self)
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     addScheduleView()
   }
@@ -42,8 +42,8 @@ class SettingsModalViewController: UIViewController {
   }
   
   func addScheduleView() {
-    scheduleVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-    scheduleView.backgroundColor = UIColor.whiteColor()
+    scheduleVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    scheduleView.backgroundColor = UIColor.white
     scheduleView.layer.masksToBounds = true
     scheduleView.clipsToBounds = true
     scheduleView.center = self.view.center
@@ -52,47 +52,45 @@ class SettingsModalViewController: UIViewController {
     scheduleVC.view.clipsToBounds = true
 
     // Let the settings modal know who controls the time picker
-    scheduleVC.timePickerManagerDelegate = self.parentViewController! as! HomeViewController
+    scheduleVC.timePickerManagerDelegate = self.parent! as! HomeViewController
   }
   
-
-  @IBAction func moveModal(sender: UIPanGestureRecognizer) {
-    let velocity = sender.velocityInView(self.view)
-
-    switch sender.state {
-    case .Changed:
-      let translation = sender.translationInView(self.view)
-      let newPosition = CGFloat(sender.view!.center.y + translation.y)
-
-      if newPosition > openPosition && newPosition < closedPosition {
-        sender.view!.center.y = newPosition
-        sender.setTranslation(CGPointZero, inView: self.view)
-      }
-    case .Ended:
-      let damping: CGFloat! = 0.8
-      let initVelocity: CGFloat! = 1.6
-
-      if velocity.y < 0 {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initVelocity, options: .CurveEaseInOut, animations: { () -> Void in
-          self.view.center.y = self.openPosition
-          }, completion: { finished in
-            if finished {
-              self.open = true
+    @IBAction func moveModal(_ sender: UIPanGestureRecognizer) {
+        let velocity = sender.velocity(in: self.view)
+        
+        switch sender.state {
+        case .changed:
+            let translation = sender.translation(in: self.view)
+            let newPosition = CGFloat(sender.view!.center.y + translation.y)
+            
+            if newPosition > openPosition && newPosition < closedPosition {
+                sender.view!.center.y = newPosition
+                sender.setTranslation(CGPoint.zero, in: self.view)
             }
-        })
-      } else if velocity.y > 0 {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initVelocity, options: .CurveEaseInOut, animations: { () -> Void in
-          self.view.center.y = self.closedPosition
-          }, completion: { finished in
-            if finished {
-              self.open = false
+        case .ended:
+            let damping: CGFloat! = 0.8
+            let initVelocity: CGFloat! = 1.6
+            
+            if velocity.y < 0 {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initVelocity, options: .curveEaseInOut, animations: { () -> Void in
+                    self.view.center.y = self.openPosition
+                }, completion: { finished in
+                    if finished {
+                        self.open = true
+                    }
+                })
+            } else if velocity.y > 0 {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initVelocity, options: .curveEaseInOut, animations: { () -> Void in
+                    self.view.center.y = self.closedPosition
+                }, completion: { finished in
+                    if finished {
+                        self.open = false
+                    }
+                })
             }
-        })
-      }
-      break
-    default:
-      break
+            break
+        default:
+            break
+        }
     }
-  }
-  
 }

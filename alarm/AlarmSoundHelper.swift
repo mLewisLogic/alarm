@@ -1,3 +1,4 @@
+
 //
 //  AlarmSoundHelper.swift
 //  alarm
@@ -10,10 +11,10 @@ import AVFoundation
 import Foundation
 
 
-// Stash a singleton global instance
-private let _alarmSoundHelper = AlarmSoundHelper()
-
 class AlarmSoundHelper: NSObject {
+    
+  // Stash a singleton global instance
+  fileprivate static let _alarmSoundHelper = AlarmSoundHelper()
 
   let VOLUME_INITIAL: Float = 0.20 // start at 20%
   let VOLUME_RAMP_UP_STEP: Float = 0.01 // 1% at a time
@@ -25,50 +26,41 @@ class AlarmSoundHelper: NSObject {
   let VIBRATION_URGENCY: Float = 1.0 / 1.25 // Next vibe arrives 25% faster
 
 
-  let alertSound = NSURL(
-    fileURLWithPath: NSBundle.mainBundle().pathForResource("alarm", ofType: "m4a")!
+  let alertSound = URL(
+    fileURLWithPath: Bundle.main.path(forResource: "alarm", ofType: "m4a")!
   )
   let player: AVAudioPlayer
 
   // The volumeTimer is responsible for ramping the volume up and down
-  var volumeTimer: NSTimer?
-  var vibrationTimer: NSTimer?
+  var volumeTimer: Timer?
+  var vibrationTimer: Timer?
 
   // How long we're waiting until the next vibration
   var currentVibrationWait: Float = 0.0
 
   override init() {
-    var error: NSError?
-    player = AVAudioPlayer(
-      contentsOfURL: alertSound,
-      error: &error
-    )
-    if let e = error {
-      NSLog("AlarmSoundHelper error: \(e.description)")
-    }
-
+    player = try! AVAudioPlayer(contentsOf: alertSound)
     super.init()
   }
 
   // Create and hold onto a singleton instance of this class
-  class var singleton: AlarmSoundHelper {
-    return _alarmSoundHelper
+  static var singleton: AlarmSoundHelper {
+    return ._alarmSoundHelper
   }
-
 
   /* Public interface */
-  class func startPlaying() {
-    singleton.startPlaying()
+  static func startPlaying() {
+    singleton._startPlaying()
   }
 
-  class func stopPlaying() {
-    singleton.stopPlaying()
+  static func stopPlaying() {
+    singleton._stopPlaying()
   }
 
 
   /* Instance functions */
   // Start playing the sound, and ramp up the volume
-  func startPlaying() {
+  func _startPlaying() {
     player.volume = VOLUME_INITIAL
     player.currentTime = 0
     player.numberOfLoops = 100
@@ -80,74 +72,9 @@ class AlarmSoundHelper: NSObject {
 
   // Ramp the volume down to zero.
   // When it reaches zero, stop the player.
-  func stopPlaying() {
+  func _stopPlaying() {
     rampDownVolumeToStop()
     invalidateVibrationTimer()
-  }
-
-
-  /* Private functions */
-
-  // If there's an old volume timer, invalidate it
-  private func invalidateVolumeTimer() {
-    if let timer = volumeTimer {
-      timer.invalidate()
-      volumeTimer = nil
-    }
-  }
-
-  // If there's an old vibration timer, invalidate it
-  private func invalidateVibrationTimer() {
-    if let timer = vibrationTimer {
-      timer.invalidate()
-      vibrationTimer = nil
-    }
-  }
-
-  private func rampUpVolume() {
-    invalidateVolumeTimer()
-
-    // Set up a repeating timer that ramps up the player volume
-    volumeTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(VOLUME_RAMP_UP_TIME * VOLUME_RAMP_UP_STEP), // seconds
-      target: self,
-      selector: "increaseVolumeOneNotch",
-      userInfo: nil,
-      repeats: true
-    )
-  }
-
-  private func rampDownVolumeToStop() {
-    invalidateVolumeTimer()
-
-    // Set up a repeating timer that ramps up the player volume
-    volumeTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(VOLUME_RAMP_DOWN_TIME * VOLUME_RAMP_DOWN_STEP), // seconds
-      target: self,
-      selector: "decreaseVolumeOneNotchToStop",
-      userInfo: nil,
-      repeats: true
-    )
-  }
-
-  // Vibration is not introduced until a ways into the alarm
-  // It starts out slow and ramps up exponentially
-  // Unhandled, it will get really annoying
-  private func activateVibrationRampup() {
-    // Invalidate the existing timer
-    invalidateVibrationTimer()
-
-    // Reset our vibration wait
-    currentVibrationWait = FIRST_VIBRATION_AT
-
-    // Set up the timer for the first one. It's recursive for the rest.
-    vibrationTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(currentVibrationWait), // seconds
-      target: self,
-      selector: "triggerVibration",
-      userInfo: nil,
-      repeats: false
-    )
   }
 
 
@@ -193,12 +120,78 @@ class AlarmSoundHelper: NSObject {
       currentVibrationWait = 5.0
     }
 
-    vibrationTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(currentVibrationWait), // seconds
+    vibrationTimer = Timer.scheduledTimer(
+        timeInterval: TimeInterval(currentVibrationWait), // seconds
       target: self,
-      selector: "triggerVibration",
+      selector: #selector(triggerVibration),
       userInfo: nil,
       repeats: false
     )
   }
+}
+
+fileprivate extension AlarmSoundHelper {
+    /* Private functions */
+    
+    // If there's an old volume timer, invalidate it
+    func invalidateVolumeTimer() {
+        if let timer = volumeTimer {
+            timer.invalidate()
+            volumeTimer = nil
+        }
+    }
+    
+    // If there's an old vibration timer, invalidate it
+    func invalidateVibrationTimer() {
+        if let timer = vibrationTimer {
+            timer.invalidate()
+            vibrationTimer = nil
+        }
+    }
+    
+    func rampUpVolume() {
+        invalidateVolumeTimer()
+        
+        // Set up a repeating timer that ramps up the player volume
+        volumeTimer = Timer.scheduledTimer(
+            timeInterval: TimeInterval(VOLUME_RAMP_UP_TIME * VOLUME_RAMP_UP_STEP), // seconds
+            target: self,
+            selector: #selector(increaseVolumeOneNotch),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    
+    func rampDownVolumeToStop() {
+        invalidateVolumeTimer()
+        
+        // Set up a repeating timer that ramps up the player volume
+        volumeTimer = Timer.scheduledTimer(
+            timeInterval: TimeInterval(VOLUME_RAMP_DOWN_TIME * VOLUME_RAMP_DOWN_STEP), // seconds
+            target: self,
+            selector: #selector(decreaseVolumeOneNotchToStop),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    
+    // Vibration is not introduced until a ways into the alarm
+    // It starts out slow and ramps up exponentially
+    // Unhandled, it will get really annoying
+    func activateVibrationRampup() {
+        // Invalidate the existing timer
+        invalidateVibrationTimer()
+        
+        // Reset our vibration wait
+        currentVibrationWait = FIRST_VIBRATION_AT
+        
+        // Set up the timer for the first one. It's recursive for the rest.
+        vibrationTimer = Timer.scheduledTimer(
+            timeInterval: TimeInterval(currentVibrationWait), // seconds
+            target: self,
+            selector: #selector(triggerVibration),
+            userInfo: nil,
+            repeats: false
+        )
+    }
 }

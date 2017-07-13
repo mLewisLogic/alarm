@@ -26,12 +26,12 @@ class AlarmFiredViewController: UIViewController {
     startAlarmSequence()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     let backgroundImage = UIImage(named: "old-watches.png")
     backgroundView = UIImageView(image: backgroundImage)
-    self.view.insertSubview(backgroundView, atIndex: 0)
+    self.view.insertSubview(backgroundView, at: 0)
 
     addBackdropGradient()
     addAwakeButton()
@@ -60,14 +60,14 @@ class AlarmFiredViewController: UIViewController {
 
   /* Private */
 
-  private func addBackdropGradient() {
-    backdropGradientView.frame = CGRectMake(
-      0,
-      0,
-      self.view.frame.width,
-      150
+  fileprivate func addBackdropGradient() {
+    backdropGradientView.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: self.view.frame.width,
+        height: 150
     )
-    backdropGradientView.backgroundColor = UIColor.clearColor()
+    backdropGradientView.backgroundColor = UIColor.clear
     self.view.insertSubview(
       backdropGradientView,
       aboveSubview: backgroundView
@@ -75,21 +75,21 @@ class AlarmFiredViewController: UIViewController {
   }
 
   // Add our awake button
-  private func addAwakeButton() {
+  fileprivate func addAwakeButton() {
     //activationButtonCircleView
     // 107 277
     // 100 100
     if awakeButtonCircleView == nil {
       awakeButtonCircleView = ButtonCircleView(
-        frame: CGRectMake(
-          view.center.x - awakeButtonWidth / 2,
-          view.frame.height * 0.5 - awakeButtonWidth / 2,
-          awakeButtonWidth,
-          awakeButtonWidth
+        frame: CGRect(
+            x: view.center.x - awakeButtonWidth / 2,
+            y: view.frame.height * 0.5 - awakeButtonWidth / 2,
+            width: awakeButtonWidth,
+            height: awakeButtonWidth
         )
       )
       awakeButtonCircleView.labelText = "I'm up!"
-      let tapRecognizer = UITapGestureRecognizer(target: self, action: "deactivateAlarm")
+      let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(AlarmFiredViewController.deactivateAlarm))
       awakeButtonCircleView.addGestureRecognizer(tapRecognizer)
       view.addSubview(awakeButtonCircleView)
     }
@@ -106,7 +106,7 @@ class AlarmFiredViewController: UIViewController {
     delegate.dismissAlarmFiredView()
   }
 
-  private func playWakeupSound() {
+  fileprivate func playWakeupSound() {
     AlarmSoundHelper.startPlaying()
   }
 }
