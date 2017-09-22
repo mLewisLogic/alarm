@@ -16,7 +16,7 @@ protocol TimePickerDelegate {
 class TimePickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     @available(iOS 2.0, *)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3
+        return 1
     }
 
   @IBOutlet weak var timePicker: UIPickerView!
